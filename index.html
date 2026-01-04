@@ -1,0 +1,450 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Relancy – Operational Intelligence for the Real World</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+          content="Relancy is building the next generation of investigator education with 52 Weeks of Fraud – a year-long series of high-impact training scenarios." />
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #0f172a;
+            background-color: #f9fafb;
+            line-height: 1.6;
+        }
+
+        header,
+        section,
+        footer {
+            padding: 3rem 1.5rem;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        header {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+
+        h1, h2, h3 {
+            color: #020617;
+            margin-top: 0;
+        }
+
+        h1 {
+            font-size: 2.6rem;
+            letter-spacing: -0.04em;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.03em;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            margin: 0.35rem 0;
+        }
+
+        .hero-eyebrow {
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-size: 0.75rem;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: #1f2933;
+            margin-top: 0.75rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.35rem 0.65rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            background-color: #e0f2fe;
+            color: #075985;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.85rem 1.6rem;
+            border-radius: 999px;
+            background-color: #0f766e;
+            color: #ecfeff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-top: 1rem;
+        }
+
+            .cta-button:hover {
+                background-color: #115e59;
+            }
+
+        .muted {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.6fr);
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        .pill-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0.5rem 0 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+        }
+
+            .pill-list li {
+                font-size: 0.8rem;
+                padding: 0.18rem 0.55rem;
+                border-radius: 999px;
+                background-color: #e5e7eb;
+                color: #374151;
+            }
+
+        .check-list {
+            list-style: none;
+            padding-left: 0;
+            margin: 0.5rem 0 0;
+        }
+
+            .check-list li::before {
+                content: "✓";
+                color: #0f766e;
+                margin-right: 0.4rem;
+                font-weight: 600;
+            }
+
+            .check-list li {
+                margin-bottom: 0.25rem;
+                font-size: 0.95rem;
+            }
+
+        .section-label {
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            border: 1px solid #e5e7eb;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.75rem;
+            margin-top: 1.25rem;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .small {
+            font-size: 0.85rem;
+        }
+
+        footer {
+            padding-top: 1.5rem;
+            padding-bottom: 2.5rem;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            header, section {
+                padding: 2.25rem 1.25rem;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 2.1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HERO -->
+    <header>
+        <div class="section-label">Relancy</div>
+        <h1>Operational Intelligence for the Real World</h1>
+        <p class="hero-subtitle">
+            Fraud evolves. Loss evolves. Your training should too.
+            Relancy is building the next generation of investigator education — grounded in field‑tested patterns,
+            operational realism, and the psychology of fraud, failure, and loss.
+        </p>
+        <p class="badge">Announcing &ldquo;52 Weeks of Fraud&rdquo;</p>
+        <p>
+            Join the early access list for a year‑long training series delivering
+            one new, high‑impact scenario every week.
+        </p>
+        <p class="muted">
+            Become part of the first wave. Name, company, email — that’s it.
+        </p>
+        <a href="#signup" class="cta-button">Sign Up for Early Access</a>
+    </header>
+
+    <!-- WHY RELANCY EXISTS -->
+    <section>
+        <div class="two-column">
+            <div>
+                <div class="section-label">Why Relancy exists</div>
+                <h2>The world doesn’t need more “gamified training.” It needs investigators who see what others miss.</h2>
+                <p>
+                    Most training platforms teach rules. Relancy teaches <strong>judgment</strong>.
+                </p>
+                <p>We blend:</p>
+                <ul class="check-list">
+                    <li>Real‑world fraud patterns</li>
+                    <li>Operational failures and process breakdowns</li>
+                    <li>Cultural blind spots and normalized deviance</li>
+                    <li>Human behavior and decision pressure</li>
+                    <li>Cross‑functional risk signals and escalation gaps</li>
+                </ul>
+                <p>
+                    Our scenarios feel like they were pulled from your last investigation — because that’s the standard:
+                    field‑credible, audit‑ready, and grounded in reality.
+                </p>
+            </div>
+            <div class="card">
+                <h3>Built for serious practitioners</h3>
+                <p class="small">
+                    Relancy is for teams who know that fraud is never just fraud. It’s culture, process, design, and behavior.
+                </p>
+                <p class="small">
+                    We’re building a living canon of investigator scenarios that teach professionals to distinguish:
+                </p>
+                <ul class="check-list small">
+                    <li>Fraud vs. mistake</li>
+                    <li>Malice vs. systemic failure</li>
+                    <li>Labor waste vs. misconduct</li>
+                    <li>Individual failure vs. cultural rot</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT MAKES RELANCY DIFFERENT -->
+    <section>
+        <div class="section-label">What makes relancy different</div>
+        <h2>Built by practitioners. Designed for investigators. Engineered for credibility.</h2>
+        <p>
+            Relancy scenarios are designed to stand up to operational scrutiny and audit review.
+            Every scenario is structured, consistent, and grounded in real patterns.
+        </p>
+
+        <div class="grid-2">
+            <div class="card">
+                <h3>Field‑tested &amp; narrative‑rich</h3>
+                <ul class="check-list">
+                    <li><strong>Field‑tested</strong> patterns, not ivory‑tower theory</li>
+                    <li><strong>Narrative‑rich</strong> stories that convey context and psychology</li>
+                    <li><strong>Decision‑focused</strong> branches that force real tradeoffs</li>
+                    <li><strong>Schema‑driven</strong> structure for consistency and scale</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Cross‑disciplinary by design</h3>
+                <ul class="check-list">
+                    <li>Fraud, process failure, and labor waste in one view</li>
+                    <li>Culture, controls, and escalation pathways intertwined</li>
+                    <li>Scenarios that cut across LP, HR, Ops, and Finance</li>
+                    <li>Insights that drive both investigations and process change</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- 52 WEEKS OF FRAUD -->
+    <section>
+        <div class="section-label">Introducing 52 Weeks of Fraud</div>
+        <h2>One new scenario every week. Fifty‑two weeks. Zero fluff.</h2>
+        <p>
+            Starting soon, Relancy will release a new, professionally crafted scenario every week,
+            covering the full spectrum of fraud, loss, and operational breakdowns.
+        </p>
+        <div class="grid-2">
+            <div>
+                <h3>What participants receive</h3>
+                <ul class="check-list">
+                    <li>Weekly fraud and loss scenarios</li>
+                    <li>Access to all previously released scenarios</li>
+                    <li>Leaderboards and performance benchmarks</li>
+                    <li>Weekly prizes and recognition badges</li>
+                    <li>A growing community of investigators and operators</li>
+                </ul>
+            </div>
+            <div>
+                <h3>What organizations gain</h3>
+                <ul class="check-list">
+                    <li>A low‑friction way to upskill investigators</li>
+                    <li>Insight into how teams think under pressure</li>
+                    <li>A shared language for patterns, risks, and controls</li>
+                    <li>Real stories to drive policy, culture, and design change</li>
+                </ul>
+            </div>
+        </div>
+        <p class="muted">
+            This isn’t a game night. It’s the first global training league for investigators.
+        </p>
+    </section>
+
+    <!-- WHO THIS IS FOR -->
+    <section>
+        <div class="section-label">Who this is for</div>
+        <h2>If you work in these roles, Relancy is built for you.</h2>
+        <p>
+            Relancy is designed for professionals who carry responsibility for fraud, loss, culture, and control.
+        </p>
+        <ul class="pill-list">
+            <li>Loss Prevention</li>
+            <li>Asset Protection</li>
+            <li>Operations</li>
+            <li>HR &amp; Compliance</li>
+            <li>Risk Management</li>
+            <li>Store Management</li>
+            <li>Distribution &amp; Logistics</li>
+            <li>Fraud &amp; Investigations</li>
+            <li>Corporate Security</li>
+            <li>Audit &amp; Controls</li>
+        </ul>
+        <p>
+            Whether you’re a seasoned investigator or a new manager learning the ropes, Relancy gives you the patterns,
+            instincts, and frameworks that matter.
+        </p>
+    </section>
+
+    <!-- SIGNUP SECTION -->
+    <section id="signup">
+        <div class="card">
+            <div class="section-label">Early access</div>
+            <h2>Get on the list. Be first to receive the weekly scenarios.</h2>
+            <p>
+                We’re preparing the first season of <strong>52 Weeks of Fraud</strong>. Join the early access list to receive
+                scenarios as soon as they drop and to be eligible for weekly recognition and prizes.
+            </p>
+            <p><strong>We only need:</strong></p>
+            <ul class="check-list">
+                <li>Name</li>
+                <li>Company</li>
+                <li>Email</li>
+            </ul>
+            <p class="muted">
+                You’ll receive early access invites, beta opportunities, and exclusive content not available anywhere else.
+            </p>
+
+            <!-- Replace this with your actual form implementation -->
+            <form action="/signup" method="post">
+                <div style="margin-bottom: 0.75rem;">
+                    <label for="name" style="display:block;font-size:0.85rem;color:#4b5563;margin-bottom:0.15rem;">Name</label>
+                    <input type="text"
+                           id="name"
+                           name="name"
+                           required
+                           style="width:100%;padding:0.55rem 0.6rem;border-radius:0.5rem;border:1px solid #cbd5e1;font-size:0.95rem;" />
+                </div>
+
+                <div style="margin-bottom: 0.75rem;">
+                    <label for="company" style="display:block;font-size:0.85rem;color:#4b5563;margin-bottom:0.15rem;">Company</label>
+                    <input type="text"
+                           id="company"
+                           name="company"
+                           required
+                           style="width:100%;padding:0.55rem 0.6rem;border-radius:0.5rem;border:1px solid #cbd5e1;font-size:0.95rem;" />
+                </div>
+
+                <div style="margin-bottom: 0.75rem;">
+                    <label for="email" style="display:block;font-size:0.85rem;color:#4b5563;margin-bottom:0.15rem;">Email</label>
+                    <input type="email"
+                           id="email"
+                           name="email"
+                           required
+                           style="width:100%;padding:0.55rem 0.6rem;border-radius:0.5rem;border:1px solid #cbd5e1;font-size:0.95rem;" />
+                </div>
+
+                <button type="submit" class="cta-button">Join the Early Access List</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- PHILOSOPHY -->
+    <section>
+        <div class="section-label">The Relancy philosophy</div>
+        <h2>Fraud is never just fraud.</h2>
+        <p>
+            Relancy trains investigators to see the whole system, not just the incident. Our scenarios don’t stop at
+            &ldquo;who did it&rdquo; — they ask:
+        </p>
+        <ul class="check-list">
+            <li>What in the process made this possible?</li>
+            <li>Where did culture normalize the risk?</li>
+            <li>Which controls failed — or never existed?</li>
+            <li>How do we prevent the next iteration, not just punish this one?</li>
+        </ul>
+        <p>
+            We help organizations move from incident response to systemic improvement — one scenario at a time.
+        </p>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="center">
+        <div class="section-label">Start here</div>
+        <h2>The future of investigator education starts with you.</h2>
+        <p>
+            Join the early access list for <strong>52 Weeks of Fraud</strong> and be part of the first wave
+            shaping the Relancy training canon.
+        </p>
+        <a href="#signup" class="cta-button">Sign Up Now</a>
+        <p class="muted" style="margin-top:0.75rem;">
+            No spam. No fluff. Just operationally credible training for people who take fraud, loss, and culture seriously.
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Relancy. All rights reserved.</p>
+    </footer>
+
+    <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
