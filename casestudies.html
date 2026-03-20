@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Relancy &#8211; Case Studies</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #05060a;
+      --bg-alt: #0b0d14;
+      --card: #11141f;
+      --card-soft: #151827;
+      --accent: #3b82f6;
+      --accent-soft: #1d4ed8;
+      --accent-hr: #2563eb;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #1f2933;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --shadow-card: 0 14px 35px rgba(0, 0, 0, 0.45);
+      --max-width: 1120px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .page { min-height: 100vh; display: flex; flex-direction: column; }
+    .shell { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 24px 16px 64px; }
+
+    header {
+      display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px;
+    }
+
+    .logo { display: flex; align-items: center; }
+    .logo-img { height: 40px; width: auto; display: block; }
+
+    nav {
+      display: flex; align-items: center; gap: 18px; font-size: 0.9rem; color: var(--muted);
+    }
+
+    nav a { padding: 4px 0; border-bottom: 1px solid transparent; }
+    nav a:hover { color: #e5e7eb; border-bottom-color: rgba(148, 163, 184, 0.4); }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 48px 0 40px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 3vw, 2.8rem);
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero-title span { color: #a5b4fc; }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Case Sections */
+    .case-section {
+      margin-top: 48px;
+    }
+
+    .case-section > h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #9ca3af;
+      margin-bottom: 16px;
+    }
+
+    /* Case Study Cards */
+    .case-study {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, #020617, #020617);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 16px;
+    }
+
+    .case-study h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .case-study h4 {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #a5b4fc;
+      margin-top: 14px;
+      margin-bottom: 8px;
+    }
+
+    .case-context {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .case-study ul {
+      list-style: none;
+      padding-left: 0;
+      font-size: 0.85rem;
+      color: #e5e7eb;
+      margin-bottom: 12px;
+    }
+
+    .case-study ul li {
+      margin-bottom: 6px;
+    }
+
+    .case-study ul li::before {
+      content: "\25AA  ";
+      color: #60a5fa;
+    }
+
+    .case-outcome {
+      font-size: 0.88rem;
+      color: #d1d5db;
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px solid rgba(31, 41, 55, 0.6);
+    }
+
+    .case-outcome strong {
+      color: #a5b4fc;
+    }
+
+    /* CTA */
+    .cta-section {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .btn-primary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #f9fafb;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 40px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: #e5e7eb;
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      nav {
+        font-size: 0.82rem;
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="shell">
+
+      <!-- Header -->
+      <header>
+        <div class="logo">
+          <a href="index.html">
+            <img src="assets/relancy-logo.png" alt="Relancy logo" class="logo-img">
+          </a>
+        </div>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="security.html">Security</a>
+          <a href="investigations.html">Investigations</a>
+          <a href="training.html">Training</a>
+          <a href="hr.html">HR &amp; ER</a>
+        </nav>
+      </header>
+
+      <!-- Hero -->
+      <section class="hero">
+        <h1 class="hero-title">
+          Relancy Case Studies<br />
+          <span>Real Results from Real Operations</span>
+        </h1>
+        <p class="hero-sub">
+          Relancy helps Security, HR, and enterprise leaders bring order, governance, and readiness to
+          incidents and investigations. These case studies illustrate how each suite can performS in the real world.
+        </p>
+      </section>
+
+      <!-- Operational Suite Case Studies -->
+      <section class="case-section" id="operational">
+        <h2>Operational Suite &#8212; Security-Led Organizations</h2>
+
+        <article class="case-study">
+          <h3>Multi&#8209;Site Retailer Reduces Incident Chaos</h3>
+          <p class="case-context">
+            A regional retailer with 14 stores struggled with inconsistent incident reporting. Guards wrote
+            free&#8209;text narratives, supervisors corrected them manually, and Directors only saw incidents when
+            something went wrong.
+          </p>
+          <h4>How Relancy Can Help</h4>
+          <ul>
+            <li>Structured incident capture for guards across all locations</li>
+            <li>Supervisor review workflow before escalation</li>
+            <li>Directors receive only intentional, clean escalations</li>
+            <li>Parking &amp; TruckGate reduces gate delays</li>
+            <li>AI redaction ensures no PII or protected&#8209;class information leaks</li>
+          </ul>
+          <p class="case-outcome">
+            <strong>Expected Outcome:</strong> Improved incident quality and a significant reduction
+            in surprise escalations for Directors.
+          </p>
+        </article>
+
+        <article class="case-study">
+          <h3>Distribution Center Eliminates Supervisor Bottlenecks</h3>
+          <p class="case-context">
+            A 24/7 logistics hub had supervisors drowning in incident reports. Many were incomplete, missing
+            context, or escalated too early.
+          </p>
+          <h4>How Relancy Can Help</h4>
+          <ul>
+            <li>Structured supervisor review with clear required fields</li>
+            <li>Real&#8209;time guidance to guards on missing details</li>
+            <li>Directors see only incidents that meet escalation criteria</li>
+            <li>TruckGate captures bill&#8209;of&#8209;lading issues consistently</li>
+            <li>AI redaction protects identities before analysis</li>
+          </ul>
+          <p class="case-outcome">
+            <strong>Expected Outcome:</strong> Supervisor review time reduced from 11 minutes per incident to under 4 minutes.
+          </p>
+        </article>
+
+        <article class="case-study">
+          <h3>Campus Security Gains Consistency Across Shifts</h3>
+          <p class="case-context">
+            A university security department had inconsistent reporting across day, evening, and overnight shifts.
+            Directors couldn&#8217;t compare patterns because each shift wrote differently.
+          </p>
+          <h4>How Relancy Can Help</h4>
+          <ul>
+            <li>Unified, structured incident capture for all shifts</li>
+            <li>Supervisor correction before escalation to Directors</li>
+            <li>Consistent, comparable data across the entire campus</li>
+            <li>Parking module reduces unauthorized parking</li>
+            <li>AI redaction ensures student privacy</li>
+          </ul>
+          <p class="case-outcome">
+            <strong>Expected Outcome:</strong> The department can produce its first reliable quarterly trend report.
+          </p>
+        </article>
+      </section>
+
+      <!-- Investigations Suite Case Studies -->
+      <section class="case-section" id="investigations-suite">
+        <h2>Investigations Suite &#8212; HR&#8209;Led or Mixed Governance</h2>
+
+        <article class="case-study">
+          <h3>Healthcare System Strengthens Protected&#8209;Class Integrity</h3>
+          <p class="case-context">
+            A hospital network faced rising HR complaints involving protected classes and needed a system that
+            enforced privacy and prevented investigators from seeing unnecessary identity details.
+          </p>
+          <h4>How Relancy Can Help</h4>
+          <ul>
+            <li>Pseudonymized narratives (Witness #1, Subject #2, etc.)</li>
+            <li>Automatic removal of protected&#8209;class descriptors</li>
+            <li>Separated HR and Security domains with strict privacy</li>
+            <li>Cross&#8209;domain linking allows safe pattern detection</li>
+            <li>Directors see full identities only after escalation</li>
+          </ul>
+          <p class="case-outcome">
+            <strong>Expected Outcome:</strong> Significant improvement in defensibility during internal reviews.
+          </p>
+        </article>
+
+        <article class="case-study">
+          <h3>Corporate HR Gains Confidence in Sensitive Investigations</h3>
+          <p class="case-context">
+            A corporate HR team handled harassment, discrimination, and retaliation cases but lacked a system
+            that enforced privacy and version history.
+          </p>
+          <h4>How Relancy Can Help</h4>
+          <ul>
+            <li>HR cases isolated from Security with domain privacy</li>
+            <li>Immutable version history for every edit and note</li>
+            <li>AI redaction ensures investigators never see raw PII</li>
+            <li>HR&#8209;led escalation with full context for Directors</li>
+            <li>Cross&#8209;domain linking reveals repeat patterns across departments</li>
+          </ul>
+          <p class="case-outcome">
+            <strong>Expected Outcome:</strong> Reduced investigation cycle time while increasing trust with employees.
+          </p>
+        </article>
+
+        <article class="case-study">
+          <h3>Education System Improves Fairness and Transparency</h3>
+          <p class="case-context">
+            A school district needed a system that protected student and staff identities while enabling
+            consistent investigations across campuses.
+          </p>
+          <h4>How Relancy Can Help</h4>
+          <ul>
+            <li>Pseudonymized identities across all HR and Security cases</li>
+            <li>Separated domains with clear access boundaries</li>
+            <li>Directors receive full identities only after escalation</li>
+            <li>Protected&#8209;class integrity rules prevented descriptor leakage</li>
+            <li>Version history supported board and external reviews</li>
+          </ul>
+          <p class="case-outcome">
+            <strong>Expected Outcome:</strong> The district can demonstrate compliance during external audits with confidence.
+          </p>
+        </article>
+      </section>
+
+      <!-- Governance & Readiness Suite Case Studies -->
+      <section class="case-section" id="governance-readiness">
+        <h2>Governance &amp; Readiness Suite &#8212; Enterprise Scale</h2>
+
+        <article class="case-study">
+          <h3>National Retail Chain Builds a Readiness Program</h3>
+          <p class="case-context">
+            A national retailer with over 200 locations wanted to improve investigative readiness and reduce
+            risk across the organization.
+          </p>
+          <h4>How Relancy Can Help</h4>
+          <ul>
+            <li>Training &amp; Readiness embeds into onboarding and refreshers</li>
+            <li>Scenario Marketplace provides real&#8209;world practice scenarios</li>
+            <li>Contributor Tools enable regional managers to author scenarios</li>
+            <li>Pattern Intelligence identifies emerging trends across stores</li>
+            <li>Multi&#8209;site governance unifies escalation rules and reporting</li>
+          </ul>
+          <p class="case-outcome">
+            <strong>Expected Outcome:</strong> A measurable reduction in repeat incidents within the first year.
+          </p>
+        </article>
+
+        <article class="case-study">
+          <h3>Logistics Network Uses Pattern Intelligence to Prevent Loss</h3>
+          <p class="case-context">
+            A logistics company with multiple distribution centers struggled with recurring internal theft
+            patterns but lacked cross&#8209;site visibility.
+          </p>
+          <h4>How Relancy Can Help</h4>
+          <ul>
+            <li>Pattern Intelligence surfaces cross&#8209;site behavioral patterns</li>
+            <li>Directors access unified governance dashboards</li>
+            <li>Training scenarios built from real (redacted) incidents</li>
+            <li>Multi&#8209;site governance standardizes escalation and response</li>
+            <li>Scenario lineage ensures training matches real risks</li>
+          </ul>
+          <p class="case-outcome">
+            <strong>Expected Outcome:</strong> A measurable drop in loss events within the first six months.
+          </p>
+        </article>
+
+        <article class="case-study">
+          <h3>University System Builds a Culture of Preparedness</h3>
+          <p class="case-context">
+            A multi&#8209;campus university system wanted to improve investigative consistency and prepare staff
+            for complex cases.
+          </p>
+          <h4>How Relancy Can Help</h4>
+          <ul>
+            <li>Training &amp; Readiness integrates into annual certification</li>
+            <li>Scenario Marketplace provides campus&#8209;specific training content</li>
+            <li>Contributor Tools empower deans and directors to build scenarios</li>
+            <li>Pattern Intelligence reveals cross&#8209;campus trends</li>
+            <li>Multi&#8209;site governance ensures consistent policies and escalation</li>
+          </ul>
+          <p class="case-outcome">
+            <strong>Expected Outcome:</strong> The university can demonstrate system&#8209;wide readiness during accreditation review.
+          </p>
+        </article>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section">
+        <h2>See What Relancy Can Do for Your Organization</h2>
+        <p>
+          Whether you lead Security, HR, or enterprise governance &#8212; Relancy is built for your reality.
+        </p>
+        <a href="contact.html" class="btn-primary">Talk to Sales</a>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <div>&copy; Relancy. Investigations built for the real world.</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="security.html">Security</a>
+          <a href="investigations.html">Investigations</a>
+          <a href="training.html">Training</a>
+          <a href="hr.html">HR &amp; ER</a>
+          <a href="products.html">Products</a><a href="legal.html">Legal</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="contact.html">Contact</a>
+          <a href="beta.html">Beta</a>
+
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Relancy &#8211; Thank You</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #05060a;
+      --bg-alt: #0b0d14;
+      --accent: #3b82f6;
+      --accent-soft: #1d4ed8;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #1f2933;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --shadow-card: 0 14px 35px rgba(0, 0, 0, 0.45);
+      --max-width: 1120px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .page { min-height: 100vh; display: flex; flex-direction: column; }
+    .shell { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 24px 16px 64px; }
+
+    header {
+      display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px;
+    }
+
+    .logo { display: flex; align-items: center; }
+    .logo-img { height: 40px; width: auto; display: block; }
+
+    nav {
+      display: flex; align-items: center; gap: 18px; font-size: 0.9rem; color: var(--muted);
+    }
+
+    nav a { padding: 4px 0; border-bottom: 1px solid transparent; }
+    nav a:hover { color: #e5e7eb; border-bottom-color: rgba(148, 163, 184, 0.4); }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 72px 16px 64px;
+      max-width: 640px;
+      margin: 0 auto;
+      gap: 20px;
+    }
+
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.06);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      background: rgba(34, 197, 94, 0.08);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #86efac;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      font-weight: 650;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-title span { color: #a5b4fc; }
+
+    .hero-sub {
+      font-size: 0.98rem;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    /* What happens next card */
+    .next-card {
+      margin: 0 auto;
+      max-width: 560px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, #020617, #020617);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 24px 28px;
+      box-shadow: var(--shadow-card);
+      text-align: left;
+    }
+
+    .next-card h2 {
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #9ca3af;
+      margin-bottom: 14px;
+    }
+
+    .next-steps {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .next-steps li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: #d1d5db;
+    }
+
+    .step-num {
+      min-width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      color: #93c5fd;
+      font-size: 0.72rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    /* CTAs */
+    .ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .btn-primary {
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #f9fafb;
+      font-size: 0.92rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
+      display: inline-block;
+    }
+
+    .btn-primary:hover { filter: brightness(1.05); transform: translateY(-1px); }
+
+    .btn-secondary {
+      padding: 9px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: rgba(15, 23, 42, 0.8);
+      color: #e5e7eb;
+      font-size: 0.9rem;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover { border-color: #e5e7eb; background: rgba(15, 23, 42, 0.95); }
+
+    /* Footer */
+    footer {
+      margin-top: 64px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .footer-links { display: flex; flex-wrap: wrap; gap: 12px; }
+    .footer-links a { color: var(--muted); }
+    .footer-links a:hover { color: #e5e7eb; }
+
+    @media (max-width: 640px) {
+      header { flex-direction: column; align-items: flex-start; gap: 10px; }
+      nav { font-size: 0.82rem; flex-wrap: wrap; }
+      .hero { padding-top: 48px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="shell">
+
+      <!-- Header -->
+      <header>
+        <div class="logo">
+          <a href="index.html">
+            <img src="assets/relancy-logo.png" alt="Relancy logo" class="logo-img">
+          </a>
+        </div>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="security.html">Security</a>
+          <a href="investigations.html">Investigations</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="beta.html">Beta</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </header>
+
+      <!-- Hero -->
+      <section class="hero">
+
+        <div class="success-icon">&#10003;</div>
+
+        <div class="hero-tag">Submission Received</div>
+
+        <h1 class="hero-title">
+          Thank You.<br />
+          <span>We&#8217;ll Be in Touch.</span>
+        </h1>
+
+        <p class="hero-sub">
+          Your submission has been received. A member of the Relancy team will follow up at the email address you provided.
+        </p>
+
+        <!-- What happens next -->
+        <div class="next-card">
+          <h2>What Happens Next</h2>
+          <ol class="next-steps">
+            <li>
+              <span class="step-num">1</span>
+              <span>We&#8217;ll review your submission within 1&#8209;2 business days.</span>
+            </li>
+            <li>
+              <span class="step-num">2</span>
+              <span>You&#8217;ll receive a confirmation at the email you provided.</span>
+            </li>
+            <li>
+              <span class="step-num">3</span>
+              <span>If you requested a demo, we&#8217;ll reach out to schedule a time that works for your team.</span>
+            </li>
+            <li>
+              <span class="step-num">4</span>
+              <span>If you signed up for the Beta, you&#8217;ll receive access instructions closer to the June 1 launch.</span>
+            </li>
+          </ol>
+        </div>
+
+        <div class="ctas">
+          <a href="index.html" class="btn-primary">Back to Home</a>
+          <a href="casestudies.html" class="btn-secondary">Read Case Studies</a>
+        </div>
+
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <div>&copy; Relancy. Investigations built for the real world.</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="security.html">Security</a>
+          <a href="investigations.html">Investigations</a>
+          <a href="training.html">Training</a>
+          <a href="hr.html">HR &amp; ER</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="casestudies.html">Case Studies</a>
+          <a href="about.html">About</a>
+          <a href="products.html">Products</a><a href="legal.html">Legal</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="contact.html">Contact</a>
+          <a href="beta.html">Beta</a>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+</body>
+</html>

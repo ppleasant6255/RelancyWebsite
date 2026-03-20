@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Relancy &#8211; Product Suite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #05060a;
+      --bg-alt: #0b0d14;
+      --card: #11141f;
+      --card-soft: #151827;
+      --accent: #3b82f6;
+      --accent-soft: #1d4ed8;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #1f2933;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --shadow-card: 0 14px 35px rgba(0, 0, 0, 0.45);
+      --max-width: 1120px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .page { min-height: 100vh; display: flex; flex-direction: column; }
+    .shell { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 24px 16px 64px; }
+
+    header {
+      display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px;
+    }
+
+    .logo { display: flex; align-items: center; }
+    .logo-img { height: 40px; width: auto; display: block; }
+
+    nav {
+      display: flex; align-items: center; gap: 18px; font-size: 0.9rem; color: var(--muted);
+    }
+
+    nav a { padding: 4px 0; border-bottom: 1px solid transparent; }
+    nav a:hover { color: #e5e7eb; border-bottom-color: rgba(148, 163, 184, 0.4); }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 48px 0 40px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.18), transparent 55%);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 3vw, 2.8rem);
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero-title span { color: #a5b4fc; }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Section header */
+    .section-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #9ca3af;
+      margin-bottom: 16px;
+    }
+
+    /* Product cards grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .product-card {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, #020617, #020617);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 20px 22px 18px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .product-card-icon {
+      font-size: 1.2rem;
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    .product-card h3 {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .product-card p {
+      font-size: 0.84rem;
+      color: var(--muted);
+      flex: 1;
+    }
+
+    .product-card ul {
+      list-style: none;
+      padding-left: 0;
+      font-size: 0.8rem;
+      color: #d1d5db;
+      margin-top: 4px;
+    }
+
+    .product-card ul li {
+      margin-bottom: 4px;
+    }
+
+    .product-card ul li::before {
+      content: "▸ ";
+      color: #60a5fa;
+    }
+
+    /* Minor products */
+    .minor-card {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, #020617, #020617);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 22px 24px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .minor-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px 24px;
+      margin-top: 16px;
+    }
+
+    .minor-item {
+      font-size: 0.83rem;
+      color: #d1d5db;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(31, 41, 55, 0.7);
+    }
+
+    .minor-item strong {
+      display: block;
+      color: #e5e7eb;
+      margin-bottom: 2px;
+    }
+
+    .minor-item span {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 48px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-links a { color: var(--muted); }
+    .footer-links a:hover { color: #e5e7eb; }
+
+    @media (max-width: 900px) {
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .minor-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      header { flex-direction: column; align-items: flex-start; gap: 10px; }
+      nav { font-size: 0.82rem; flex-wrap: wrap; }
+
+      .product-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .minor-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="shell">
+
+      <!-- Header -->
+      <header>
+        <div class="logo">
+          <a href="index.html">
+            <img src="assets/relancy-logo.png" alt="Relancy logo" class="logo-img">
+          </a>
+        </div>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="security.html">Security</a>
+          <a href="investigations.html">Investigations</a>
+          <a href="training.html">Training</a>
+          <a href="hr.html">HR &amp; ER</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+      </header>
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-tag">Relancy Platform</div>
+        <h1 class="hero-title">
+          Built for the Real Work<br />
+          <span>The Relancy Product Suite</span>
+        </h1>
+        <p class="hero-sub">
+          Relancy brings structure, governance, and readiness to Security, HR, and enterprise investigations.
+          Each app solves a specific operational challenge while working seamlessly within the broader platform.
+        </p>
+      </section>
+
+      <!-- Main Applications -->
+      <div class="section-label">Main Applications</div>
+      <div class="product-grid">
+
+        <div class="product-card">
+          <div class="product-card-icon">⚙️</div>
+          <h3>Admin Portal</h3>
+          <p>
+            Centralized administration for roles, permissions, domains, and governance settings. Ensures
+            Security and HR operate with clean boundaries and consistent oversight.
+          </p>
+          <ul>
+            <li>Role &amp; permission management</li>
+            <li>Domain privacy controls</li>
+            <li>Governance configuration</li>
+            <li>Multi-site administration</li>
+          </ul>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-icon">📊</div>
+          <h3>Analytics</h3>
+          <p>
+            Enterprise reporting and pattern intelligence built on fully redacted, privacy-safe data.
+            Designed for Directors and governance leaders.
+          </p>
+          <ul>
+            <li>Cross-domain trend analysis</li>
+            <li>Pattern Intelligence engine</li>
+            <li>Multi-site dashboards</li>
+            <li>Governance reporting</li>
+          </ul>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-icon">📋</div>
+          <h3>Computer Aided Dispatch</h3>
+          <p>
+            Structured incident capture for Security teams, supervisors, and Directors. Ensures clean,
+            consistent reporting across shifts and locations.
+          </p>
+          <ul>
+            <li>Structured incident forms</li>
+            <li>Supervisor review workflow</li>
+            <li>Director escalation</li>
+            <li>AI-safe redaction</li>
+          </ul>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-icon">🗂️</div>
+          <h3>Command Center</h3>
+          <p>
+            Case management for HR, ER, and Security investigations. Built for privacy, protected-class
+            integrity, and defensible outcomes.
+          </p>
+          <ul>
+            <li>HR &amp; Security case domains</li>
+            <li>Protected-class integrity enforcement</li>
+            <li>Cross-domain case linking (safe mode)</li>
+            <li>Immutable version history</li>
+          </ul>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-icon">📖</div>
+          <h3>Learn</h3>
+          <p>
+            A lightweight, read-only knowledge companion for policies, micro-lessons, quick references,
+            and onboarding modules.
+          </p>
+          <ul>
+            <li>KB articles &amp; infographics</li>
+            <li>Scenario summaries</li>
+            <li>Micro-lessons</li>
+            <li>Policy reminders</li>
+          </ul>
+        </div>
+
+        <div class="product-card">
+          <div class="product-card-icon">🎯</div>
+          <h3>Training &amp; Readiness</h3>
+          <p>
+            A full training environment for investigators, supervisors, and Directors. Built on real,
+            redacted incidents and scenario lineage.
+          </p>
+          <ul>
+            <li>Scenario Marketplace</li>
+            <li>Contributor Tools</li>
+            <li>Training lineage &amp; auditability</li>
+            <li>Readiness tracking</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Additional Modules -->
+      <div class="minor-card">
+        <div class="section-label">Additional Modules &amp; Utilities</div>
+        <div class="minor-grid">
+
+          <div class="minor-item">
+            <strong>Parking</strong>
+            <span>Tracks parking incidents, violations, and operational issues across campuses or facilities.</span>
+          </div>
+
+          <div class="minor-item">
+            <strong>TruckGate</strong>
+            <span>Manages inbound/outbound trucks, bill-of-lading issues, and gate delays with structured capture.</span>
+          </div>
+
+          <div class="minor-item">
+            <strong>Scenario Marketplace</strong>
+            <span>A library of real-world, redacted scenarios for training investigators and supervisors.</span>
+          </div>
+
+          <div class="minor-item">
+            <strong>Contributor Tools</strong>
+            <span>Allows approved creators to build training scenarios, micro-lessons, and readiness content.</span>
+          </div>
+
+          <div class="minor-item">
+            <strong>Pattern Intelligence</strong>
+            <span>Identifies emerging trends across incidents and cases using fully redacted data.</span>
+          </div>
+
+          <div class="minor-item">
+            <strong>Director Escalation</strong>
+            <span>A governance workflow ensuring Directors see full identities only when escalation is intentional.</span>
+          </div>
+
+          <div class="minor-item">
+            <strong>Redaction Engine</strong>
+            <span>Universal, deterministic pseudonymization and protected-class removal for all narratives.</span>
+          </div>
+
+          <div class="minor-item">
+            <strong>Audit Trails</strong>
+            <span>Immutable version history for every incident, case, and training artifact.</span>
+          </div>
+
+          <div class="minor-item">
+            <strong>Multi-Site Governance</strong>
+            <span>Enterprise controls for organizations with multiple campuses, stores, or facilities.</span>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer>
+        <div>&copy; Relancy. Investigations built for the real world.</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="security.html">Security</a>
+          <a href="investigations.html">Investigations</a>
+          <a href="training.html">Training</a>
+          <a href="hr.html">HR &amp; ER</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="casestudies.html">Case Studies</a>
+          <a href="about.html">About</a>
+          <a href="products.html">Products</a><a href="legal.html">Legal</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="contact.html">Contact</a>
+          <a href="beta.html">Beta</a>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Relancy – About</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #05060a;
+      --bg-alt: #0b0d14;
+      --card: #11141f;
+      --card-soft: #151827;
+      --accent: #3b82f6;
+      --accent-soft: #1d4ed8;
+      --accent-hr: #2563eb;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #1f2933;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --shadow-card: 0 14px 35px rgba(0, 0, 0, 0.45);
+      --max-width: 1120px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .page { min-height: 100vh; display: flex; flex-direction: column; }
+    .shell { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 24px 16px 64px; }
+
+    header {
+      display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px;
+    }
+
+    .logo { display: flex; align-items: center; }
+    .logo-img { height: 40px; width: auto; display: block; }
+
+    nav {
+      display: flex; align-items: center; gap: 18px; font-size: 0.9rem; color: var(--muted);
+    }
+
+    nav a { padding: 4px 0; border-bottom: 1px solid transparent; }
+    nav a:hover { color: #e5e7eb; border-bottom-color: rgba(148, 163, 184, 0.4); }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 48px 0 40px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 3vw, 2.8rem);
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero-title span { color: #a5b4fc; }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Sections */
+    .section { margin-top: 40px; }
+    .section-title {
+      font-size: 1.1rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: #9ca3af; margin-bottom: 12px;
+    }
+    .section-sub { font-size: 0.92rem; color: var(--muted); margin-bottom: 18px; }
+
+    .card {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, #020617, #020617);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 18px; box-shadow: var(--shadow-card); margin-bottom: 16px;
+    }
+
+    .card h3 { font-size: 1rem; font-weight: 550; margin-bottom: 6px; }
+    .card p { font-size: 0.88rem; color: var(--muted); margin-bottom: 10px; }
+
+    .card ul { list-style: none; padding-left: 0; font-size: 0.82rem; color: #e5e7eb; }
+    .card ul li::before { content: "• "; color: #6b7280; }
+
+    .grid-2 {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;
+    }
+
+    /* CTA */
+    .cta-section { margin-top: 40px; text-align: center; }
+    .cta-section h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 12px; }
+    .cta-section p { font-size: 0.95rem; color: var(--muted); margin-bottom: 20px; }
+
+    .btn-primary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #f9fafb;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 40px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: #e5e7eb;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2 { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      header { flex-direction: column; align-items: flex-start; gap: 10px; }
+      nav { font-size: 0.82rem; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="shell">
+
+      <!-- Header -->
+      <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/relancy-logo.png" alt="Relancy logo" class="logo-img">
+            </a>
+        </div>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="security.html">Security</a>
+          <a href="investigations.html">Investigations</a>
+          <a href="training.html">Training</a>
+          <a href="hr.html">HR & ER</a>
+          <a href="pricing.html">Pricing</a>
+        </nav>
+      </header>
+
+      <!-- Hero -->
+      <section class="hero">
+        <h1 class="hero-title">
+          Built for the Real World<br />
+          <span>Guided by Investigative Discipline</span>
+        </h1>
+        <p class="hero-sub">
+          Relancy is a governed investigative platform designed around operational reality, domain privacy, and director‑level defensibility.  
+          It exists because real investigations require structure, integrity, and clarity — not dashboards, summaries, or noise.
+        </p>
+      </section>
+
+      <!-- Mission -->
+      <section class="section">
+        <div class="section-title">Our Mission</div>
+        <div class="section-sub">To bring investigative discipline, operational clarity, and defensible governance to organizations of every size.</div>
+
+        <div class="card">
+          <h3>Why Relancy Exists</h3>
+          <p>
+            Most platforms treat investigations as a workflow problem. Relancy treats them as a discipline — one that protects people, protects organizations, and protects the truth.  
+            The platform is built to reflect how real investigations work: incident‑first, domain‑private, escalation‑only, and fully auditable.
+          </p>
+        </div>
+      </section>
+
+      <!-- Principles -->
+      <section class="section">
+        <div class="section-title">Guiding Principles</div>
+        <div class="section-sub">The platform is built on a set of non‑negotiable rules that shape every workflow.</div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Incident‑First</h3>
+            <p>Cases cannot exist without incidents. No drafts, no placeholders, no pretext files.</p>
+            <ul>
+              <li>Prevents retaliation and dossier‑building</li>
+              <li>Ensures defensible documentation</li>
+              <li>Mirrors real investigative discipline</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Domain Privacy</h3>
+            <p>Security and HR operate in separate domains with no cross‑visibility unless explicitly shared.</p>
+            <ul>
+              <li>No accidental exposure</li>
+              <li>No shared dashboards</li>
+              <li>Escalation‑only sharing</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Escalation Integrity</h3>
+            <p>Directors see everything — but only when an investigator chooses to escalate.</p>
+            <ul>
+              <li>No omniscience</li>
+              <li>No summaries or filters</li>
+              <li>Full version history included</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Immutable Audit Trails</h3>
+            <p>Every action is logged. Nothing is overwritten. Nothing is hidden.</p>
+            <ul>
+              <li>Supports legal and compliance review</li>
+              <li>Protects investigators</li>
+              <li>Preserves organizational integrity</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Continuity -->
+      <section class="section">
+        <div class="section-title">Continuity & Governance</div>
+        <div class="section-sub">Relancy is designed to outlive any individual — including its founder.</div>
+
+        <div class="card">
+          <h3>Built for Longevity</h3>
+          <p>
+            Relancy’s governance model ensures continuity at the corporate level.  
+            The platform is structured so that leadership transitions, organizational changes, or personnel turnover never compromise investigative integrity.
+          </p>
+          <ul>
+            <li>Director‑level oversight</li>
+            <li>Clear chain‑of‑command boundaries</li>
+            <li>Versioned, auditable, immutable records</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section">
+        <h2>Investigations Built for the Real World</h2>
+        <p>Relancy brings clarity, structure, and defensibility to every incident, case, and escalation.</p>
+        <button class="btn-primary">Request a Demo</button>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <div>© Relancy. Investigations built for the real world.</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="security.html">Security</a>
+          <a href="investigations.html">Investigations</a>
+          <a href="training.html">Training</a>
+          <a href="hr.html">HR & ER</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="casestudies.html">Case Studies</a>
+          <a href="products.html">Products</a><a href="legal.html">Legal</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="contact.html">Contact</a>
+          <a href="beta.html">Beta</a>
+
+    </div>
+  </div>
+</body>
+</html>

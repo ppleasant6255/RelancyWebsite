@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Relancy – Security Operations</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #05060a;
+      --bg-alt: #0b0d14;
+      --card: #11141f;
+      --card-soft: #151827;
+      --accent: #3b82f6;
+      --accent-soft: #1d4ed8;
+      --accent-hr: #2563eb;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #1f2933;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --shadow-card: 0 14px 35px rgba(0, 0, 0, 0.45);
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    nav a {
+      padding: 4px 0;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav a:hover {
+      color: #e5e7eb;
+      border-bottom-color: rgba(148, 163, 184, 0.4);
+    }
+
+    .nav-cta {
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: #e5e7eb;
+    }
+
+    .nav-cta:hover {
+      border-color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+      gap: 32px;
+      align-items: center;
+      padding: 32px 0 40px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.18), transparent 55%);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .hero-tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 3vw, 2.7rem);
+      font-weight: 650;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-title span {
+      color: #a5b4fc;
+    }
+
+    .hero-sub {
+      font-size: 0.98rem;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 6px;
+    }
+
+    .btn-primary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #f9fafb;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.8);
+      color: #e5e7eb;
+      font-size: 0.92rem;
+      cursor: pointer;
+    }
+
+    .btn-secondary:hover {
+      border-color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .hero-note {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-right {
+      border-radius: 22px;
+      background: radial-gradient(circle at 0 0, rgba(59, 130, 246, 0.35), transparent 55%),
+                  radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.3), transparent 55%),
+                  linear-gradient(145deg, #020617, #020617);
+      padding: 18px;
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-panel {
+      border-radius: 18px;
+      background: radial-gradient(circle at 0 0, rgba(148, 163, 184, 0.12), transparent 60%),
+                  #020617;
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 18px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .hero-panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hero-panel-title {
+      font-weight: 500;
+      color: #e5e7eb;
+    }
+
+    .hero-panel-badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .hero-panel-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      font-size: 0.78rem;
+    }
+
+    .hero-chip {
+      border-radius: 999px;
+      padding: 6px 9px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #e5e7eb;
+    }
+
+    .hero-chip span {
+      font-size: 0.7rem;
+      color: var(--muted);
+    }
+
+    .hero-panel-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .hero-panel-pill {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+    }
+
+    /* Section headers */
+
+    .section {
+      margin-top: 40px;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    /* Cards */
+
+    .card {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, #020617, #020617);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 18px;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      font-size: 1rem;
+      font-weight: 550;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+      font-size: 0.82rem;
+      color: #e5e7eb;
+    }
+
+    .card ul li::before {
+      content: "• ";
+      color: #6b7280;
+    }
+
+    /* Two-column grid */
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    /* CTA section */
+
+    .cta-section {
+      margin-top: 40px;
+      text-align: center;
+    }
+
+    .cta-section h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    /* Footer */
+
+    footer {
+      margin-top: 40px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: #e5e7eb;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-right {
+        order: -1;
+      }
+
+      .grid-2 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      nav {
+        font-size: 0.82rem;
+        flex-wrap: wrap;
+      }
+
+      .hero {
+        padding-top: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="shell">
+
+      <!-- Header -->
+      <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/relancy-logo.png" alt="Relancy logo" class="logo-img">
+            </a>
+        </div>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="#capture">Incident Capture</a>
+          <a href="#supervisors">Supervisors</a>
+          <a href="#ai">AI Scanning</a>
+          <a href="#escalation">Escalation</a>
+          <a href="#modules">Modules</a>
+        </nav>
+      </header>
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-left">
+          <div class="hero-tag">
+            <span class="hero-tag-dot"></span>
+            <span>Security Operations</span>
+          </div>
+          <h1 class="hero-title">
+            Security Operations<br />
+            <span>Built for the Real World</span>
+          </h1>
+          <p class="hero-sub">
+            Fast, disciplined incident reporting with AI‑assisted escalation, supervisor workflows, and director‑level oversight — all inside a domain‑private environment.
+          </p>
+          <div class="hero-ctas">
+            <a href="contact.html" class="btn btn-primary">
+                Request a Demo
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-right">
+          <div class="hero-panel">
+            <div class="hero-panel-header">
+              <div>
+                <div class="hero-panel-title">Security Dashboard</div>
+                <div style="font-size:0.75rem;color:#9ca3af;">Guards • Supervisors • Directors</div>
+              </div>
+              <div class="hero-panel-badge">Live</div>
+            </div>
+
+            <div class="hero-panel-grid">
+              <div class="hero-chip">
+                <strong>New Incident</strong>
+                <span>Fast Entry</span>
+              </div>
+              <div class="hero-chip">
+                <strong>Supervisor Review</strong>
+                <span>Pending</span>
+              </div>
+              <div class="hero-chip">
+                <strong>AI Scan</strong>
+                <span>1 Flag</span>
+              </div>
+              <div class="hero-chip">
+                <strong>Director Escalation</strong>
+                <span>Available</span>
+              </div>
+            </div>
+
+            <div class="hero-panel-footer">
+              <div class="hero-panel-pill">
+                Domain‑Private • Full Audit Trail
+              </div>
+              <div>Version History Enabled</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- What Security Gets -->
+      <section class="section">
+        <div class="section-title">What Security Gets</div>
+        <div class="section-sub">A platform built for guards, supervisors, and directors — not HR workflows.</div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Guard‑Friendly Reporting</h3>
+            <p>Fast, structured incident capture designed for real‑world operations.</p>
+            <ul>
+              <li>Mobile‑first entry</li>
+              <li>Structured fields</li>
+              <li>Attachment support</li>
+              <li>No training required</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Supervisor Workflow</h3>
+            <p>Supervisors can review, edit, approve, or escalate incidents.</p>
+            <ul>
+              <li>Review & edit</li>
+              <li>Return for correction</li>
+              <li>Approve & finalize</li>
+              <li>Escalate to Director</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>AI Redacted Scanning</h3>
+            <p>AI scans the redacted version only — never exposing sensitive content.</p>
+            <ul>
+              <li>Threat detection</li>
+              <li>Violence indicators</li>
+              <li>Weapons & intoxication</li>
+              <li>Repeat offenders</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Director Oversight</h3>
+            <p>Directors see the full incident history only when escalated.</p>
+            <ul>
+              <li>No summaries</li>
+              <li>No filters</li>
+              <li>No noise</li>
+              <li>Full version history</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Incident Capture -->
+      <section class="section" id="capture">
+        <div class="section-title">Incident Capture</div>
+        <div class="section-sub">Fast, structured, guard‑friendly reporting that mirrors real‑world operations.</div>
+
+        <div class="card">
+          <h3>How Guards Use It</h3>
+                   <p>Guards capture incidents quickly without changing how the floor actually works.</p>
+          <ul>
+            <li>Select incident type (theft, disturbance, injury, trespass, etc.)</li>
+            <li>Confirm location and time</li>
+            <li>Enter a clear narrative in their own words</li>
+            <li>Attach photos, video stills, or documents</li>
+            <li>Submit to the Security domain only</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Supervisor Workflow -->
+      <section class="section" id="supervisors">
+        <div class="section-title">Supervisor Workflow</div>
+        <div class="section-sub">Supervisors control quality, escalation, and follow‑through — without leaving Security.</div>
+
+        <div class="card">
+          <h3>Review, Correct, Approve</h3>
+          <p>Supervisors see every incident in their queue and can act immediately.</p>
+          <ul>
+            <li>Review guard narratives and attachments</li>
+            <li>Correct details or add missing context</li>
+            <li>Return to guard for clarification</li>
+            <li>Approve and lock the incident</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Escalation Decisions</h3>
+          <p>When an incident crosses a threshold, supervisors can escalate to Directors with one intentional action.</p>
+          <ul>
+            <li>Termination or prosecution likely</li>
+            <li>Serious safety or criminal elements</li>
+            <li>Repeat offenders or pattern formation</li>
+            <li>Uncertainty that warrants a second set of eyes</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- AI Redacted Scanning -->
+      <section class="section" id="ai">
+        <div class="section-title">AI Redacted Scanning</div>
+        <div class="section-sub">A safety net that never exposes content and never overrides human judgment.</div>
+
+        <div class="card">
+          <h3>Redacted First, Always</h3>
+          <p>AI only sees a redacted version of the incident — names, identifiers, and protected classes are masked.</p>
+          <ul>
+            <li>Detects threats, violence, weapons, intoxication</li>
+            <li>Flags repeat offenders and repeat locations</li>
+            <li>Surfaces timeline anomalies and contradictions</li>
+            <li>Never auto‑escalates or shares across domains</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Flags, Not Decisions</h3>
+          <p>AI can only flag incidents for review inside Security. Supervisors and Directors make the decisions.</p>
+          <ul>
+            <li>No auto‑closing, no auto‑discipline</li>
+            <li>No cross‑domain visibility</li>
+            <li>No summaries sent to Directors</li>
+            <li>Human judgment remains in control</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Director Escalation -->
+      <section class="section" id="escalation">
+        <div class="section-title">Director Escalation</div>
+        <div class="section-sub">When it matters, Directors see everything — once, clearly, and without noise.</div>
+
+        <div class="card">
+          <h3>Escalation‑Only Visibility</h3>
+          <p>Directors are not omniscient. They only see what Security intentionally escalates.</p>
+          <ul>
+            <li>Full incident history, not a summary</li>
+            <li>All versions, edits, and attachments</li>
+            <li>Immutable audit trail of every action</li>
+            <li>No placeholders, no hints, no counts</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Legal‑Ready by Design</h3>
+          <p>When a case is termination‑ or prosecution‑ready, Directors and Legal have the documentation they need.</p>
+          <ul>
+            <li>Incident‑first case creation</li>
+            <li>Version history preserved end‑to‑end</li>
+            <li>Clear escalation decisions and timing</li>
+            <li>Defensible governance baked into the workflow</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Operational Modules -->
+      <section class="section" id="modules">
+        <div class="section-title">Operational Modules</div>
+        <div class="section-sub">Security Operations is more than incidents — it’s how the site actually runs.</div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Parking</h3>
+            <p>Parking enforcement and access control as a first‑class Security workflow.</p>
+            <ul>
+              <li>Citations and violations tied to incidents</li>
+              <li>Towing and immobilization documentation</li>
+              <li>Permit and access tracking</li>
+              <li>Patterns across time and location</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>TruckGate</h3>
+            <p>Gate operations that actually match how trucks arrive, wait, and leave.</p>
+            <ul>
+              <li>Bill of lading verification</li>
+              <li>Driver and vehicle identification</li>
+              <li>Inbound and outbound tracking</li>
+              <li>Exceptions tied directly to incidents</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Governance -->
+      <section class="section">
+        <div class="section-title">Governed from the Ground Up</div>
+        <div class="section-sub">Security gets operational freedom inside a structure Legal and HR can trust.</div>
+
+        <div class="card">
+          <h3>Domain‑Private by Default</h3>
+          <p>Security incidents live in the Security domain. HR never sees them unless Security chooses to share.</p>
+          <ul>
+            <li>No cross‑domain bleed‑through</li>
+            <li>No shared queues or mixed dashboards</li>
+            <li>Incidents are invisible outside Security</li>
+            <li>Sharing is explicit, logged, and intentional</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Incident‑First, Always</h3>
+          <p>Cases only exist when an incident exists. No phantom files, no pretext documentation.</p>
+          <ul>
+            <li>Case‑requires‑incident enforced in the platform</li>
+            <li>Full version history for every record</li>
+            <li>Immutable audit trails for every action</li>
+            <li>Directors see the whole story, not a slice</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section">
+        <h2>Start with Security Operations</h2>
+        <p>If your guards, supervisors, and directors don’t trust the system, nothing else matters. Relancy starts where the work is real.</p>
+        <div class="hero-ctas" style="justify-content:center;">
+          <a href="contact.html" class="btn btn-primary">
+              Request a Demo
+          </a>
+        </div>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <div>© Relancy. Investigations built for the real world.</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="#capture">Incident Capture</a>
+          <a href="#supervisors">Supervisors</a>
+          <a href="#ai">AI Scanning</a>
+          <a href="#escalation">Escalation</a>
+          <a href="#modules">Modules</a>
+          <a href="casestudies.html">Case Studies</a>
+          <a href="products.html">Products</a><a href="legal.html">Legal</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="contact.html">Contact</a>
+          <a href="beta.html">Beta</a>
+
+    </div>
+  </div>
+</body>
+</html>

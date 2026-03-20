@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Relancy – Privacy Policy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #05060a;
+      --bg-alt: #0b0d14;
+      --card: #11141f;
+      --card-soft: #151827;
+      --accent: #3b82f6;
+      --accent-soft: #1d4ed8;
+      --accent-hr: #2563eb;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #1f2933;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --shadow-card: 0 14px 35px rgba(0, 0, 0, 0.45);
+      --max-width: 1120px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .page { min-height: 100vh; display: flex; flex-direction: column; }
+    .shell { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 24px 16px 64px; }
+
+    header {
+      display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px;
+    }
+
+    .logo { display: flex; align-items: center; }
+    .logo-img { height: 40px; width: auto; display: block; }
+
+    nav {
+      display: flex; align-items: center; gap: 18px; font-size: 0.9rem; color: var(--muted);
+    }
+
+    nav a { padding: 4px 0; border-bottom: 1px solid transparent; }
+    nav a:hover { color: #e5e7eb; border-bottom-color: rgba(148, 163, 184, 0.4); }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 48px 0 40px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 3vw, 2.8rem);
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero-title span { color: #a5b4fc; }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Sections */
+    .section { margin-top: 40px; }
+    .section-title {
+      font-size: 1.1rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: #9ca3af; margin-bottom: 12px;
+    }
+    .section-sub { font-size: 0.92rem; color: var(--muted); margin-bottom: 18px; }
+
+    .card {
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, #020617, #020617);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 18px; box-shadow: var(--shadow-card); margin-bottom: 16px;
+    }
+
+    .card h3 { font-size: 1rem; font-weight: 550; margin-bottom: 6px; }
+    .card p { font-size: 0.88rem; color: var(--muted); margin-bottom: 10px; }
+
+    .card ul { list-style: none; padding-left: 0; font-size: 0.82rem; color: #e5e7eb; }
+    .card ul li::before { content: "• "; color: #6b7280; }
+
+    .grid-2 {
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;
+    }
+
+    /* CTA */
+    .cta-section { margin-top: 40px; text-align: center; }
+    .cta-section h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 12px; }
+    .cta-section p { font-size: 0.95rem; color: var(--muted); margin-bottom: 20px; }
+
+    .btn-primary {
+      padding: 10px 20px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #f9fafb;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 40px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: #e5e7eb;
+    }
+
+    @media (max-width: 900px) {
+      .grid-2 { grid-template-columns: minmax(0, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      header { flex-direction: column; align-items: flex-start; gap: 10px; }
+      nav { font-size: 0.82rem; flex-wrap: wrap; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="shell">
+
+      <!-- Header -->
+      <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/relancy-logo.png" alt="Relancy logo" class="logo-img">
+            </a>
+        </div>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="security.html">Security</a>
+          <a href="investigations.html">Investigations</a>
+          <a href="training.html">Training</a>
+          <a href="hr.html">HR & ER</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="about.html">About</a>
+        </nav>
+      </header>
+
+      <!-- Hero -->
+      <section class="hero">
+        <h1 class="hero-title">
+          Relancy Privacy Policy<br />
+          <span>How We Collect, Use, and Protect Your Data</span>
+        </h1>
+        <p class="hero-sub">
+          Relancy is an investigative and operational platform designed for Security, HR, and enterprise governance. We prioritize privacy, data integrity, and the protection of sensitive information. Relancy never sells personal data and never uses customer data for advertising, profiling, or unrelated analytics.
+        </p>
+      </section>
+
+      <!-- 1. Overview -->
+      <section class="section">
+        <div class="section-title">1. Overview</div>
+        <div class="section-sub">This Privacy Policy explains how Relancy collects, uses, stores, and protects information within the platform.</div>
+
+        <div class="card">
+          <h3>Our Commitment</h3>
+          <p>
+            Relancy is an investigative and operational platform designed for Security, HR, and enterprise governance. We prioritize privacy, data integrity, and the protection of sensitive information.
+          </p>
+          <ul>
+            <li>Relancy never sells personal data</li>
+            <li>Relancy never uses customer data for advertising, profiling, or unrelated analytics</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 2. Information We Collect -->
+      <section class="section">
+        <div class="section-title">2. Information We Collect</div>
+        <div class="section-sub">Relancy collects only the information necessary to support investigative workflows, operational modules, and organizational governance.</div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Incident & Case Data</h3>
+            <p>Submitted by authorized users within the platform.</p>
+            <ul>
+              <li>Incident and case data submitted by authorized users</li>
+              <li>Redacted narrative artifacts generated by the platform</li>
+              <li>System logs and audit trails</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>User Account Information</h3>
+            <p>Required for platform access and role assignment.</p>
+            <ul>
+              <li>Name, email, role, and permissions</li>
+              <li>Training and scenario content created by contributors</li>
+              <li>Operational module data (Parking, TruckGate, etc.)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>What We Do Not Collect</h3>
+          <p>Relancy does not collect biometric data, consumer behavior data, or marketing data.</p>
+        </div>
+      </section>
+
+      <!-- 3. How We Use Information -->
+      <section class="section">
+        <div class="section-title">3. How We Use Information</div>
+        <div class="section-sub">Relancy uses collected information solely to support platform operations and investigative integrity.</div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Investigative Workflows</h3>
+            <p>Core platform capabilities powered by your data.</p>
+            <ul>
+              <li>Incident and case management</li>
+              <li>Domain‑specific workflows (Security, HR, Investigations)</li>
+              <li>Director‑level escalation</li>
+              <li>Immutable audit trails</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Platform Intelligence & Readiness</h3>
+            <p>AI and training features that support your organization.</p>
+            <ul>
+              <li>AI‑assisted redaction and pattern intelligence</li>
+              <li>Training and readiness modules</li>
+              <li>Platform security and performance</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>AI Data Boundary</h3>
+          <p>Relancy does not use customer data to train public AI models.</p>
+        </div>
+      </section>
+
+      <!-- 4. Data Redaction and Privacy Controls -->
+      <section class="section">
+        <div class="section-title">4. Data Redaction & Privacy Controls</div>
+        <div class="section-sub">Relancy applies universal, role‑agnostic redaction rules to protect identities and prevent exposure of protected‑class information.</div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Redaction Guarantees</h3>
+            <p>Deterministic, auditable, and irreversible redaction applied to all narratives.</p>
+            <ul>
+              <li>All names replaced with pseudonyms (e.g., "Witness #1")</li>
+              <li>All pronouns replaced with pseudonyms</li>
+              <li>All protected‑class descriptors removed</li>
+              <li>All physical descriptors removed</li>
+              <li>All PII removed</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Data Integrity</h3>
+            <p>Original data is never modified. Redacted versions are stored as separate, derived artifacts.</p>
+            <ul>
+              <li>Redaction is deterministic, auditable, and irreversible</li>
+              <li>AI never sees unredacted data</li>
+              <li>Original records preserved in immutable storage</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. Data Storage and Security -->
+      <section class="section">
+        <div class="section-title">5. Data Storage & Security</div>
+        <div class="section-sub">Relancy uses industry‑standard security controls to protect your data at every layer.</div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Infrastructure Controls</h3>
+            <p>Enterprise‑grade protections built into the platform.</p>
+            <ul>
+              <li>Encryption in transit and at rest</li>
+              <li>Role‑based access control</li>
+              <li>Domain separation (Security vs. HR)</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Governance & Monitoring</h3>
+            <p>Continuous oversight and auditability.</p>
+            <ul>
+              <li>Immutable version history</li>
+              <li>Multi‑site governance (enterprise tier)</li>
+              <li>Continuous monitoring and logging</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Access Control</h3>
+          <p>Only authorized users with appropriate permissions may access unredacted data.</p>
+        </div>
+      </section>
+
+      <!-- 6. Data Retention -->
+      <section class="section">
+        <div class="section-title">6. Data Retention</div>
+        <div class="section-sub">Relancy retains data according to customer policy, legal requirements, and organizational governance rules.</div>
+
+        <div class="card">
+          <h3>Retention Policy</h3>
+          <p>Data retention is governed by your organization's configuration and applicable regulations.</p>
+          <ul>
+            <li>Customer‑defined retention policies</li>
+            <li>Legal and regulatory requirements</li>
+            <li>Organizational governance rules</li>
+            <li>Configurable retention schedules for incidents, cases, and operational modules</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 7. Sharing and Disclosure -->
+      <section class="section">
+        <div class="section-title">7. Sharing & Disclosure</div>
+        <div class="section-sub">Relancy does not share customer data with third parties except under limited, defined circumstances.</div>
+
+        <div class="card">
+          <h3>Limited Disclosure</h3>
+          <p>Relancy never sells or monetizes customer data. Sharing occurs only when:</p>
+          <ul>
+            <li>Required by law</li>
+            <li>Directed by the customer</li>
+            <li>Necessary to provide platform services (e.g., secure hosting)</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 8. Customer Responsibilities -->
+      <section class="section">
+        <div class="section-title">8. Customer Responsibilities</div>
+        <div class="section-sub">Customers play an active role in maintaining the security and integrity of their data within Relancy.</div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Access Management</h3>
+            <p>Organizational administrators are responsible for:</p>
+            <ul>
+              <li>Assigning appropriate user roles</li>
+              <li>Managing access permissions</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Data & Compliance</h3>
+            <p>Ensuring data governance within the platform:</p>
+            <ul>
+              <li>Ensuring data entered complies with internal policies</li>
+              <li>Reviewing escalations and case outcomes</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. Changes to This Policy -->
+      <section class="section">
+        <div class="section-title">9. Changes to This Policy</div>
+        <div class="section-sub">Relancy may update this Privacy Policy to reflect improvements or legal requirements.</div>
+
+        <div class="card">
+          <h3>Policy Updates</h3>
+          <p>Updates will be posted with an effective date. Continued use of the platform after changes are posted constitutes acceptance of the updated policy.</p>
+        </div>
+      </section>
+
+      <!-- 10. Contact -->
+      <section class="cta-section">
+        <h2>Privacy Questions or Requests?</h2>
+        <p>For privacy questions or requests, contact: <strong>privacy@relancy.com</strong></p>
+        <a href="contact.html"><button class="btn-primary">Contact Us</button></a>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <div>© Relancy. Investigations built for the real world.</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="security.html">Security</a>
+          <a href="investigations.html">Investigations</a>
+          <a href="training.html">Training</a>
+          <a href="hr.html">HR & ER</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="casestudies.html">Case Studies</a>
+          <a href="about.html">About</a>
+          <a href="products.html">Products</a><a href="legal.html">Legal</a>
+          <a href="contact.html">Contact</a>
+          <a href="beta.html">Beta</a>
+
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Relancy – Contact & Demo Request</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #05060a;
+      --bg-alt: #0b0d14;
+      --card: #11141f;
+      --card-soft: #151827;
+      --accent: #3b82f6;
+      --accent-soft: #1d4ed8;
+      --text: #f9fafb;
+      --muted: #9ca3af;
+      --border: #1f2933;
+      --radius-lg: 14px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
+      --shadow-card: 0 14px 35px rgba(0, 0, 0, 0.45);
+      --max-width: 1120px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .page { min-height: 100vh; display: flex; flex-direction: column; }
+    .shell { width: 100%; max-width: var(--max-width); margin: 0 auto; padding: 24px 16px 64px; }
+
+    header {
+      display: flex; align-items: center; justify-content: space-between; padding-bottom: 16px;
+    }
+
+    .logo { display: flex; align-items: center; }
+    .logo-img { height: 40px; width: auto; display: block; }
+
+    nav {
+      display: flex; align-items: center; gap: 18px; font-size: 0.9rem; color: var(--muted);
+    }
+
+    nav a { padding: 4px 0; border-bottom: 1px solid transparent; }
+    nav a:hover { color: #e5e7eb; border-bottom-color: rgba(148, 163, 184, 0.4); }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 48px 0 40px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 3vw, 2.8rem);
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+
+    .hero-title span { color: #a5b4fc; }
+
+    .hero-sub {
+      font-size: 1rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Form */
+    .form-card {
+      margin-top: 40px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, #020617, #020617);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      padding: 28px;
+      box-shadow: var(--shadow-card);
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    input, select, textarea {
+      padding: 10px 12px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(31, 41, 55, 0.9);
+      background: #0b0d14;
+      color: #f9fafb;
+      font-size: 0.9rem;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-full {
+      grid-column: span 2;
+    }
+
+    .btn-primary {
+      padding: 12px 20px;
+      border-radius: 999px;
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #f9fafb;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .form-check input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      margin-top: 2px;
+      padding: 0;
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+
+    .form-check label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .form-check-hint {
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: 40px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      font-size: 0.78rem;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: #e5e7eb;
+    }
+
+    @media (max-width: 640px) {
+      .form-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .form-full {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="shell">
+
+      <!-- Header -->
+      <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/relancy-logo.png" alt="Relancy logo" class="logo-img">
+            </a>
+        </div>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="security.html">Security</a>
+          <a href="investigations.html">Investigations</a>
+          <a href="training.html">Training</a>
+          <a href="hr.html">HR & ER</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="about.html">About</a>
+        </nav>
+      </header>
+
+      <!-- Hero -->
+      <section class="hero">
+        <h1 class="hero-title">
+          Contact Relancy<br />
+          <span>Request a Demo or Start the Conversation</span>
+        </h1>
+        <p class="hero-sub">
+            Whether you're evaluating investigative platforms, improving operational readiness, or replacing legacy systems, Relancy can help you build a governed, defensible workflow that matches the real world.
+        </p>
+      </section>
+
+      <!-- Form -->
+      <section class="form-card">
+        <form action="https://formspree.io/f/mwvranvv" method="POST">
+          <input type="hidden" name="_next" value="https://YOUR_DOMAIN/thankyou.html" />
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input id="name" name="name" type="text" placeholder="John Smith" />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Work Email</label>
+              <input id="email" name="email" type="email" placeholder="name@company.com" />
+            </div>
+
+            <div class="form-group">
+              <label for="company">Company</label>
+              <input id="company" name="company" type="text" placeholder="Company Name" />
+            </div>
+
+            <div class="form-group">
+              <label for="role">Your Role</label>
+              <select id="role" name="role">
+                <option value="">Select your role</option>
+                <option>Security Director</option>
+                <option>Security Supervisor</option>
+                <option>HR / Employee Relations</option>
+                <option>Legal / Compliance</option>
+                <option>Operations</option>
+                <option>Executive Leadership</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="form-group form-full">
+              <label for="size">Number of Employees / Guards</label>
+              <input id="size" name="size" type="text" placeholder="e.g., 500 employees, 40 guards" />
+            </div>
+
+            <div class="form-group form-full">
+              <label for="message">What would you like to discuss?</label>
+              <textarea id="message" name="message" placeholder="Tell us about your environment, challenges, or what you're hoping to solve."></textarea>
+            </div>
+          </div>
+
+          <div class="form-check">
+            <input id="beta" name="beta" type="checkbox" value="yes" />
+            <div>
+              <label for="beta">Register me for your Beta Program</label>
+              <p class="form-check-hint">You will be contacted at the email you provided with instructions when we get closer to the Beta release.</p>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary">Submit Request</button>
+        </form>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <div>© Relancy. Investigations built for the real world.</div>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="security.html">Security</a>
+          <a href="investigations.html">Investigations</a>
+          <a href="training.html">Training</a>
+          <a href="hr.html">HR & ER</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="casestudies.html">Case Studies</a>
+          <a href="about.html">About</a>
+          <a href="products.html">Products</a><a href="legal.html">Legal</a>
+          <a href="privacy.html">Privacy</a>
+          <a href="beta.html">Beta</a>
+
+    </div>
+  </div>
+</body>
+</html>
