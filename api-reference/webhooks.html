@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Relancy Webhook Registration API — Tenant Reference</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; color: #111827; background: #ffffff; margin: 0; padding: 2rem; }
+    h1, h2, h3, h4 { color: #111827; margin-top: 1.8rem; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.25rem; }
+    h3 { font-size: 1.2rem; margin-top: 1.4rem; }
+    p { margin: 0.5rem 0 0.75rem; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.9rem; }
+    pre { background: #0b1120; color: #e5e7eb; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.85rem; }
+    pre code { background: transparent; padding: 0; }
+    ul, ol { padding-left: 1.5rem; }
+    .tagline { color: #4b5563; font-size: 0.95rem; }
+    .section-note { font-size: 0.9rem; color: #6b7280; }
+  </style>
+</head>
+<body>
+
+  <h1>Relancy Webhook Registration API</h1>
+  <p class="tagline">
+    Register, validate, and manage webhook endpoints for receiving event notifications from the Relancy Operational Risk OS.
+  </p>
+
+  <h2>1. Overview</h2>
+  <p>The Webhook Registration API allows your systems to subscribe to Relancy event streams such as case lifecycle changes, evidence updates, risk signals, and sales‑system alignment events.</p>
+
+  <p>Webhook delivery is:</p>
+  <ul>
+    <li><strong>Explicit</strong> — tenants must register endpoints</li>
+    <li><strong>Secure</strong> — all events are signed with a shared secret</li>
+    <li><strong>Isolated</strong> — each tenant has its own configuration</li>
+    <li><strong>Auditable</strong> — all registrations are logged and versioned</li>
+  </ul>
+
+  <p><strong>Base URL (example):</strong> <code>https://api.relancy.com/v1</code></p>
+
+  <h2>2. Authentication & Required Headers</h2>
+
+  <h3>2.1 OAuth2 client credentials</h3>
+  <p>All webhook registration endpoints require a valid OAuth2 access token.</p>
+
+  <h3>2.2 Required headers</h3>
+  <ul>
+    <li><code>Authorization: Bearer {access_token}</code></li>
+    <li><code>X-Relancy-Tenant-ID: {tenantId}</code></li>
+    <li><code>X-Relancy-User-ID: {userId}</code></li>
+    <li><code>X-Relancy-Correlation-ID: {uuid}</code></li>
+    <li><code>Idempotency-Key: {uuid}</code> (for write operations)</li>
+  </ul>
+
+  <h2>3. Webhook Registration Endpoints</h2>
+
+  <h3>3.1 Create a webhook registration</h3>
+
+  <h4><span class="endpoint">POST /v1/webhooks/registrations</span></h4>
+  <p>Registers a new webhook endpoint for your tenant. A validation challenge is sent before activation.</p>
+
+  <pre><code>POST /v1/webhooks/registrations
+Content-Type: application/json
+</code></pre>
+
+  <p><strong>Request body:</strong></p>
+  <pre><code>{
+  "url": "https://your-system.example.com/relancy/webhooks",
+  "sharedSecret": "your-generated-secret",
+  "eventTypes": [
+    "case.created",
+    "case.status.changed",
+    "evidence.added",
+    "risk.signal.detected"
+  ],
+  "retryPolicy": {
+    "maxAttempts": 12,
+    "initialBackoffSeconds": 5
+  }
+}
+</code></pre>
+
+  <p><strong>Response (202 Accepted):</strong></p>
+  <pre><code>{
+  "registrationId": "wh_001",
+  "status": "pending_validation",
+  "createdAt": "2026-04-02T20:14:00Z"
+}
+</code></pre>
+
+  <p class="section-note">Relancy will immediately send a challenge request to the provided URL. The webhook becomes active only after successful validation.</p>
+
+  <h3>3.2 Validate a webhook (challenge handshake)</h3>
+
+  <p>When you register a webhook, Relancy sends a <strong>challenge request</strong> to verify ownership and ensure your endpoint can receive signed events.</p>
+
+  <h4>Challenge request (Relancy → Tenant)</h4>
+  <pre><code>POST {yourWebhookUrl}
+Content-Type: application/json
+Relancy-Signature: v1=...
+
+{
+  "challenge": "c_9f8c1b1a",
+  "timestamp": "2026-04-02T20:14:00Z"
+}
+</code></pre>
+
+  <h4>Your required response:</h4>
+  <pre><code>{
+  "challenge": "c_9f8c1b1a"
+}
+</code></pre>
+
+  <p class="section-note">If the challenge is not echoed back correctly within the timeout window, the webhook remains inactive.</p>
+
+  <h3>3.3 List webhook registrations</h3>
+
+  <h4><span class="endpoint">GET /v1/webhooks/registrations</span></h4>
+  <p>Returns all webhook registrations for your tenant.</p>
+
+  <pre><code>GET /v1/webhooks/registrations
+</code></pre>
+
+  <p><strong>Response (200):</strong></p>
+  <pre><code>{
+  "items": [
+    {
+      "registrationId": "wh_001",
+      "url": "https://your-system.example.com/relancy/webhooks",
+      "status": "active",
+      "eventTypes": [
+        "case.created",
+        "case.status.changed"
+      ],
+      "createdAt": "2026-04-02T20:14:00Z",
+      "validatedAt": "2026-04-02T20:15:00Z"
+    }
+  ]
+}
+</code></pre>
+
+  <h3>3.4 Get a specific webhook registration</h3>
+
+  <h4><span class="endpoint">GET /v1/webhooks/registrations/{registrationId}</span></h4>
+
+  <pre><code>GET /v1/webhooks/registrations/wh_001
+</code></pre>
+
+  <p><strong>Response (200):</strong></p>
+  <pre><code>{
+  "registrationId": "wh_001",
+  "url": "https://your-system.example.com/relancy/webhooks",
+  "status": "active",
+  "eventTypes": [
+    "case.created",
+    "case.status.changed"
+  ],
+  "retryPolicy": {
+    "maxAttempts": 12,
+    "initialBackoffSeconds": 5
+  },
+  "createdAt": "2026-04-02T20:14:00Z",
+  "validatedAt": "2026-04-02T20:15:00Z"
+}
+</code></pre>
+
+  <h3>3.5 Update a webhook registration</h3>
+
+  <h4><span class="endpoint">PATCH /v1/webhooks/registrations/{registrationId}</span></h4>
+
+  <pre><code>PATCH /v1/webhooks/registrations/wh_001
+Content-Type: application/json
+</code></pre>
+
+  <p><strong>Request body (example):</strong></p>
+  <pre><code>{
+  "eventTypes": [
+    "case.created",
+    "case.status.changed",
+    "evidence.added"
+  ]
+}
+</code></pre>
+
+  <p><strong>Response (200):</strong></p>
+  <pre><code>{
+  "registrationId": "wh_001",
+  "status": "active",
+  "updatedAt": "2026-04-02T21:00:00Z"
+}
+</code></pre>
+
+  <h3>3.6 Delete a webhook registration</h3>
+
+  <h4><span class="endpoint">DELETE /v1/webhooks/registrations/{registrationId}</span></h4>
+
+  <pre><code>DELETE /v1/webhooks/registrations/wh_001
+</code></pre>
+
+  <p><strong>Response (204 No Content)</strong></p>
+
+  <h2>4. Webhook Delivery Model</h2>
+
+  <p>Once a webhook is active, Relancy delivers events using signed POST requests.</p>
+
+  <h3>4.1 Event payload example</h3>
+  <pre><code>{
+  "eventId": "evt_abc123",
+  "eventType": "case.created",
+  "tenantId": "t_12345",
+  "correlationId": "9f8c1b1a-...",
+  "occurredAt": "2026-04-02T20:14:00Z",
+  "payload": {
+    "caseId": "c_001",
+    "externalReference": "ORDER-12345",
+    "status": "open"
+  },
+  "retryCount": 0,
+  "signature": "v1=..."
+}
+</code></pre>
+
+  <h3>4.2 Retry behavior</h3>
+  <ul>
+    <li>Non‑2xx responses trigger exponential backoff</li>
+    <li>Retries stop after <code>maxAttempts</code></li>
+    <li>Failed deliveries may be sent to a tenant‑scoped dead‑letter queue (if enabled)</li>
+  </ul>
+
+  <h3>4.3 Signature verification</h3>
+  <p>All webhook requests include a <code>Relancy-Signature</code> header containing an HMAC signature using your shared secret.</p>
+
+  <p>You must:</p>
+  <ul>
+    <li>Compute the HMAC using the request body</li>
+    <li>Compare it to the signature header</li>
+    <li>Reject the request if the signature does not match</li>
+  </ul>
+
+  <h2>5. Error Model</h2>
+
+  <p><strong>Error response example:</strong></p>
+  <pre><code>{
+  "errorCode": "WEBHOOK_VALIDATION_FAILED",
+  "message": "The provided endpoint did not return the expected challenge response.",
+  "correlationId": "9f8c1b1a-..."
+}
+</code></pre>
+
+  <p><strong>Common status codes:</strong></p>
+  <ul>
+    <li><code>400 Bad Request</code> — invalid input</li>
+    <li><code>401 Unauthorized</code> — invalid or missing token</li>
+    <li><code>403 Forbidden</code> — not allowed for this tenant</li>
+    <li><code>404 Not Found</code> — registration does not exist</li>
+    <li><code>409 Conflict</code> — duplicate registration or invalid state</li>
+    <li><code>500 Internal Server Error</code> — unexpected error</li>
+  </ul>
+
+</body>
+</html>
