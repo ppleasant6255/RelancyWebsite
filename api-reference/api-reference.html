@@ -1,1 +1,397 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Relancy Integration API — Tenant Reference</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.6; color: #111827; background: #ffffff; margin: 0; padding: 2rem; }
+    h1, h2, h3, h4 { color: #111827; margin-top: 1.8rem; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.25rem; }
+    h3 { font-size: 1.2rem; margin-top: 1.4rem; }
+    p { margin: 0.5rem 0 0.75rem; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; font-size: 0.9rem; }
+    pre { background: #0b1120; color: #e5e7eb; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; font-size: 0.85rem; }
+    pre code { background: transparent; padding: 0; }
+    ul, ol { padding-left: 1.5rem; }
+    .tagline { color: #4b5563; font-size: 0.95rem; }
+    .pill { display: inline-block; background: #f3f4f6; color: #374151; border-radius: 999px; padding: 0.15rem 0.6rem; font-size: 0.75rem; margin-right: 0.25rem; }
+    .http-verb { font-weight: 600; }
+    .endpoint { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .section-note { font-size: 0.9rem; color: #6b7280; }
+  </style>
+</head>
+<body>
+
+  <h1>Relancy Integration API — Tenant Reference</h1>
+  <p class="tagline">
+    Contract‑driven, audit‑first REST API for integrating your internal systems with the Relancy Operational Risk OS.
+  </p>
+
+  <h2>1. Overview</h2>
+  <p><strong>Style:</strong> JSON over HTTPS</p>
+  <p><strong>Base URL (example):</strong> <code>https://api.relancy.com/v1</code></p>
+  <p><strong>Versioning:</strong> Path‑based (<code>/v1</code>, <code>/v2</code>, …)</p>
+  <p><strong>Platform doctrine:</strong> Tenants cannot change schema, add fields, or run code inside Relancy. All access is contract‑driven and auditable.</p>
+  <p>Use this API to read cases, evidence metadata, risk signals, and training state, and to write case notes, status transitions (where allowed), and sales‑system sync acknowledgements.</p>
+
+  <h2>2. Authentication &amp; Required Headers</h2>
+
+  <h3>2.1 OAuth2 client credentials</h3>
+  <p>Relancy uses OAuth2 client credentials with tenant‑scoped tokens.</p>
+  <ul>
+    <li><strong>Grant type:</strong> <code>client_credentials</code></li>
+    <li><strong>Audience:</strong> Relancy API</li>
+    <li><strong>Scope:</strong> Provided during onboarding</li>
+  </ul>
+
+  <p><strong>Token endpoint (example):</strong></p>
+  <pre><code>POST https://auth.relancy.com/oauth2/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials&amp;
+client_id=YOUR_CLIENT_ID&amp;
+client_secret=YOUR_CLIENT_SECRET&amp;
+scope=relancy.api
+</code></pre>
+
+  <p><strong>Response:</strong></p>
+  <pre><code>{
+  "access_token": "eyJhbGciOi...",
+  "token_type": "Bearer",
+  "expires_in": 3600
+}
+</code></pre>
+
+  <h3>2.2 Required headers</h3>
+  <p>All API calls must include:</p>
+  <ul>
+    <li><code>Authorization: Bearer {access_token}</code></li>
+    <li><code>X-Relancy-Tenant-ID: {tenantId}</code></li>
+    <li><code>X-Relancy-User-ID: {userId}</code> (the human or system identity on your side)</li>
+    <li><code>X-Relancy-Correlation-ID: {uuid}</code> (trace across your systems and Relancy)</li>
+    <li><code>Idempotency-Key: {uuid}</code> (required for all write operations)</li>
+  </ul>
+
+  <p><strong>Example headers:</strong></p>
+  <pre><code>X-Relancy-Tenant-ID: t_12345
+X-Relancy-User-ID: u_98765
+X-Relancy-Correlation-ID: 9f8c1b1a-...
+Idempotency-Key: 4b2d7c3e-...
+</code></pre>
+
+  <h2>3. Core Resources &amp; Endpoints</h2>
+
+  <h3>3.1 Cases</h3>
+  <p><strong>Use cases:</strong> Retrieve and track cases, lifecycle, and status; attach notes and evidence metadata.</p>
+
+  <h4><span class="http-verb">GET</span> <span class="endpoint">/v1/cases</span></h4>
+  <p>List cases with basic filters.</p>
+  <pre><code>GET /v1/cases?status=open&amp;createdSince=2026-01-01T00:00:00Z
+</code></pre>
+
+  <p><strong>Query parameters (examples):</strong></p>
+  <ul>
+    <li><code>status</code> — <code>open | closed | escalated | monitoring</code></li>
+    <li><code>createdSince</code> — ISO 8601 timestamp</li>
+    <li><code>createdUntil</code> — ISO 8601 timestamp</li>
+    <li><code>page</code> — page number</li>
+    <li><code>pageSize</code> — items per page (max 100)</li>
+  </ul>
+
+  <p><strong>Response (200):</strong></p>
+  <pre><code>{
+  "items": [
+    {
+      "caseId": "c_001",
+      "externalReference": "ORDER-12345",
+      "status": "open",
+      "type": "suspected_diversion",
+      "priority": "high",
+      "createdAt": "2026-04-02T20:14:00Z",
+      "updatedAt": "2026-04-02T20:20:00Z"
+    }
+  ],
+  "page": 1,
+  "pageSize": 50,
+  "total": 1
+}
+</code></pre>
+
+  <h4><span class="http-verb">GET</span> <span class="endpoint">/v1/cases/{caseId}</span></h4>
+  <p>Retrieve full case details.</p>
+  <pre><code>GET /v1/cases/c_001
+</code></pre>
+
+  <p><strong>Response (200):</strong></p>
+  <pre><code>{
+  "caseId": "c_001",
+  "externalReference": "ORDER-12345",
+  "status": "open",
+  "type": "suspected_diversion",
+  "priority": "high",
+  "createdAt": "2026-04-02T20:14:00Z",
+  "updatedAt": "2026-04-02T20:20:00Z",
+  "summary": "Customer reports non-receipt; CCTV shows delivery to neighbor.",
+  "assignee": {
+    "userId": "inv_001",
+    "displayName": "Investigator One"
+  }
+}
+</code></pre>
+
+  <h4><span class="http-verb">POST</span> <span class="endpoint">/v1/cases/{caseId}/notes</span></h4>
+  <p>Add an internal note to a case.</p>
+  <pre><code>POST /v1/cases/c_001/notes
+Content-Type: application/json
+</code></pre>
+
+  <pre><code>{
+  "text": "Package delivered to neighbor at 12:14. Customer unaware.",
+  "visibility": "internal"
+}
+</code></pre>
+
+  <p><strong>Response (201):</strong></p>
+  <pre><code>{
+  "noteId": "n_001",
+  "createdAt": "2026-04-02T20:25:00Z"
+}
+</code></pre>
+
+  <h4><span class="http-verb">POST</span> <span class="endpoint">/v1/cases/{caseId}/status-transitions</span></h4>
+  <p>Request a status change using the allowed contract.</p>
+  <pre><code>POST /v1/cases/c_001/status-transitions
+Content-Type: application/json
+</code></pre>
+
+  <pre><code>{
+  "fromStatus": "open",
+  "toStatus": "closed",
+  "reason": "resolved_refund_issued"
+}
+</code></pre>
+
+  <p><strong>Response (200):</strong></p>
+  <pre><code>{
+  "caseId": "c_001",
+  "status": "closed",
+  "closedAt": "2026-04-02T21:00:00Z"
+}
+</code></pre>
+
+  <p class="section-note">If the transition is not allowed by your contract, the API returns <code>409 Conflict</code>.</p>
+
+  <h3>3.2 Evidence metadata</h3>
+  <p>Evidence is treated as immutable, auditable objects. Tenants register metadata and link external storage; binary upload is handled separately.</p>
+
+  <h4><span class="http-verb">GET</span> <span class="endpoint">/v1/cases/{caseId}/evidence</span></h4>
+  <pre><code>GET /v1/cases/c_001/evidence
+</code></pre>
+
+  <p><strong>Response (200):</strong></p>
+  <pre><code>{
+  "items": [
+    {
+      "evidenceId": "e_001",
+      "type": "cctv_clip",
+      "sourceSystem": "store_cctv",
+      "capturedAt": "2026-04-02T12:14:00Z",
+      "description": "Front door camera, delivery event.",
+      "uri": "https://your-storage.example.com/evidence/e_001",
+      "hash": "sha256:...",
+      "createdAt": "2026-04-02T20:16:00Z"
+    }
+  ]
+}
+</code></pre>
+
+  <h4><span class="http-verb">POST</span> <span class="endpoint">/v1/cases/{caseId}/evidence</span></h4>
+  <p>Register new evidence metadata (not binary upload).</p>
+  <pre><code>POST /v1/cases/c_001/evidence
+Content-Type: application/json
+</code></pre>
+
+  <pre><code>{
+  "type": "cctv_clip",
+  "sourceSystem": "store_cctv",
+  "capturedAt": "2026-04-02T12:14:00Z",
+  "description": "Front door camera, delivery event.",
+  "uri": "https://your-storage.example.com/evidence/e_001",
+  "hash": "sha256:..."
+}
+</code></pre>
+
+  <p><strong>Response (201):</strong></p>
+  <pre><code>{
+  "evidenceId": "e_001",
+  "createdAt": "2026-04-02T20:16:00Z"
+}
+</code></pre>
+
+  <h3>3.3 Risk signals</h3>
+
+  <h4><span class="http-verb">GET</span> <span class="endpoint">/v1/risk-signals</span></h4>
+  <pre><code>GET /v1/risk-signals?externalReference=ORDER-12345
+</code></pre>
+
+  <p><strong>Response (200):</strong></p>
+  <pre><code>{
+  "items": [
+    {
+      "signalId": "rs_001",
+      "externalReference": "ORDER-12345",
+      "type": "repeat_non_receipt",
+      "severity": "high",
+      "detectedAt": "2026-04-02T19:50:00Z",
+      "summary": "Customer has 3 non-receipt claims in 60 days."
+    }
+  ]
+}
+</code></pre>
+
+  <h3>3.4 Training &amp; readiness</h3>
+  <p class="section-note">Available only if the Training &amp; Readiness module is enabled for your tenant.</p>
+
+  <h4><span class="http-verb">GET</span> <span class="endpoint">/v1/training/assignments</span></h4>
+  <pre><code>GET /v1/training/assignments?userId=agent_001
+</code></pre>
+
+  <p><strong>Response (200):</strong></p>
+  <pre><code>{
+  "items": [
+    {
+      "assignmentId": "tr_001",
+      "moduleCode": "SURVEILLANCE_BASICS",
+      "status": "assigned",
+      "dueAt": "2026-04-15T00:00:00Z"
+    }
+  ]
+}
+</code></pre>
+
+  <h3>3.5 Sales-system alignment</h3>
+  <p>These endpoints sync your sales/order system with Relancy’s risk and case view.</p>
+
+  <h4><span class="http-verb">POST</span> <span class="endpoint">/v1/sales/orders/sync</span></h4>
+  <p>Register or update an order snapshot for alignment.</p>
+  <pre><code>POST /v1/sales/orders/sync
+Content-Type: application/json
+</code></pre>
+
+  <pre><code>{
+  "orderId": "ORDER-12345",
+  "customerId": "CUST-001",
+  "orderDate": "2026-04-02T11:45:00Z",
+  "totalAmount": 129.99,
+  "currency": "USD",
+  "shippingAddressRegion": "IN-47130",
+  "channel": "ecommerce",
+  "status": "shipped"
+}
+</code></pre>
+
+  <p><strong>Response (202):</strong></p>
+  <pre><code>{
+  "orderId": "ORDER-12345",
+  "acceptedAt": "2026-04-02T20:10:00Z"
+}
+</code></pre>
+
+  <h4><span class="http-verb">POST</span> <span class="endpoint">/v1/sales/orders/{orderId}/acknowledgements</span></h4>
+  <p>Acknowledge that your system has processed a Relancy event (for example, a flag or case creation).</p>
+  <pre><code>POST /v1/sales/orders/ORDER-12345/acknowledgements
+Content-Type: application/json
+</code></pre>
+
+  <pre><code>{
+  "eventId": "evt_abc123",
+  "status": "processed",
+  "processedAt": "2026-04-02T20:30:00Z"
+}
+</code></pre>
+
+  <h2>4. Webhooks (High-Level)</h2>
+  <p>Relancy uses one‑way webhooks to notify your systems of key events. You respond by calling the Integration API.</p>
+
+  <p><strong>Typical event types:</strong></p>
+  <ul>
+    <li><code>case.created</code></li>
+    <li><code>case.status.changed</code></li>
+    <li><code>evidence.added</code></li>
+    <li><code>risk.signal.detected</code></li>
+    <li><code>training.assignment.issued</code></li>
+    <li><code>sales.order.flagged</code></li>
+    <li><code>sales.order.fulfillment.updated</code></li>
+  </ul>
+
+  <p><strong>Webhook payload example:</strong></p>
+  <pre><code>{
+  "eventId": "evt_abc123",
+  "eventType": "case.created",
+  "tenantId": "t_12345",
+  "correlationId": "9f8c1b1a-...",
+  "occurredAt": "2026-04-02T20:14:00Z",
+  "payload": {
+    "caseId": "c_001",
+    "externalReference": "ORDER-12345",
+    "status": "open"
+  },
+  "retryCount": 0,
+  "signature": "v1=..."
+}
+</code></pre>
+
+  <p><strong>Delivery and verification:</strong></p>
+  <ul>
+    <li>Non‑2xx responses trigger retries with exponential backoff.</li>
+    <li>Each webhook is signed using HMAC with a shared secret.</li>
+    <li>You should validate the signature, use <code>eventId</code> for idempotency, and call the API (for example, <code>GET /v1/cases/{caseId}</code>) if you need more detail.</li>
+  </ul>
+
+  <h2>5. Error Model</h2>
+  <p>Relancy uses standard HTTP status codes with a consistent error body.</p>
+
+  <p><strong>Error response example:</strong></p>
+  <pre><code>{
+  "errorCode": "CASE_STATUS_TRANSITION_NOT_ALLOWED",
+  "message": "Transition from 'closed' to 'open' is not allowed for this tenant.",
+  "correlationId": "9f8c1b1a-...",
+  "details": {
+    "fromStatus": "closed",
+    "toStatus": "open"
+  }
+}
+</code></pre>
+
+  <p><strong>Common status codes:</strong></p>
+  <ul>
+    <li><code>400 Bad Request</code> — invalid input</li>
+    <li><code>401 Unauthorized</code> — invalid or missing token</li>
+    <li><code>403 Forbidden</code> — not allowed for this tenant</li>
+    <li><code>404 Not Found</code> — resource does not exist</li>
+    <li><code>409 Conflict</code> — violates contract (for example, invalid status transition)</li>
+    <li><code>429 Too Many Requests</code> — rate limit exceeded</li>
+    <li><code>500 Internal Server Error</code> — unexpected error</li>
+  </ul>
+
+  <h2>6. Idempotency &amp; Rate Limits</h2>
+
+  <h3>6.1 Idempotency</h3>
+  <p>All write endpoints require <code>Idempotency-Key</code>.</p>
+  <ul>
+    <li>Reusing the same key with the same payload returns the original result.</li>
+    <li>Reusing the same key with a different payload returns <code>409 Conflict</code>.</li>
+  </ul>
+
+  <h3>6.2 Rate limits</h3>
+  <p>Rate limits are enforced per tenant and per client.</p>
+  <ul>
+    <li>Exceeding limits returns <code>429 Too Many Requests</code>.</li>
+    <li>A <code>Retry-After</code> header indicates when you may retry.</li>
+  </ul>
+
+</body>
+</html>
