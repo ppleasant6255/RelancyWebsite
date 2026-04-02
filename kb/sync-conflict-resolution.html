@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sync Conflict Resolution – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Sync Conflict Resolution</h1>
+    <p>How Relancy resolves data conflicts when offline changes collide with server updates during synchronization.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Conflict Overview</h2>
+    <p>
+        Sync conflicts occur when offline changes overlap with updates made by other users. Relancy resolves conflicts
+        using deterministic rules to maintain data integrity.
+    </p>
+</section>
+
+<section>
+    <h2>Conflict types</h2>
+    <ul>
+        <li>Field‑level conflicts</li>
+        <li>Record‑level conflicts</li>
+        <li>Attachment conflicts</li>
+        <li>Lifecycle conflicts</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Resolution rules</h2>
+    <ul>
+        <li>Server‑side authoritative for protected fields</li>
+        <li>Most recent timestamp wins for standard fields</li>
+        <li>Offline drafts preserved when possible</li>
+        <li>Conflicts logged for administrative review</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Audit integrity</h2>
+    <p>
+        All conflicts and resolutions are logged with full detail for compliance and operational review.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

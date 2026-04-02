@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tenant Customization Boundaries – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Tenant Customization Boundaries</h1>
+    <p>What tenants can customize—and what remains platform-controlled.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+    <section>
+        <h2>Overview</h2>
+        <p>
+            Relancy allows tenants to tailor the platform to their operational needs while preserving lifecycle
+            discipline, audit integrity, and platform consistency. This article outlines what can be customized in the
+            shared SaaS environment and what requires Private Deployment.
+        </p>
+    </section>
+
+    <section>
+        <h2>Allowed customizations (SaaS)</h2>
+        <h3>Custom fields</h3>
+        <p>
+            Tenants can add custom fields to cases, incidents, investigations, and people. These fields:
+        </p>
+        <ul>
+            <li>Are tenant-specific</li>
+            <li>Do not affect platform behavior</li>
+            <li>Appear in reporting and exports</li>
+        </ul>
+
+        <h3>Panels and contextual displays</h3>
+        <p>
+            Panels allow tenants to surface external information or contextual data without altering lifecycle logic.
+        </p>
+
+        <h3>Webhooks</h3>
+        <p>
+            Tenants can subscribe to lifecycle events and build external automations that react to platform activity.
+        </p>
+
+        <h3>Branding</h3>
+        <p>
+            Basic branding options such as logo and color accents may be available depending on the tenant’s plan.
+        </p>
+    </section>
+
+    <section>
+        <h2>Restricted customizations (SaaS)</h2>
+        <p>
+            To protect platform integrity, the following are not allowed in the shared SaaS environment:
+        </p>
+        <ul>
+            <li>Custom logic or code execution</li>
+            <li>Workflow overrides</li>
+            <li>Write-level API access</li>
+            <li>Custom lifecycle stages</li>
+            <li>Direct database access</li>
+            <li>Dedicated API clusters</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Customizations available in Private Deployment</h2>
+        <p>
+            Organizations requiring deeper customization can use the Private Deployment tier, which supports:
+        </p>
+        <ul>
+            <li>Custom logic and workflow extensions</li>
+            <li>Write-level APIs</li>
+            <li>Dedicated infrastructure</li>
+            <li>Custom lifecycle augmentations</li>
+            <li>Tenant-specific deployment schedules</li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

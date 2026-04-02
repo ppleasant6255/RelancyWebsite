@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Session Management & Authentication Flow – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Session Management & Authentication Flow</h1>
+    <p>How Relancy handles user authentication, session renewal, and secure access control.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Authentication Overview</h2>
+    <p>
+        Relancy uses secure, token‑based authentication to validate user identity and enforce RBAC permissions across
+        the platform. Sessions are short‑lived and automatically refreshed.
+    </p>
+</section>
+
+<section>
+    <h2>Session lifecycle</h2>
+    <ul>
+        <li>Initial login via secure identity provider</li>
+        <li>Short‑lived access tokens for API calls</li>
+        <li>Automatic silent token refresh</li>
+        <li>Session expiration after inactivity</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Security controls</h2>
+    <ul>
+        <li>Encrypted token storage</li>
+        <li>Device‑bound session validation</li>
+        <li>Automatic logout on token compromise</li>
+        <li>Strict RBAC enforcement on every request</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Audit logging</h2>
+    <p>
+        Login attempts, token refreshes, and session expirations are logged for security monitoring.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

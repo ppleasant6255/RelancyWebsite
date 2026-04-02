@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Session Management Architecture – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Session Management Architecture</h1>
+    <p>How Relancy manages user sessions using secure tokens, expiration rules, and activity monitoring.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Architecture Overview</h2>
+    <p>
+        Session management uses secure, short-lived tokens issued by the identity provider. Sessions are monitored for
+        activity, expiration, and anomalous behavior.
+    </p>
+</section>
+
+<section>
+    <h2>Session controls</h2>
+    <ul>
+        <li>Idle timeout enforcement</li>
+        <li>Absolute session expiration</li>
+        <li>Token refresh rules</li>
+        <li>Concurrent session limits</li>
+        <li>Forced logout for security events</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Operational safeguards</h2>
+    <p>
+        Suspicious session activity triggers alerts and automatic session termination. Privileged sessions require shorter timeouts.
+    </p>
+</section>
+
+<section>
+    <h2>Audit integrity</h2>
+    <p>
+        Session events include timestamp, IP metadata (if allowed), device type, and token lifecycle details.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

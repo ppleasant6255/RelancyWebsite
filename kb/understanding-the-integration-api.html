@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Understanding the Integration API – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Understanding the Integration API</h1>
+    <p>Safe, predictable ways to connect external systems to Relancy.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+    <section>
+        <h2>Overview</h2>
+        <p>
+            The Relancy Integration API is designed to give tenants practical integration options without exposing the
+            core operational API that powers the platform. It focuses on read-only access, event notifications, and
+            safe extension points rather than write-level control.
+        </p>
+    </section>
+
+    <section>
+        <h2>Design principles</h2>
+        <ul>
+            <li><strong>Tenant-scoped:</strong> Every call is bound to a specific tenant.</li>
+            <li><strong>Audit-friendly:</strong> All interactions are traceable.</li>
+            <li><strong>Read-first:</strong> Reporting and exports are prioritized over mutation.</li>
+            <li><strong>Event-driven:</strong> Webhooks notify external systems of important changes.</li>
+            <li><strong>Safe by default:</strong> No ability to bypass lifecycle or platform rules.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>What the Integration API supports</h2>
+
+        <h3>Outbound: Relancy → your systems</h3>
+        <p>Relancy can notify your systems when important events occur, such as:</p>
+        <ul>
+            <li>Case or incident created</li>
+            <li>Case escalated or closed</li>
+            <li>Training assigned, completed, or overdue</li>
+            <li>Pattern or risk signal detected</li>
+        </ul>
+        <p>
+            These notifications are typically delivered via webhooks, allowing your systems to react without polling.
+        </p>
+
+        <h3>Read-only access</h3>
+        <p>
+            The Integration API and reporting surfaces allow you to pull data from Relancy into your own BI tools,
+            data warehouses, or internal dashboards. This includes:
+        </p>
+        <ul>
+            <li>Case and incident data</li>
+            <li>Training and readiness records</li>
+            <li>Relevant operational metrics</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>What the Integration API does not allow</h2>
+        <p>
+            To protect audit integrity and lifecycle discipline, the Integration API does not allow:
+        </p>
+        <ul>
+            <li>Arbitrary write-level access to core entities</li>
+            <li>Custom logic injection into the platform</li>
+            <li>Bypassing lifecycle stages or approvals</li>
+            <li>Modifying training lineage or historical records</li>
+        </ul>
+        <p>
+            Organizations that require this level of control should consider the Private Deployment tier, where
+            dedicated infrastructure and optional write-level APIs are available.
+        </p>
+    </section>
+
+    <section>
+        <h2>Authentication and security</h2>
+        <p>
+            Access to the Integration API is authenticated and tenant-scoped. Depending on your organization’s needs,
+            this may involve API keys, service principals, or other secure mechanisms. All requests are subject to
+            authorization checks and rate limiting to protect the platform and other tenants.
+        </p>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

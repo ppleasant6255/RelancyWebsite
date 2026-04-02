@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Webhook Delivery Engine – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Webhook Delivery Engine</h1>
+    <p>How Relancy delivers webhook events to external systems using secure, reliable, and retry‑aware workflows.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Engine Overview</h2>
+    <p>
+        The Webhook Delivery Engine sends event notifications to external systems when incidents, cases, training, or
+        readiness events occur. Delivery is asynchronous, secure, and fully auditable.
+    </p>
+</section>
+
+<section>
+    <h2>Delivery features</h2>
+    <ul>
+        <li>Tenant‑scoped webhook endpoints</li>
+        <li>HMAC signature validation</li>
+        <li>Automatic retries with exponential backoff</li>
+        <li>Dead‑letter queue for failed deliveries</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Operational safeguards</h2>
+    <p>
+        Payloads are sanitized, encrypted in transit, and validated before delivery. Failed endpoints are temporarily
+        disabled to protect system stability.
+    </p>
+</section>
+
+<section>
+    <h2>Audit integrity</h2>
+    <p>
+        All webhook attempts—including payload, status, and retry count—are logged for compliance and troubleshooting.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

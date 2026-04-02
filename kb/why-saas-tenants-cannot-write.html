@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Why SaaS Tenants Cannot Write Into the Platform – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Why SaaS Tenants Cannot Write Into the Platform</h1>
+    <p>Protecting audit integrity, lifecycle discipline, and tenant isolation.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+    <section>
+        <h2>Overview</h2>
+        <p>
+            Relancy’s SaaS tier is designed to be safe, predictable, and audit-first. To preserve these guarantees,
+            tenants in the shared SaaS environment cannot write custom logic into the platform, bypass lifecycle
+            events, or directly mutate core entities through custom code or APIs.
+        </p>
+        <p>
+            This article explains why that boundary exists and how it protects both you and the platform.
+        </p>
+    </section>
+
+    <section>
+        <h2>Audit integrity</h2>
+        <p>
+            Relancy maintains a complete, tamper-resistant record of what happened, when it happened, and who was
+            involved. Allowing tenants to inject custom logic or write directly into core entities would:
+        </p>
+        <ul>
+            <li>Introduce inconsistent behavior across tenants</li>
+            <li>Make audit trails harder to trust and interpret</li>
+            <li>Increase the risk of accidental or intentional data manipulation</li>
+        </ul>
+        <p>
+            By keeping write-level control inside the platform’s own lifecycle and rules, Relancy ensures that every
+            action is traceable, explainable, and consistent.
+        </p>
+    </section>
+
+    <section>
+        <h2>Lifecycle discipline</h2>
+        <p>
+            Cases, incidents, investigations, and training all follow defined lifecycle stages. These stages are not
+            cosmetic—they are the backbone of how Relancy measures readiness, risk, and response.
+        </p>
+        <p>
+            If tenants could write directly into the platform or override lifecycle logic, they could:
+        </p>
+        <ul>
+            <li>Skip required stages</li>
+            <li>Bypass approvals or reviews</li>
+            <li>Alter the meaning of lifecycle states</li>
+            <li>Break downstream reporting and analytics</li>
+        </ul>
+        <p>
+            To prevent this, lifecycle transitions are controlled by the platform, not by tenant-authored code.
+        </p>
+    </section>
+
+    <section>
+        <h2>Tenant isolation and safety</h2>
+        <p>
+            In a multi-tenant SaaS environment, one tenant’s behavior must never affect another tenant’s safety,
+            performance, or data. Allowing arbitrary write-level access or custom logic would:
+        </p>
+        <ul>
+            <li>Increase the risk of performance degradation from poorly designed integrations</li>
+            <li>Complicate incident response and troubleshooting</li>
+            <li>Expand the attack surface for security vulnerabilities</li>
+        </ul>
+        <p>
+            By limiting tenants to safe, read-only and event-driven surfaces, Relancy keeps the shared platform stable
+            and predictable for everyone.
+        </p>
+    </section>
+
+    <section>
+        <h2>What SaaS tenants can do instead</h2>
+        <p>
+            Even without write-level access, SaaS tenants still have powerful ways to integrate and extend Relancy:
+        </p>
+        <ul>
+            <li>Receive webhooks for key lifecycle events</li>
+            <li>Use reporting and export capabilities to feed BI tools</li>
+            <li>Add custom fields and panels to capture tenant-specific context</li>
+            <li>Build external automations that react to Relancy events</li>
+        </ul>
+        <p>
+            These options provide flexibility without compromising platform integrity.
+        </p>
+    </section>
+
+    <section>
+        <h2>When write-level access is appropriate</h2>
+        <p>
+            Organizations that truly require write-level access, custom logic, or dedicated infrastructure can use
+            Relancy’s Private Deployment tier. In that model, you operate in an isolated environment with your own
+            API cluster, database, and scaling rules—and you assume the corresponding control and responsibility.
+        </p>
+        <p>
+            In other words: write-level access belongs in Private Deployment, not in shared SaaS.
+        </p>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

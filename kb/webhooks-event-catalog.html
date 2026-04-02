@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Webhooks: Event Catalog and Usage Guide – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Webhooks: Event Catalog and Usage Guide</h1>
+    <p>How to receive real-time notifications from Relancy.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+    <section>
+        <h2>Overview</h2>
+        <p>
+            Webhooks allow your systems to receive real-time notifications when important events occur inside Relancy.
+            They are the primary outbound integration mechanism in the SaaS environment and are designed to be simple,
+            reliable, and secure.
+        </p>
+    </section>
+
+    <section>
+        <h2>How webhooks work</h2>
+        <p>
+            When a subscribed event occurs, Relancy sends an HTTPS POST request to your configured endpoint. The
+            payload includes:
+        </p>
+        <ul>
+            <li>Event type</li>
+            <li>Timestamp</li>
+            <li>Tenant identifier</li>
+            <li>Entity reference</li>
+            <li>Relevant metadata</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Event catalog</h2>
+        <p>Common webhook events include:</p>
+
+        <h3>Case events</h3>
+        <ul>
+            <li>case.created</li>
+            <li>case.updated</li>
+            <li>case.escalated</li>
+            <li>case.closed</li>
+        </ul>
+
+        <h3>Incident events</h3>
+        <ul>
+            <li>incident.reported</li>
+            <li>incident.validated</li>
+            <li>incident.resolved</li>
+        </ul>
+
+        <h3>Investigation events</h3>
+        <ul>
+            <li>investigation.opened</li>
+            <li>investigation.findings.published</li>
+            <li>investigation.closed</li>
+        </ul>
+
+        <h3>Training events</h3>
+        <ul>
+            <li>training.assigned</li>
+            <li>training.completed</li>
+            <li>training.overdue</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Security and verification</h2>
+        <p>
+            Webhook requests include a signature header that your system can verify to ensure authenticity. HTTPS is
+            required for all webhook endpoints.
+        </p>
+    </section>
+
+    <section>
+        <h2>Best practices</h2>
+        <ul>
+            <li>Respond with HTTP 200 as quickly as possible.</li>
+            <li>Perform heavy processing asynchronously.</li>
+            <li>Use retries to handle transient failures.</li>
+            <li>Log webhook deliveries for audit and troubleshooting.</li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

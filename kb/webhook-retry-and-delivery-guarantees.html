@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Webhook Retry and Delivery Guarantees – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Webhook Retry and Delivery Guarantees</h1>
+    <p>How Relancy ensures reliable delivery of webhook events to external systems.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Overview</h2>
+    <p>
+        Webhooks provide real‑time notifications to external systems. Relancy ensures reliable delivery through retry
+        logic, delivery guarantees, and detailed logging.
+    </p>
+</section>
+
+<section>
+    <h2>Delivery guarantees</h2>
+    <ul>
+        <li>At‑least‑once delivery</li>
+        <li>Ordered delivery per entity</li>
+        <li>Secure HTTPS transmission</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Retry logic</h2>
+    <p>
+        Failed deliveries are retried using exponential backoff. Persistent failures are logged and may trigger alerts.
+    </p>
+</section>
+
+<section>
+    <h2>Failure handling</h2>
+    <ul>
+        <li>Automatic retry queueing</li>
+        <li>Dead‑letter logging for unresolved failures</li>
+        <li>Administrative review tools</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Audit logging</h2>
+    <p>
+        All webhook attempts, successes, and failures are logged for operational review.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

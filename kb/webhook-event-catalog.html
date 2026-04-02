@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Webhook Event Catalog – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Webhook Event Catalog</h1>
+    <p>List of webhook events emitted by Relancy for integrations, automation, and external workflows.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Catalog Overview</h2>
+    <p>
+        Relancy emits webhook events for key lifecycle changes across incidents, cases, investigations, training, and
+        readiness. Webhooks support real‑time integrations and automation.
+    </p>
+</section>
+
+<section>
+    <h2>Event categories</h2>
+    <ul>
+        <li>Incident events (created, updated, closed)</li>
+        <li>Case events (assigned, escalated, closed)</li>
+        <li>Investigation events (stage changes, findings)</li>
+        <li>Training events (assigned, completed, expired)</li>
+        <li>Readiness events (score changes)</li>
+        <li>Corrective action events (created, overdue, verified)</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Payload structure</h2>
+    <p>
+        Each event includes entity identifiers, timestamps, triggering conditions, and tenant context. Sensitive fields
+        are omitted based on RBAC.
+    </p>
+</section>
+
+<section>
+    <h2>Delivery guarantees</h2>
+    <p>
+        Webhooks use at‑least‑once delivery with retry logic and dead‑letter logging for unresolved failures.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Time Zone Handling – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Time Zone Handling</h1>
+    <p>How Relancy manages timestamps, scheduling, and cross‑region consistency.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Time Zone Overview</h2>
+    <p>
+        Relancy stores all timestamps in UTC and converts them to the user’s local time zone at runtime. This ensures
+        consistency across global teams and prevents ambiguity in audit logs.
+    </p>
+</section>
+
+<section>
+    <h2>Conversion rules</h2>
+    <ul>
+        <li>All stored timestamps use UTC</li>
+        <li>UI displays convert to user’s local time</li>
+        <li>Exports may include both UTC and local time</li>
+        <li>Audit logs always display UTC for defensibility</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Scheduling behavior</h2>
+    <p>
+        Notifications, escalations, and expiration cycles use UTC internally to avoid drift across regions.
+    </p>
+</section>
+
+<section>
+    <h2>Cross‑region collaboration</h2>
+    <p>
+        Users in different time zones see timestamps in their local format without affecting underlying data.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>
