@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Authentication (Deep Dive) – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>API Authentication (Deep Dive)</h1>
+    <p>How Relancy secures API access using token‑based authentication, tenant scoping, and RBAC enforcement.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Authentication Overview</h2>
+    <p>
+        Relancy APIs use secure, token‑based authentication to validate identity, enforce RBAC, and ensure tenant
+        isolation. Tokens are short‑lived and must be refreshed regularly.
+    </p>
+</section>
+
+<section>
+    <h2>Token types</h2>
+    <ul>
+        <li>Access tokens (short‑lived)</li>
+        <li>Refresh tokens (long‑lived, securely stored)</li>
+        <li>Tenant‑scoped API keys (optional for Private Deployment)</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Security controls</h2>
+    <ul>
+        <li>Encrypted token storage</li>
+        <li>Device‑bound session validation</li>
+        <li>Strict tenant scoping on every request</li>
+        <li>Automatic revocation on compromise</li>
+    </ul>
+</section>
+
+<section>
+    <h2>RBAC enforcement</h2>
+    <p>
+        API responses are filtered based on the caller’s role and permissions. Unauthorized fields are omitted.
+    </p>
+</section>
+
+<section>
+    <h2>Audit logging</h2>
+    <p>
+        All API authentication events—including token issuance, refresh, and revocation—are logged for security review.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cross‑Tenant Isolation Architecture – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Cross‑Tenant Isolation Architecture</h1>
+    <p>How Relancy enforces strict isolation between tenants across data, storage, compute, and audit layers.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Isolation Overview</h2>
+    <p>
+        Cross‑tenant isolation ensures that no tenant can access or infer data belonging to another tenant. Isolation is
+        enforced at the database, storage, compute, and identity layers.
+    </p>
+</section>
+
+<section>
+    <h2>Isolation layers</h2>
+    <ul>
+        <li><strong>Data isolation</strong> – tenant‑scoped partitions and encryption keys</li>
+        <li><strong>Storage isolation</strong> – separate containers and access policies</li>
+        <li><strong>Compute isolation</strong> – tenant‑aware request routing</li>
+        <li><strong>Identity isolation</strong> – tenant‑scoped authentication and RBAC</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Operational safeguards</h2>
+    <p>
+        All cross‑tenant boundaries are validated during every request. Any anomaly triggers alerts and automatic
+        request termination.
+    </p>
+</section>
+
+<section>
+    <h2>Audit integrity</h2>
+    <p>
+        Isolation enforcement events and boundary checks are logged for compliance and security review.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

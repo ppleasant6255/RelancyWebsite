@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Background Job Architecture – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Background Job Architecture</h1>
+    <p>How Relancy processes asynchronous tasks using distributed workers, queues, and retry logic.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Architecture Overview</h2>
+    <p>
+        Background jobs handle asynchronous tasks such as notifications, integrations, analytics, and cleanup operations.
+        Jobs run in distributed workers with tenant isolation.
+    </p>
+</section>
+
+<section>
+    <h2>Job categories</h2>
+    <ul>
+        <li>Notification delivery</li>
+        <li>Webhook dispatch</li>
+        <li>Analytics processing</li>
+        <li>Data cleanup</li>
+        <li>Integration sync tasks</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Operational safeguards</h2>
+    <p>
+        Jobs include retry logic, dead-letter queues, and rate limiting. Failures trigger alerts and diagnostic logging.
+    </p>
+</section>
+
+<section>
+    <h2>Audit integrity</h2>
+    <p>
+        Job execution events include timestamp, worker identity, payload metadata, and retry history.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

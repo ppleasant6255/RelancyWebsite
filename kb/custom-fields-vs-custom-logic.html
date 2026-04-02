@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Fields vs Custom Logic – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Custom Fields vs Custom Logic</h1>
+    <p>How to extend Relancy safely without changing platform behavior.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+    <section>
+        <h2>Overview</h2>
+        <p>
+            Relancy allows tenants to adapt the platform to their context through custom fields and panels, but does
+            not allow tenant-authored logic in the shared SaaS environment. This distinction is intentional: it
+            preserves audit integrity, lifecycle consistency, and tenant isolation while still giving you room to
+            capture what matters locally.
+        </p>
+    </section>
+
+    <section>
+        <h2>Custom fields: data, not behavior</h2>
+        <p>
+            Custom fields let you store additional information on entities such as cases, incidents, or people. They
+            are:
+        </p>
+        <ul>
+            <li>Tenant-specific</li>
+            <li>Data-only</li>
+            <li>Non-executable</li>
+            <li>Included in reporting and exports</li>
+        </ul>
+        <p>
+            Custom fields allow you to reflect your organization’s language, categories, and context without changing
+            how the platform behaves.
+        </p>
+    </section>
+
+    <section>
+        <h2>Panels and presentation extensions</h2>
+        <p>
+            In addition to fields, Relancy can expose panels or sections that surface contextual information, links, or
+            visualizations. These are presentation extensions, not logic hooks. They help your teams see more without
+            giving external systems control over lifecycle or audit.
+        </p>
+    </section>
+
+    <section>
+        <h2>Custom logic: where it belongs</h2>
+        <p>
+            In the shared SaaS environment, custom logic is not supported. Allowing tenants to inject logic would:
+        </p>
+        <ul>
+            <li>Introduce inconsistent behavior across tenants</li>
+            <li>Complicate support and troubleshooting</li>
+            <li>Increase security and stability risks</li>
+            <li>Undermine lifecycle and audit guarantees</li>
+        </ul>
+        <p>
+            For organizations that truly need custom logic, Relancy offers a Private Deployment tier with dedicated
+            infrastructure and optional write-level APIs.
+        </p>
+    </section>
+
+    <section>
+        <h2>Practical guidance</h2>
+        <ul>
+            <li>Use custom fields to capture additional attributes you need for reporting or context.</li>
+            <li>Use panels to surface external information without granting control to external systems.</li>
+            <li>Use webhooks and external automation to react to Relancy events in your own environment.</li>
+            <li>Consider Private Deployment if you require deep, platform-level customization.</li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

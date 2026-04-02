@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Access Token Lifecycle – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Access Token Lifecycle</h1>
+    <p>How Relancy manages access tokens using short-lived credentials, refresh workflows, and revocation rules.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Lifecycle Overview</h2>
+    <p>
+        Access tokens authenticate user actions within Relancy. Tokens are short-lived, automatically refreshed, and
+        revoked when security conditions require it.
+    </p>
+</section>
+
+<section>
+    <h2>Lifecycle stages</h2>
+    <ul>
+        <li>Token issuance</li>
+        <li>Token validation</li>
+        <li>Token refresh</li>
+        <li>Token expiration</li>
+        <li>Token revocation</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Operational safeguards</h2>
+    <p>
+        Tokens are bound to device and session metadata. Compromised tokens are invalidated immediately across all services.
+    </p>
+</section>
+
+<section>
+    <h2>Audit integrity</h2>
+    <p>
+        Token lifecycle events include timestamp, identity provider metadata, and revocation reasons for compliance review.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

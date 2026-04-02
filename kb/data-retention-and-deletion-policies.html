@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Retention and Deletion Policies – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Data Retention and Deletion Policies</h1>
+    <p>How Relancy manages the lifecycle of operational data.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+    <section>
+        <h2>Overview</h2>
+        <p>
+            Relancy maintains strict data retention and deletion policies to support compliance, audit integrity, and
+            operational continuity. These policies ensure that data is preserved for as long as required and removed
+            safely when appropriate.
+        </p>
+    </section>
+
+    <section>
+        <h2>Retention principles</h2>
+        <ul>
+            <li><strong>Audit-first:</strong> Data required for audit or compliance is retained.</li>
+            <li><strong>Tenant-specific:</strong> Retention policies apply per tenant.</li>
+            <li><strong>Immutable lineage:</strong> Historical records cannot be altered.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Retention periods</h2>
+        <p>
+            Default retention periods vary by entity type. Examples include:
+        </p>
+        <ul>
+            <li>Cases and incidents: retained for the life of the tenant</li>
+            <li>Investigations: retained for the life of the tenant</li>
+            <li>Training lineage: retained indefinitely</li>
+            <li>System logs: retained according to platform policy</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Deletion policies</h2>
+        <p>
+            Deletion is restricted to ensure audit integrity. When deletion is permitted:
+        </p>
+        <ul>
+            <li>It is logged in the audit trail</li>
+            <li>It does not remove historical lineage</li>
+            <li>It does not break lifecycle records</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Tenant offboarding</h2>
+        <p>
+            Upon tenant offboarding, data is securely deleted following a structured, irreversible process. Backups
+            associated with the tenant are purged according to retention schedules.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

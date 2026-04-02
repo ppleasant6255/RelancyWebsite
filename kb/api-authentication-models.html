@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Authentication Models – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>API Authentication Models</h1>
+    <p>How Relancy secures access to its read-only and event-driven APIs.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+    <section>
+        <h2>Overview</h2>
+        <p>
+            Relancy’s Integration API uses secure, tenant-scoped authentication models to ensure that only authorized
+            systems can access your organization’s data. This article explains the supported authentication mechanisms
+            and how they protect your environment.
+        </p>
+    </section>
+
+    <section>
+        <h2>API keys</h2>
+        <p>
+            API keys provide a simple, secure way for trusted systems to authenticate. Keys are:
+        </p>
+        <ul>
+            <li>Tenant-scoped</li>
+            <li>Revocable at any time</li>
+            <li>Rotatable without downtime</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Service principals</h2>
+        <p>
+            For enterprise integrations, Relancy supports service-principal authentication. This model provides:
+        </p>
+        <ul>
+            <li>Fine-grained access control</li>
+            <li>Credential rotation policies</li>
+            <li>Audit logging of all access</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Webhook signature verification</h2>
+        <p>
+            Outbound webhook requests include a signature header that your system can verify to ensure authenticity.
+            HTTPS is required for all webhook endpoints.
+        </p>
+    </section>
+
+    <section>
+        <h2>Rate limiting and safety</h2>
+        <p>
+            All API access is subject to rate limiting to protect the platform and ensure fair usage across tenants.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>
