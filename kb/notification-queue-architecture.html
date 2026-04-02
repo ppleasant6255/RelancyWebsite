@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notification Queue Architecture – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Notification Queue Architecture</h1>
+    <p>How Relancy processes notifications using distributed queues to ensure reliable, scalable delivery across tenants.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Architecture Overview</h2>
+    <p>
+        The Notification Queue Architecture uses distributed, tenant‑scoped queues to process email, SMS, and in‑app
+        notifications. Queues ensure reliable delivery, retry logic, and isolation between tenants.
+    </p>
+</section>
+
+<section>
+    <h2>Queue components</h2>
+    <ul>
+        <li>Tenant‑scoped notification queues</li>
+        <li>Retry queues for transient failures</li>
+        <li>Dead‑letter queues for unrecoverable messages</li>
+        <li>Delivery workers with horizontal scaling</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Operational safeguards</h2>
+    <p>
+        Notification queues enforce rate limits, validate payloads, and prevent cross‑tenant contamination through strict
+        scoping and encryption.
+    </p>
+</section>
+
+<section>
+    <h2>Audit integrity</h2>
+    <p>
+        Notification events—including enqueue, dequeue, retry, and failure—are logged for compliance and operational review.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

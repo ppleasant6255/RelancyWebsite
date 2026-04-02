@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SaaS vs Private Deployment – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>SaaS vs Private Deployment</h1>
+    <p>Choosing the right operational model for your organization.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+    <section>
+        <h2>Overview</h2>
+        <p>
+            Relancy is designed as a secure, audit-first, multi-tenant SaaS platform. Every tenant benefits from the
+            same hardened operational contract, lifecycle discipline, and platform integrity. Some organizations,
+            however, require deeper control, dedicated infrastructure, or custom scaling. For those cases, Relancy
+            offers a Private Deployment tier.
+        </p>
+        <p>
+            This article explains the difference so you can choose the model that fits your operational needs.
+        </p>
+    </section>
+
+    <section>
+        <h2>Relancy SaaS (Shared API, Isolated Data)</h2>
+        <p><strong>Principle:</strong> Shared worldview, isolated risk.</p>
+        <p>
+            In the SaaS tier, all tenants run on the same, fully managed API layer. This ensures:
+        </p>
+        <ul>
+            <li>Consistent lifecycle behavior</li>
+            <li>Predictable audit trails</li>
+            <li>Uniform security posture</li>
+            <li>Zero drift across tenants</li>
+            <li>Rapid updates and improvements</li>
+        </ul>
+        <p>
+            Behind that shared API, every tenant receives:
+        </p>
+        <ul>
+            <li>An isolated database</li>
+            <li>Isolated storage</li>
+            <li>Isolated audit logs</li>
+            <li>Isolated encryption boundary</li>
+        </ul>
+        <p>Your data is never co-mingled with other tenants. Your audit boundary is yours alone.</p>
+    </section>
+
+    <section>
+        <h3>What SaaS tenants can do</h3>
+        <ul>
+            <li>Receive webhooks for lifecycle events</li>
+            <li>Export and report on their data</li>
+            <li>Add custom fields and panels</li>
+            <li>Integrate external systems through safe, read-only surfaces</li>
+            <li>Benefit from continuous improvements with no maintenance burden</li>
+        </ul>
+
+        <h3>What SaaS tenants cannot do</h3>
+        <p>To protect audit integrity and lifecycle discipline, SaaS tenants cannot:</p>
+        <ul>
+            <li>Write custom logic into the platform</li>
+            <li>Override workflows or lifecycle events</li>
+            <li>Deploy custom code</li>
+            <li>Run their own API cluster</li>
+            <li>Modify core entities</li>
+            <li>Bypass platform rules</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Private Deployment (Dedicated Infrastructure, Full Control)</h2>
+        <p>
+            Some organizations require deeper control over their environment. For those cases, Relancy offers a
+            Private Deployment tier. This is not shared SaaS. It is your own Relancy environment—isolated, dedicated,
+            and customizable.
+        </p>
+
+        <h3>What Private Deployment includes</h3>
+        <ul>
+            <li>Dedicated API cluster and load balancer</li>
+            <li>Dedicated database and storage</li>
+            <li>Custom scaling rules</li>
+            <li>Custom SLAs</li>
+            <li>Optional write-level APIs</li>
+            <li>Optional custom logic</li>
+            <li>Optional on-prem or VPC deployment</li>
+        </ul>
+
+        <p>Private Deployment is ideal when you need:</p>
+        <ul>
+            <li>Full infrastructure control</li>
+            <li>Custom integrations and lifecycle extensions</li>
+            <li>Strict regulatory or sovereign isolation</li>
+            <li>Air-gapped or highly controlled environments</li>
+        </ul>
+
+        <p>
+            Because dedicated infrastructure carries higher operational and support cost, Private Deployment is priced
+            as a premium offering.
+        </p>
+    </section>
+
+    <section>
+        <h2>Which model should you choose?</h2>
+
+        <h3>Choose SaaS if you want:</h3>
+        <ul>
+            <li>Zero maintenance</li>
+            <li>Automatic updates</li>
+            <li>Predictable costs</li>
+            <li>Strong tenant isolation</li>
+            <li>Audit-first lifecycle discipline</li>
+            <li>A secure, managed environment</li>
+        </ul>
+
+        <h3>Choose Private Deployment if you need:</h3>
+        <ul>
+            <li>Your own API cluster and scaling rules</li>
+            <li>Your own infrastructure and deployment cadence</li>
+            <li>Custom logic or write-level access</li>
+            <li>Regulatory or sovereign isolation</li>
+            <li>On-prem or VPC deployment</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Summary</h2>
+        <table border="1" cellpadding="6" cellspacing="0">
+            <thead>
+            <tr>
+                <th>Feature</th>
+                <th>SaaS</th>
+                <th>Private Deployment</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>API</td>
+                <td>Shared</td>
+                <td>Dedicated</td>
+            </tr>
+            <tr>
+                <td>Database</td>
+                <td>Isolated per tenant</td>
+                <td>Dedicated</td>
+            </tr>
+            <tr>
+                <td>Custom Logic</td>
+                <td>No</td>
+                <td>Yes (optional)</td>
+            </tr>
+            <tr>
+                <td>Write-Level Access</td>
+                <td>No</td>
+                <td>Optional</td>
+            </tr>
+            <tr>
+                <td>Scaling</td>
+                <td>Platform-managed</td>
+                <td>Customer-controlled</td>
+            </tr>
+            <tr>
+                <td>Updates</td>
+                <td>Automatic</td>
+                <td>Coordinated</td>
+            </tr>
+            <tr>
+                <td>Infrastructure</td>
+                <td>Shared cloud</td>
+                <td>Dedicated cloud or on-prem</td>
+            </tr>
+            <tr>
+                <td>Pricing</td>
+                <td>Standard</td>
+                <td>Premium</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

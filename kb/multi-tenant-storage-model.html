@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multi‑Tenant Storage Model – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Multi‑Tenant Storage Model</h1>
+    <p>How Relancy stores tenant data using isolated, encrypted, and scalable storage partitions.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Storage Overview</h2>
+    <p>
+        Relancy uses a multi‑tenant storage model that isolates each tenant’s data into separate encrypted partitions.
+        Storage is horizontally scalable and optimized for high‑volume workloads.
+    </p>
+</section>
+
+<section>
+    <h2>Storage components</h2>
+    <ul>
+        <li>Tenant‑scoped blob containers</li>
+        <li>Encrypted database partitions</li>
+        <li>Isolated audit log streams</li>
+        <li>Tenant‑specific encryption keys</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Operational safeguards</h2>
+    <p>
+        Storage access is validated on every request. Cross‑tenant access is cryptographically impossible due to key
+        isolation.
+    </p>
+</section>
+
+<section>
+    <h2>Audit integrity</h2>
+    <p>
+        Storage access events are logged with timestamp, actor, and partition metadata for compliance review.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

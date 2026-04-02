@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multi‑Tenant Isolation (Deep Dive) – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Multi‑Tenant Isolation (Deep Dive)</h1>
+    <p>How Relancy enforces strict tenant isolation across data, storage, authentication, and operational boundaries.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Isolation Overview</h2>
+    <p>
+        Relancy is designed with strict multi‑tenant isolation to ensure that tenant data, workflows, and configuration
+        remain completely segregated. Isolation applies across storage, authentication, and operational layers.
+    </p>
+</section>
+
+<section>
+    <h2>Isolation layers</h2>
+    <ul>
+        <li>Data storage isolation</li>
+        <li>Authentication and RBAC isolation</li>
+        <li>API request scoping</li>
+        <li>Webhook and integration isolation</li>
+        <li>Tenant‑specific encryption keys</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Operational safeguards</h2>
+    <ul>
+        <li>No cross‑tenant queries</li>
+        <li>No shared caches for sensitive data</li>
+        <li>Strict validation of tenant context on every request</li>
+        <li>Tenant‑scoped audit logs</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Private Deployment</h2>
+    <p>
+        Private Deployment tenants receive dedicated infrastructure, eliminating multi‑tenant concerns entirely.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multi-tenant Architecture Overview – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Multi-tenant Architecture Overview</h1>
+    <p>How Relancy delivers shared efficiency with strict tenant isolation.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+    <section>
+        <h2>Overview</h2>
+        <p>
+            Relancy is built on a modern multi-tenant architecture designed to balance efficiency, security, and
+            operational clarity. Tenants share the application layer but operate on isolated data boundaries, ensuring
+            that each organization benefits from the platform’s capabilities without compromising privacy or integrity.
+        </p>
+    </section>
+
+    <section>
+        <h2>Shared application layer</h2>
+        <p>
+            All tenants use the same API and application logic. This ensures:
+        </p>
+        <ul>
+            <li>Consistent lifecycle behavior</li>
+            <li>Uniform security enforcement</li>
+            <li>Predictable updates and improvements</li>
+            <li>Reduced operational overhead</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Isolated data layer</h2>
+        <p>
+            Each tenant’s data is stored in an isolated database or schema. This prevents:
+        </p>
+        <ul>
+            <li>Cross-tenant data access</li>
+            <li>Audit contamination</li>
+            <li>Data leakage or accidental exposure</li>
+        </ul>
+        <p>
+            Isolation also allows independent scaling and backup strategies.
+        </p>
+    </section>
+
+    <section>
+        <h2>Tenant context routing</h2>
+        <p>
+            Every request includes tenant context, which the platform uses to:
+        </p>
+        <ul>
+            <li>Select the correct database</li>
+            <li>Apply tenant-specific permissions</li>
+            <li>Scope audit entries</li>
+            <li>Enforce isolation rules</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Benefits of this architecture</h2>
+        <ul>
+            <li><strong>Security:</strong> Strong data boundaries.</li>
+            <li><strong>Performance:</strong> Efficient resource usage.</li>
+            <li><strong>Scalability:</strong> Independent tenant scaling.</li>
+            <li><strong>Reliability:</strong> Issues in one tenant do not affect others.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Private Deployment option</h2>
+        <p>
+            Organizations requiring dedicated infrastructure can choose the Private Deployment tier, which provides
+            isolated compute, storage, and API clusters.
+        </p>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Notification Delivery Guarantees – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Notification Delivery Guarantees</h1>
+    <p>How Relancy ensures reliable delivery of email, SMS, and in‑app notifications across all workflows.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Delivery Overview</h2>
+    <p>
+        Relancy uses redundant delivery channels, retry logic, and delivery confirmation to ensure that notifications
+        reach the intended recipients. Delivery guarantees vary by channel based on technical constraints.
+    </p>
+</section>
+
+<section>
+    <h2>Email delivery guarantees</h2>
+    <ul>
+        <li>At‑least‑once delivery with retry logic</li>
+        <li>Fallback routing for transient failures</li>
+        <li>Delivery status tracking</li>
+        <li>Tenant‑branded templates</li>
+    </ul>
+</section>
+
+<section>
+    <h2>SMS delivery guarantees</h2>
+    <p>
+        SMS delivery depends on carrier networks. Relancy retries failed messages and logs delivery confirmations when
+        available. Sensitive content is excluded from SMS.
+    </p>
+</section>
+
+<section>
+    <h2>In‑app delivery guarantees</h2>
+    <ul>
+        <li>Guaranteed delivery when the user is online</li>
+        <li>Queued delivery for offline users</li>
+        <li>Persistent notifications until dismissed</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Audit integrity</h2>
+    <p>
+        All notification events—including delivery attempts, failures, and confirmations—are logged for compliance and
+        operational review.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>
