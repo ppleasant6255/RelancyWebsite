@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Integration Error Handling – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Integration Error Handling</h1>
+    <p>How Relancy handles integration errors using retries, alerts, dead‑letter queues, and audit logging.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Error Handling Overview</h2>
+    <p>
+        Integration errors—such as API failures, invalid data, or authentication issues—are handled using structured
+        retry logic, alerts, and fallback workflows.
+    </p>
+</section>
+
+<section>
+    <h2>Error categories</h2>
+    <ul>
+        <li>Transient errors</li>
+        <li>Validation failures</li>
+        <li>Authentication errors</li>
+        <li>Schema mismatches</li>
+        <li>System outages</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Operational safeguards</h2>
+    <p>
+        Failed records are moved to dead‑letter queues for review. Critical failures trigger alerts to administrators.
+    </p>
+</section>
+
+<section>
+    <h2>Audit integrity</h2>
+    <p>
+        All integration errors include timestamp, source system, payload metadata, and retry history for compliance review.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

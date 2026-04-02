@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HRIS Synchronization Patterns – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>HRIS Synchronization Patterns</h1>
+    <p>How Relancy synchronizes employee and organizational data with HRIS systems.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Overview</h2>
+    <p>
+        HRIS systems serve as the system of record for employee and organizational data. Relancy synchronizes with HRIS
+        platforms to ensure accurate profiles, roles, departments, and reporting structures.
+    </p>
+</section>
+
+<section>
+    <h2>Synchronization methods</h2>
+    <ul>
+        <li>API‑based data ingestion</li>
+        <li>Scheduled CSV imports</li>
+        <li>Webhook‑triggered updates</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Commonly synchronized fields</h2>
+    <ul>
+        <li>Name and employee ID</li>
+        <li>Role and department</li>
+        <li>Manager relationships</li>
+        <li>Location</li>
+        <li>Status (active, leave, terminated)</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Conflict resolution</h2>
+    <p>
+        HRIS is treated as the authoritative source. Conflicts are resolved by applying HRIS values unless overridden by
+        policy.
+    </p>
+</section>
+
+<section>
+    <h2>Audit logging</h2>
+    <p>
+        All synchronization events are logged for transparency and compliance.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Encryption Key Management – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Encryption Key Management</h1>
+    <p>How Relancy manages encryption keys for data at rest, data in transit, and tenant‑scoped isolation.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Key Management Overview</h2>
+    <p>
+        Relancy uses a centralized, secure key management system to generate, rotate, and store encryption keys.
+        Keys are tenant‑scoped to ensure strict data isolation.
+    </p>
+</section>
+
+<section>
+    <h2>Key types</h2>
+    <ul>
+        <li>Data encryption keys (DEKs)</li>
+        <li>Key encryption keys (KEKs)</li>
+        <li>Transport encryption keys</li>
+        <li>Tenant‑specific encryption keys</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Rotation policies</h2>
+    <p>
+        Keys are rotated automatically on a scheduled basis or immediately upon security events. Rotation is seamless and
+        does not disrupt tenant operations.
+    </p>
+</section>
+
+<section>
+    <h2>Operational safeguards</h2>
+    <ul>
+        <li>Keys stored in secure hardware modules</li>
+        <li>Strict access controls</li>
+        <li>Audit logging for all key operations</li>
+        <li>Automatic revocation on compromise</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Audit integrity</h2>
+    <p>
+        All key generation, rotation, and access events are logged for compliance and security review.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,648 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Relancy Knowledge Base</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --fg: #1a1a2e;
+            --muted: #555;
+            --border: #e0e0e0;
+            --accent: #0066cc;
+            --accent-hover: #004999;
+            --card-bg: #f8f9fa;
+            --toc-bg: #f0f4f8;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #1a1a2e;
+                --fg: #e0e0e0;
+                --muted: #aaa;
+                --border: #333;
+                --accent: #5ba3f5;
+                --accent-hover: #82bfff;
+                --card-bg: #222240;
+                --toc-bg: #1e1e3a;
+            }
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--fg);
+            line-height: 1.6;
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+        header { text-align: center; margin-bottom: 2rem; }
+        header h1 { font-size: 2rem; margin-bottom: 0.25rem; }
+        header p { color: var(--muted); font-size: 1.05rem; }
+        .stats { text-align: center; margin-bottom: 2rem; color: var(--muted); font-size: 0.95rem; }
+        .toc { background: var(--toc-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 2.5rem; }
+        .toc h2 { font-size: 1.15rem; margin-bottom: 0.75rem; }
+        .toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.4rem 1.5rem; }
+        .toc-grid a { color: var(--accent); text-decoration: none; font-size: 0.95rem; }
+        .toc-grid a:hover { text-decoration: underline; color: var(--accent-hover); }
+        .toc-grid .count { color: var(--muted); font-size: 0.85rem; }
+        .category { margin-bottom: 2.5rem; }
+        .category h2 { font-size: 1.35rem; border-bottom: 2px solid var(--border); padding-bottom: 0.4rem; margin-bottom: 0.25rem; }
+        .category .cat-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.75rem; }
+        .category ul { list-style: none; padding: 0; column-count: 2; column-gap: 2rem; }
+        @media (max-width: 600px) { .category ul { column-count: 1; } .toc-grid { grid-template-columns: 1fr; } }
+        .category li { padding: 0.2rem 0; break-inside: avoid; }
+        .category li a { color: var(--accent); text-decoration: none; }
+        .category li a:hover { text-decoration: underline; color: var(--accent-hover); }
+        .back-top { text-align: right; margin-top: -0.5rem; margin-bottom: 1rem; }
+        .back-top a { color: var(--muted); font-size: 0.85rem; text-decoration: none; }
+        .back-top a:hover { text-decoration: underline; }
+        footer { text-align: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+        #search-box { width: 100%; padding: 0.6rem 1rem; font-size: 1rem; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--fg); margin-bottom: 1.5rem; }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Relancy Knowledge Base</h1>
+    <p>Clear, disciplined documentation for HR, Security, and operational leaders.</p>
+    <p style="margin-top:0.5rem;color:var(--muted);font-size:0.9rem;">364 articles across 18 categories</p>
+</header>
+
+<input type="text" id="search-box" placeholder="Search articles..." aria-label="Search articles">
+
+<nav class="toc" id="toc">
+    <h2>Categories</h2>
+    <div class="toc-grid">
+        <div>&#128218; <a href="#getting-started">Getting Started</a> <span class="count">(1)</span></div>
+        <div>&#128194; <a href="#case-management">Case Management</a> <span class="count">(44)</span></div>
+        <div>&#9888; <a href="#incident-management">Incident Management</a> <span class="count">(28)</span></div>
+        <div>&#128269; <a href="#investigation">Investigation</a> <span class="count">(17)</span></div>
+        <div>&#128206; <a href="#evidence---attachments">Evidence & Attachments</a> <span class="count">(5)</span></div>
+        <div>&#127970; <a href="#organization---hr">Organization & HR</a> <span class="count">(48)</span></div>
+        <div>&#9878; <a href="#risk---compliance">Risk & Compliance</a> <span class="count">(29)</span></div>
+        <div>&#127891; <a href="#training---lms">Training & LMS</a> <span class="count">(17)</span></div>
+        <div>&#128721; <a href="#safety---soc">Safety & SOC</a> <span class="count">(5)</span></div>
+        <div>&#128200; <a href="#reporting---analytics">Reporting & Analytics</a> <span class="count">(15)</span></div>
+        <div>&#128276; <a href="#notifications---messaging">Notifications & Messaging</a> <span class="count">(8)</span></div>
+        <div>&#9881; <a href="#administration---configuration">Administration & Configuration</a> <span class="count">(8)</span></div>
+        <div>&#128274; <a href="#security---access-control">Security & Access Control</a> <span class="count">(29)</span></div>
+        <div>&#127960; <a href="#tenant-management">Tenant Management</a> <span class="count">(27)</span></div>
+        <div>&#128268; <a href="#api---integration">API & Integration</a> <span class="count">(23)</span></div>
+        <div>&#128450; <a href="#data-management">Data Management</a> <span class="count">(31)</span></div>
+        <div>&#9881; <a href="#platform---architecture">Platform & Architecture</a> <span class="count">(20)</span></div>
+        <div>&#9729; <a href="#infrastructure---operations">Infrastructure & Operations</a> <span class="count">(9)</span></div>
+    </div>
+</nav>
+
+<main>
+
+<section class="category" id="getting-started" data-category="Getting Started">
+    <h2>&#128218; Getting Started <span class="count" style="font-weight:normal;font-size:0.9rem;">(1)</span></h2>
+    <p class="cat-desc">Foundational concepts and terminology for new users.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="glossary of core relancy terms"><a href="glossary-of-core-terms.html">Glossary of Core Relancy Terms</a></li>
+    </ul>
+</section>
+
+<section class="category" id="case-management" data-category="Case Management">
+    <h2>&#128194; Case Management <span class="count" style="font-weight:normal;font-size:0.9rem;">(44)</span></h2>
+    <p class="cat-desc">Creating, tracking, escalating, and closing cases across the lifecycle.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="case aging and sla tracking"><a href="case-aging-and-sla-tracking.html">Case Aging and SLA Tracking</a></li>
+        <li data-title="case assignment routing rules"><a href="case-assignment-routing-rules.html">Case Assignment Routing Rules</a></li>
+        <li data-title="case attachments and evidence handling"><a href="case-attachments-and-evidence-handling.html">Case Attachments and Evidence Handling</a></li>
+        <li data-title="case attachments retention rules"><a href="case-attachments-retention-rules.html">Case Attachments Retention Rules</a></li>
+        <li data-title="case categories and tagging"><a href="case-categories-and-tagging.html">Case Categories and Tagging</a></li>
+        <li data-title="case closure rules"><a href="case-closure-rules.html">Case Closure Rules</a></li>
+        <li data-title="case closure standards"><a href="case-closure-standards.html">Case Closure Standards</a></li>
+        <li data-title="case closure standards (deep dive)"><a href="case-closure-standards-deep-dive.html">Case Closure Standards (Deep Dive)</a></li>
+        <li data-title="case collaboration controls"><a href="case-collaboration-controls.html">Case Collaboration Controls</a></li>
+        <li data-title="case collaboration protocols"><a href="case-collaboration-protocols.html">Case Collaboration Protocols</a></li>
+        <li data-title="case escalation policies"><a href="case-escalation-policies.html">Case Escalation Policies</a></li>
+        <li data-title="case escalation rules"><a href="case-escalation-rules.html">Case Escalation Rules</a></li>
+        <li data-title="case lifecycle analytics"><a href="case-lifecycle-analytics.html">Case Lifecycle Analytics</a></li>
+        <li data-title="case lifecycle exceptions"><a href="case-lifecycle-exceptions.html">Case Lifecycle Exceptions</a></li>
+        <li data-title="case linking & merging rules"><a href="case-linking-and-merging-rules.html">Case Linking & Merging Rules</a></li>
+        <li data-title="case linking and cross-entity relationships"><a href="case-linking-and-cross-entity-relationships.html">Case Linking and Cross-Entity Relationships</a></li>
+        <li data-title="case linking best practices"><a href="case-linking-best-practices.html">Case Linking Best Practices</a></li>
+        <li data-title="case load balancing engine"><a href="case-load-balancing-engine.html">Case Load Balancing Engine</a></li>
+        <li data-title="case management module deep dive"><a href="case-management-module-deep-dive.html">Case Management Module Deep Dive</a></li>
+        <li data-title="case merge and split rules"><a href="case-merge-and-split-rules.html">Case Merge and Split Rules</a></li>
+        <li data-title="case notes and communication guidelines"><a href="case-notes-and-communication-guidelines.html">Case Notes and Communication Guidelines</a></li>
+        <li data-title="case quality assurance engine"><a href="case-quality-assurance-engine.html">Case Quality Assurance Engine</a></li>
+        <li data-title="case reassignment and ownership"><a href="case-reassignment-and-ownership.html">Case Reassignment and Ownership</a></li>
+        <li data-title="case reopen criteria and governance"><a href="case-reopen-criteria-and-governance.html">Case Reopen Criteria and Governance</a></li>
+        <li data-title="case reopening rules"><a href="case-reopening-rules.html">Case Reopening Rules</a></li>
+        <li data-title="case review and quality assurance"><a href="case-review-and-quality-assurance.html">Case Review and Quality Assurance</a></li>
+        <li data-title="case severity auto‑classification"><a href="case-severity-auto-classification.html">Case Severity Auto‑Classification</a></li>
+        <li data-title="case severity auto‑classification rules"><a href="case-severity-auto-classification-rules.html">Case Severity Auto‑Classification Rules</a></li>
+        <li data-title="case templates and standardization"><a href="case-templates-and-standardization.html">Case Templates and Standardization</a></li>
+        <li data-title="case timeline & activity feed"><a href="case-timeline-and-activity-feed.html">Case Timeline & Activity Feed</a></li>
+        <li data-title="case timeline engine"><a href="case-timeline-engine.html">Case Timeline Engine</a></li>
+        <li data-title="case timeline visualization"><a href="case-timeline-visualization.html">Case Timeline Visualization</a></li>
+        <li data-title="case visibility rules"><a href="case-visibility-rules.html">Case Visibility Rules</a></li>
+        <li data-title="confidential notes & protected notes"><a href="confidential-notes-and-protected-notes.html">Confidential Notes & Protected Notes</a></li>
+        <li data-title="confidential notes architecture"><a href="confidential-notes-architecture.html">Confidential Notes Architecture</a></li>
+        <li data-title="escalation matrix configuration"><a href="escalation-matrix-configuration.html">Escalation Matrix Configuration</a></li>
+        <li data-title="escalation rules & routing paths"><a href="escalation-rules-and-routing-paths.html">Escalation Rules & Routing Paths</a></li>
+        <li data-title="lifecycle events and audit integrity"><a href="lifecycle-events-and-audit-integrity.html">Lifecycle Events and Audit Integrity</a></li>
+        <li data-title="lifecycle exception handling"><a href="lifecycle-exception-handling.html">Lifecycle Exception Handling</a></li>
+        <li data-title="lifecycle reset rules"><a href="lifecycle-reset-rules.html">Lifecycle Reset Rules</a></li>
+        <li data-title="multi-role collaboration"><a href="multi-role-collaboration.html">Multi-Role Collaboration</a></li>
+        <li data-title="multi‑entity linking (cases, incidents, employees)"><a href="multi-entity-linking-cases-incidents-employees.html">Multi‑Entity Linking (Cases, Incidents, Employees)</a></li>
+        <li data-title="routing engine (deep dive)"><a href="routing-engine-deep-dive.html">Routing Engine (Deep Dive)</a></li>
+        <li data-title="sensitive case routing rules"><a href="sensitive-case-routing-rules.html">Sensitive Case Routing Rules</a></li>
+    </ul>
+</section>
+
+<section class="category" id="incident-management" data-category="Incident Management">
+    <h2>&#9888; Incident Management <span class="count" style="font-weight:normal;font-size:0.9rem;">(28)</span></h2>
+    <p class="cat-desc">Intake, classification, corrective actions, and incident workflows.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="anonymous reporting architecture"><a href="anonymous-reporting-architecture.html">Anonymous Reporting Architecture</a></li>
+        <li data-title="corrective action engine (deep dive)"><a href="corrective-action-engine-deep-dive.html">Corrective Action Engine (Deep Dive)</a></li>
+        <li data-title="corrective action escalation rules"><a href="corrective-action-escalation-rules.html">Corrective Action Escalation Rules</a></li>
+        <li data-title="corrective action evidence requirements"><a href="corrective-action-evidence-requirements.html">Corrective Action Evidence Requirements</a></li>
+        <li data-title="corrective action tracking"><a href="corrective-action-tracking.html">Corrective Action Tracking</a></li>
+        <li data-title="corrective action workflows (deep dive)"><a href="corrective-action-workflows-deep-dive.html">Corrective Action Workflows (Deep Dive)</a></li>
+        <li data-title="crisis communication protocol"><a href="crisis-communication-protocol.html">Crisis Communication Protocol</a></li>
+        <li data-title="incident category taxonomy"><a href="incident-category-taxonomy.html">Incident Category Taxonomy</a></li>
+        <li data-title="incident classification guidelines"><a href="incident-classification-guidelines.html">Incident Classification Guidelines</a></li>
+        <li data-title="incident intake engine (deep dive)"><a href="incident-intake-engine-deep-dive.html">Incident Intake Engine (Deep Dive)</a></li>
+        <li data-title="incident intake form configuration"><a href="incident-intake-form-configuration.html">Incident Intake Form Configuration</a></li>
+        <li data-title="incident recurrence tracking"><a href="incident-recurrence-tracking.html">Incident Recurrence Tracking</a></li>
+        <li data-title="incident reporting best practices"><a href="incident-reporting-best-practices.html">Incident Reporting Best Practices</a></li>
+        <li data-title="incident reporting module deep dive"><a href="incident-reporting-module-deep-dive.html">Incident Reporting Module Deep Dive</a></li>
+        <li data-title="incident root cause analysis"><a href="incident-root-cause-analysis.html">Incident Root Cause Analysis</a></li>
+        <li data-title="incident severity auto‑classification rules"><a href="incident-severity-auto-classification-rules.html">Incident Severity Auto‑Classification Rules</a></li>
+        <li data-title="incident timeline & activity feed"><a href="incident-timeline-and-activity-feed.html">Incident Timeline & Activity Feed</a></li>
+        <li data-title="incident witness management"><a href="incident-witness-management.html">Incident Witness Management</a></li>
+        <li data-title="incident, investigation, and case lifecycle"><a href="incident-investigation-case-lifecycle.html">Incident, Investigation, and Case Lifecycle</a></li>
+        <li data-title="intake quality scoring"><a href="intake-quality-scoring.html">Intake Quality Scoring</a></li>
+        <li data-title="intake triage rules"><a href="intake-triage-rules.html">Intake Triage Rules</a></li>
+        <li data-title="multi‑channel intake (web, mobile, hotline)"><a href="multi-channel-intake.html">Multi‑Channel Intake (Web, Mobile, Hotline)</a></li>
+        <li data-title="recurrence prevention framework"><a href="recurrence-prevention-framework.html">Recurrence Prevention Framework</a></li>
+        <li data-title="reporter experience & anonymous reporting"><a href="reporter-experience-and-anonymous-reporting.html">Reporter Experience & Anonymous Reporting</a></li>
+        <li data-title="reporter safety safeguards"><a href="reporter-safety-safeguards.html">Reporter Safety Safeguards</a></li>
+        <li data-title="root cause analysis tools"><a href="root-cause-analysis-tools.html">Root Cause Analysis Tools</a></li>
+        <li data-title="severity scoring algorithms"><a href="severity-scoring-algorithms.html">Severity Scoring Algorithms</a></li>
+        <li data-title="severity scoring methodology"><a href="severity-scoring-methodology.html">Severity Scoring Methodology</a></li>
+    </ul>
+</section>
+
+<section class="category" id="investigation" data-category="Investigation">
+    <h2>&#128269; Investigation <span class="count" style="font-weight:normal;font-size:0.9rem;">(17)</span></h2>
+    <p class="cat-desc">Interviews, evidence chains, findings, and investigation quality.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="findings & determination framework"><a href="findings-and-determination-framework.html">Findings & Determination Framework</a></li>
+        <li data-title="interview management (deep dive)"><a href="interview-management-deep-dive.html">Interview Management (Deep Dive)</a></li>
+        <li data-title="interview management engine"><a href="interview-management-engine.html">Interview Management Engine</a></li>
+        <li data-title="interview scheduling & coordination"><a href="interview-scheduling-and-coordination.html">Interview Scheduling & Coordination</a></li>
+        <li data-title="interview scheduling rules"><a href="interview-scheduling-rules.html">Interview Scheduling Rules</a></li>
+        <li data-title="investigation documentation standards"><a href="investigation-documentation-standards.html">Investigation Documentation Standards</a></li>
+        <li data-title="investigation evidence chain‑of‑custody"><a href="investigation-evidence-chain-of-custody.html">Investigation Evidence Chain‑of‑Custody</a></li>
+        <li data-title="investigation interview management"><a href="investigation-interview-management.html">Investigation Interview Management</a></li>
+        <li data-title="investigation module deep dive"><a href="investigation-module-deep-dive.html">Investigation Module Deep Dive</a></li>
+        <li data-title="investigation quality standards"><a href="investigation-quality-standards.html">Investigation Quality Standards</a></li>
+        <li data-title="investigation timeline & activity feed"><a href="investigation-timeline-and-activity-feed.html">Investigation Timeline & Activity Feed</a></li>
+        <li data-title="investigator coaching insights"><a href="investigator-coaching-insights.html">Investigator Coaching Insights</a></li>
+        <li data-title="investigator notes governance"><a href="investigator-notes-governance.html">Investigator Notes Governance</a></li>
+        <li data-title="investigator performance metrics"><a href="investigator-performance-metrics.html">Investigator Performance Metrics</a></li>
+        <li data-title="post‑investigation review workflow"><a href="post-investigation-review-workflow.html">Post‑Investigation Review Workflow</a></li>
+        <li data-title="witness handling & confidentiality"><a href="witness-handling-and-confidentiality.html">Witness Handling & Confidentiality</a></li>
+        <li data-title="witness handling protocol"><a href="witness-handling-protocol.html">Witness Handling Protocol</a></li>
+    </ul>
+</section>
+
+<section class="category" id="evidence---attachments" data-category="Evidence & Attachments">
+    <h2>&#128206; Evidence & Attachments <span class="count" style="font-weight:normal;font-size:0.9rem;">(5)</span></h2>
+    <p class="cat-desc">Storage, encryption, chain of custody, and evidence workflows.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="attachment storage & encryption"><a href="attachment-storage-and-encryption.html">Attachment Storage & Encryption</a></li>
+        <li data-title="chain‑of‑custody enforcement"><a href="chain-of-custody-enforcement.html">Chain‑of‑Custody Enforcement</a></li>
+        <li data-title="evidence chain‑of‑custody"><a href="evidence-chain-of-custody.html">Evidence Chain‑of‑Custody</a></li>
+        <li data-title="evidence management (deep dive)"><a href="evidence-management-deep-dive.html">Evidence Management (Deep Dive)</a></li>
+        <li data-title="evidence request workflow"><a href="evidence-request-workflow.html">Evidence Request Workflow</a></li>
+    </ul>
+</section>
+
+<section class="category" id="organization---hr" data-category="Organization & HR">
+    <h2>&#127970; Organization & HR <span class="count" style="font-weight:normal;font-size:0.9rem;">(48)</span></h2>
+    <p class="cat-desc">Employee profiles, departments, locations, onboarding, and org structure.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="department profile overview"><a href="department-profile-overview.html">Department Profile Overview</a></li>
+        <li data-title="department risk modeling"><a href="department-risk-modeling.html">Department Risk Modeling</a></li>
+        <li data-title="department risk profiles"><a href="department-risk-profiles.html">Department Risk Profiles</a></li>
+        <li data-title="department timeline"><a href="department-timeline.html">Department Timeline</a></li>
+        <li data-title="department transfer workflows"><a href="department-transfer-workflows.html">Department Transfer Workflows</a></li>
+        <li data-title="department-level dashboards"><a href="department-level-dashboards.html">Department-Level Dashboards</a></li>
+        <li data-title="department‑level readiness requirements"><a href="department-level-readiness-requirements.html">Department‑Level Readiness Requirements</a></li>
+        <li data-title="employee acknowledgment tracking"><a href="employee-acknowledgment-tracking.html">Employee Acknowledgment Tracking</a></li>
+        <li data-title="employee confidentiality controls"><a href="employee-confidentiality-controls.html">Employee Confidentiality Controls</a></li>
+        <li data-title="employee history and timeline view"><a href="employee-history-and-timeline-view.html">Employee History and Timeline View</a></li>
+        <li data-title="employee offboarding workflow"><a href="employee-offboarding-workflow.html">Employee Offboarding Workflow</a></li>
+        <li data-title="employee offboarding workflows"><a href="employee-offboarding-workflows.html">Employee Offboarding Workflows</a></li>
+        <li data-title="employee onboarding workflows"><a href="employee-onboarding-workflows.html">Employee Onboarding Workflows</a></li>
+        <li data-title="employee profile overview"><a href="employee-profile-overview.html">Employee Profile Overview</a></li>
+        <li data-title="employee profile structure"><a href="employee-profile-structure.html">Employee Profile Structure</a></li>
+        <li data-title="employee risk profile (non‑disciplinary)"><a href="employee-risk-profile-non-disciplinary.html">Employee Risk Profile (Non‑Disciplinary)</a></li>
+        <li data-title="employee role change governance"><a href="employee-role-change-governance.html">Employee Role Change Governance</a></li>
+        <li data-title="employee self‑service portal"><a href="employee-self-service-portal.html">Employee Self‑Service Portal</a></li>
+        <li data-title="employee status and lifecycle"><a href="employee-status-and-lifecycle.html">Employee Status and Lifecycle</a></li>
+        <li data-title="employee status change workflow"><a href="employee-status-change-workflow.html">Employee Status Change Workflow</a></li>
+        <li data-title="employee timeline (deep dive)"><a href="employee-timeline-deep-dive.html">Employee Timeline (Deep Dive)</a></li>
+        <li data-title="employee transfers and department changes"><a href="employee-transfers-and-department-changes.html">Employee Transfers and Department Changes</a></li>
+        <li data-title="hr case taxonomy (deep dive)"><a href="hr-case-taxonomy-deep-dive.html">HR Case Taxonomy (Deep Dive)</a></li>
+        <li data-title="hr module deep dive"><a href="hr-module-deep-dive.html">HR Module Deep Dive</a></li>
+        <li data-title="hr/security case reassignment rules"><a href="hr-security-case-reassignment-rules.html">HR/Security Case Reassignment Rules</a></li>
+        <li data-title="location & department sync"><a href="location-and-department-sync.html">Location & Department Sync</a></li>
+        <li data-title="location and site management"><a href="location-and-site-management.html">Location and Site Management</a></li>
+        <li data-title="location management deep dive"><a href="location-management-deep-dive.html">Location Management Deep Dive</a></li>
+        <li data-title="location profile overview"><a href="location-profile-overview.html">Location Profile Overview</a></li>
+        <li data-title="location risk heatmaps"><a href="location-risk-heatmaps.html">Location Risk Heatmaps</a></li>
+        <li data-title="location risk modeling"><a href="location-risk-modeling.html">Location Risk Modeling</a></li>
+        <li data-title="location risk profiling"><a href="location-risk-profiling.html">Location Risk Profiling</a></li>
+        <li data-title="location timeline"><a href="location-timeline.html">Location Timeline</a></li>
+        <li data-title="location transfer workflows"><a href="location-transfer-workflows.html">Location Transfer Workflows</a></li>
+        <li data-title="manager dashboard & responsibilities"><a href="manager-dashboard-and-responsibilities.html">Manager Dashboard & Responsibilities</a></li>
+        <li data-title="manager dashboards"><a href="manager-dashboards.html">Manager Dashboards</a></li>
+        <li data-title="manager hierarchy mapping"><a href="manager-hierarchy-mapping.html">Manager Hierarchy Mapping</a></li>
+        <li data-title="manager reassignment and escalation rules"><a href="manager-reassignment-and-escalation-rules.html">Manager Reassignment and Escalation Rules</a></li>
+        <li data-title="manager reassignment logic"><a href="manager-reassignment-logic.html">Manager Reassignment Logic</a></li>
+        <li data-title="offboarding automation"><a href="offboarding-automation.html">Offboarding Automation</a></li>
+        <li data-title="organizational change impact analysis"><a href="organizational-change-impact-analysis.html">Organizational Change Impact Analysis</a></li>
+        <li data-title="organizational hierarchies and departments"><a href="organizational-hierarchies-and-departments.html">Organizational Hierarchies and Departments</a></li>
+        <li data-title="organizational network analysis (ona)"><a href="organizational-network-analysis-ona.html">Organizational Network Analysis (ONA)</a></li>
+        <li data-title="organizational policy mapping"><a href="organizational-policy-mapping.html">Organizational Policy Mapping</a></li>
+        <li data-title="organizational risk dashboard"><a href="organizational-risk-dashboard.html">Organizational Risk Dashboard</a></li>
+        <li data-title="organizational structure module deep dive"><a href="organizational-structure-module-deep-dive.html">Organizational Structure Module Deep Dive</a></li>
+        <li data-title="verification workflow"><a href="verification-workflow.html">Verification Workflow</a></li>
+        <li data-title="workforce stability indicators"><a href="workforce-stability-indicators.html">Workforce Stability Indicators</a></li>
+    </ul>
+</section>
+
+<section class="category" id="risk---compliance" data-category="Risk & Compliance">
+    <h2>&#9878; Risk & Compliance <span class="count" style="font-weight:normal;font-size:0.9rem;">(29)</span></h2>
+    <p class="cat-desc">Regulatory mapping, risk scoring, policy enforcement, and legal holds.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="behavioral pattern detection"><a href="behavioral-pattern-detection.html">Behavioral Pattern Detection</a></li>
+        <li data-title="compliance and regulatory alignment"><a href="compliance-and-regulatory-alignment.html">Compliance and Regulatory Alignment</a></li>
+        <li data-title="compliance audit preparation guide"><a href="compliance-audit-preparation-guide.html">Compliance Audit Preparation Guide</a></li>
+        <li data-title="compliance dashboard (deep dive)"><a href="compliance-dashboard-deep-dive.html">Compliance Dashboard (Deep Dive)</a></li>
+        <li data-title="compliance export framework"><a href="compliance-export-framework.html">Compliance Export Framework</a></li>
+        <li data-title="legal hold and data preservation"><a href="legal-hold-and-data-preservation.html">Legal Hold and Data Preservation</a></li>
+        <li data-title="legal hold management"><a href="legal-hold-management.html">Legal Hold Management</a></li>
+        <li data-title="legal hold overrides"><a href="legal-hold-overrides.html">Legal Hold Overrides</a></li>
+        <li data-title="legal review mode"><a href="legal-review-mode.html">Legal Review Mode</a></li>
+        <li data-title="policy acknowledgment workflows"><a href="policy-acknowledgment-workflows.html">Policy Acknowledgment Workflows</a></li>
+        <li data-title="policy compliance scoring"><a href="policy-compliance-scoring.html">Policy Compliance Scoring</a></li>
+        <li data-title="policy distribution workflow"><a href="policy-distribution-workflow.html">Policy Distribution Workflow</a></li>
+        <li data-title="policy enforcement engine"><a href="policy-enforcement-engine.html">Policy Enforcement Engine</a></li>
+        <li data-title="policy versioning & change history"><a href="policy-versioning-and-change-history.html">Policy Versioning & Change History</a></li>
+        <li data-title="privacy & data minimization (deep dive)"><a href="privacy-and-data-minimization-deep-dive.html">Privacy & Data Minimization (Deep Dive)</a></li>
+        <li data-title="protected notes and restricted access"><a href="protected-notes-and-restricted-access.html">Protected Notes and Restricted Access</a></li>
+        <li data-title="protected-class data handling"><a href="protected-class-data-handling.html">Protected-Class Data Handling</a></li>
+        <li data-title="protected‑class handling (deep dive)"><a href="protected-class-handling-deep-dive.html">Protected‑Class Handling (Deep Dive)</a></li>
+        <li data-title="readiness dashboard overview"><a href="readiness-dashboard-overview.html">Readiness Dashboard Overview</a></li>
+        <li data-title="readiness module deep dive"><a href="readiness-module-deep-dive.html">Readiness Module Deep Dive</a></li>
+        <li data-title="readiness score calculation"><a href="readiness-score-calculation.html">Readiness Score Calculation</a></li>
+        <li data-title="readiness score calculation (deep dive)"><a href="readiness-score-calculation-deep-dive.html">Readiness Score Calculation (Deep Dive)</a></li>
+        <li data-title="readiness scoring model"><a href="readiness-scoring-model.html">Readiness Scoring Model</a></li>
+        <li data-title="redaction workflow"><a href="redaction-workflow.html">Redaction Workflow</a></li>
+        <li data-title="redaction workflows"><a href="redaction-workflows.html">Redaction Workflows</a></li>
+        <li data-title="regulatory mapping engine"><a href="regulatory-mapping-engine.html">Regulatory Mapping Engine</a></li>
+        <li data-title="risk model engine"><a href="risk-model-engine.html">Risk Model Engine</a></li>
+        <li data-title="risk scoring methodology"><a href="risk-scoring-methodology.html">Risk Scoring Methodology</a></li>
+        <li data-title="risk signals and pattern detection"><a href="risk-signals-and-pattern-detection.html">Risk Signals and Pattern Detection</a></li>
+    </ul>
+</section>
+
+<section class="category" id="training---lms" data-category="Training & LMS">
+    <h2>&#127891; Training & LMS <span class="count" style="font-weight:normal;font-size:0.9rem;">(17)</span></h2>
+    <p class="cat-desc">Course catalogs, certifications, assignment engines, and LMS sync.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="certification tracking & expiration logic"><a href="certification-tracking-and-expiration-logic.html">Certification Tracking & Expiration Logic</a></li>
+        <li data-title="knowledge retention metrics"><a href="knowledge-retention-metrics.html">Knowledge Retention Metrics</a></li>
+        <li data-title="learning path framework"><a href="learning-path-framework.html">Learning Path Framework</a></li>
+        <li data-title="lms sync engine"><a href="lms-sync-engine.html">LMS Sync Engine</a></li>
+        <li data-title="training assignment automation"><a href="training-assignment-automation.html">Training Assignment Automation</a></li>
+        <li data-title="training assignment engine (deep dive)"><a href="training-assignment-engine-deep-dive.html">Training Assignment Engine (Deep Dive)</a></li>
+        <li data-title="training assignment rules"><a href="training-assignment-rules.html">Training Assignment Rules</a></li>
+        <li data-title="training completion verification"><a href="training-completion-verification.html">Training Completion Verification</a></li>
+        <li data-title="training content governance"><a href="training-content-governance.html">Training Content Governance</a></li>
+        <li data-title="training delivery compliance standards"><a href="training-delivery-compliance-standards.html">Training Delivery Compliance Standards</a></li>
+        <li data-title="training delivery methods"><a href="training-delivery-methods.html">Training Delivery Methods</a></li>
+        <li data-title="training expiration forecasting"><a href="training-expiration-forecasting.html">Training Expiration Forecasting</a></li>
+        <li data-title="training lineage and readiness tracking"><a href="training-lineage-and-readiness.html">Training Lineage and Readiness Tracking</a></li>
+        <li data-title="training module architecture"><a href="training-module-architecture.html">Training Module Architecture</a></li>
+        <li data-title="training module deep dive"><a href="training-module-deep-dive.html">Training Module Deep Dive</a></li>
+        <li data-title="training program governance"><a href="training-program-governance.html">Training Program Governance</a></li>
+        <li data-title="training requirements by role"><a href="training-requirements-by-role.html">Training Requirements by Role</a></li>
+    </ul>
+</section>
+
+<section class="category" id="safety---soc" data-category="Safety & SOC">
+    <h2>&#128721; Safety & SOC <span class="count" style="font-weight:normal;font-size:0.9rem;">(5)</span></h2>
+    <p class="cat-desc">Safety committees, safety programs, and SOC operations.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="safety committee dashboard"><a href="safety-committee-dashboard.html">Safety Committee Dashboard</a></li>
+        <li data-title="safety committee workflows"><a href="safety-committee-workflows.html">Safety Committee Workflows</a></li>
+        <li data-title="safety communications engine"><a href="safety-communications-engine.html">Safety Communications Engine</a></li>
+        <li data-title="safety index calculation"><a href="safety-index-calculation.html">Safety Index Calculation</a></li>
+        <li data-title="safety program effectiveness metrics"><a href="safety-program-effectiveness-metrics.html">Safety Program Effectiveness Metrics</a></li>
+    </ul>
+</section>
+
+<section class="category" id="reporting---analytics" data-category="Reporting & Analytics">
+    <h2>&#128200; Reporting & Analytics <span class="count" style="font-weight:normal;font-size:0.9rem;">(15)</span></h2>
+    <p class="cat-desc">Dashboards, BI integration, custom reports, and trend analysis.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="anonymized & de‑identified reporting"><a href="anonymized-and-deidentified-reporting.html">Anonymized & De‑Identified Reporting</a></li>
+        <li data-title="bi dashboard integration"><a href="bi-dashboard-integration.html">BI Dashboard Integration</a></li>
+        <li data-title="dashboard widgets and drill‑down behavior"><a href="dashboard-widgets-and-drilldown-behavior.html">Dashboard Widgets and Drill‑Down Behavior</a></li>
+        <li data-title="executive summary generator"><a href="executive-summary-generator.html">Executive Summary Generator</a></li>
+        <li data-title="export & reporting governance"><a href="export-and-reporting-governance.html">Export & Reporting Governance</a></li>
+        <li data-title="export redaction rules"><a href="export-redaction-rules.html">Export Redaction Rules</a></li>
+        <li data-title="leadership dashboard & insights"><a href="leadership-dashboard-and-insights.html">Leadership Dashboard & Insights</a></li>
+        <li data-title="leadership dashboard architecture"><a href="leadership-dashboard-architecture.html">Leadership Dashboard Architecture</a></li>
+        <li data-title="operational metrics and kpis"><a href="operational-metrics-and-kpis.html">Operational Metrics and KPIs</a></li>
+        <li data-title="predictive analytics framework"><a href="predictive-analytics-framework.html">Predictive Analytics Framework</a></li>
+        <li data-title="reporting and data export options"><a href="reporting-and-data-export.html">Reporting and Data Export Options</a></li>
+        <li data-title="reporting module deep dive"><a href="reporting-module-deep-dive.html">Reporting Module Deep Dive</a></li>
+        <li data-title="trend analysis & forecasting"><a href="trend-analysis-and-forecasting.html">Trend Analysis & Forecasting</a></li>
+        <li data-title="trend analysis engine"><a href="trend-analysis-engine.html">Trend Analysis Engine</a></li>
+        <li data-title="usage analytics (tenant‑scoped)"><a href="usage-analytics-tenant-scoped.html">Usage Analytics (Tenant‑Scoped)</a></li>
+    </ul>
+</section>
+
+<section class="category" id="notifications---messaging" data-category="Notifications & Messaging">
+    <h2>&#128276; Notifications & Messaging <span class="count" style="font-weight:normal;font-size:0.9rem;">(8)</span></h2>
+    <p class="cat-desc">Email, SMS, in-app alerts, routing, and delivery guarantees.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="broadcast messaging rules"><a href="broadcast-messaging-rules.html">Broadcast Messaging Rules</a></li>
+        <li data-title="notification and escalation rules"><a href="notification-and-escalation-rules.html">Notification and Escalation Rules</a></li>
+        <li data-title="notification channels (email, sms, in‑app)"><a href="notification-channels-email-sms-inapp.html">Notification Channels (Email, SMS, In‑App)</a></li>
+        <li data-title="notification delivery guarantees"><a href="notification-delivery-guarantees.html">Notification Delivery Guarantees</a></li>
+        <li data-title="notification preferences configuration"><a href="notification-preferences-configuration.html">Notification Preferences Configuration</a></li>
+        <li data-title="notification queue architecture"><a href="notification-queue-architecture.html">Notification Queue Architecture</a></li>
+        <li data-title="notification routing inside the app"><a href="notification-routing-inside-the-app.html">Notification Routing Inside the App</a></li>
+        <li data-title="notification template governance"><a href="notification-template-governance.html">Notification Template Governance</a></li>
+    </ul>
+</section>
+
+<section class="category" id="administration---configuration" data-category="Administration & Configuration">
+    <h2>&#9881; Administration & Configuration <span class="count" style="font-weight:normal;font-size:0.9rem;">(8)</span></h2>
+    <p class="cat-desc">Admin tools, custom fields, controlled vocabularies, and audit logs.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="admin audit log explorer"><a href="admin-audit-log-explorer.html">Admin Audit Log Explorer</a></li>
+        <li data-title="admin center deep dive"><a href="admin-center-deep-dive.html">Admin Center Deep Dive</a></li>
+        <li data-title="communication audit log"><a href="communication-audit-log.html">Communication Audit Log</a></li>
+        <li data-title="controlled vocabulary management"><a href="controlled-vocabulary-management.html">Controlled Vocabulary Management</a></li>
+        <li data-title="custom connector framework"><a href="custom-connector-framework.html">Custom Connector Framework</a></li>
+        <li data-title="custom field governance"><a href="custom-field-governance.html">Custom Field Governance</a></li>
+        <li data-title="custom fields vs custom logic"><a href="custom-fields-vs-custom-logic.html">Custom Fields vs Custom Logic</a></li>
+        <li data-title="custom report builder"><a href="custom-report-builder.html">Custom Report Builder</a></li>
+    </ul>
+</section>
+
+<section class="category" id="security---access-control" data-category="Security & Access Control">
+    <h2>&#128274; Security & Access Control <span class="count" style="font-weight:normal;font-size:0.9rem;">(29)</span></h2>
+    <p class="cat-desc">Authentication, MFA, RBAC, encryption, SSO, and session management.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="access review and permission recertification"><a href="access-review-and-permission-recertification.html">Access Review and Permission Recertification</a></li>
+        <li data-title="access token lifecycle"><a href="access-token-lifecycle.html">Access Token Lifecycle</a></li>
+        <li data-title="device trust policies"><a href="device-trust-policies.html">Device Trust Policies</a></li>
+        <li data-title="encryption key management"><a href="encryption-key-management.html">Encryption Key Management</a></li>
+        <li data-title="field‑level security rules"><a href="field-level-security-rules.html">Field‑Level Security Rules</a></li>
+        <li data-title="identity provider integration (deep dive)"><a href="identity-provider-integration-deep-dive.html">Identity Provider Integration (Deep Dive)</a></li>
+        <li data-title="identity sync rules"><a href="identity-sync-rules.html">Identity Sync Rules</a></li>
+        <li data-title="login audit log"><a href="login-audit-log.html">Login Audit Log</a></li>
+        <li data-title="mfa enforcement policies"><a href="mfa-enforcement-policies.html">MFA Enforcement Policies</a></li>
+        <li data-title="mfa enforcement rules"><a href="mfa-enforcement-rules.html">MFA Enforcement Rules</a></li>
+        <li data-title="passwordless authentication"><a href="passwordless-authentication.html">Passwordless Authentication</a></li>
+        <li data-title="penetration testing program"><a href="penetration-testing-program.html">Penetration Testing Program</a></li>
+        <li data-title="privileged access controls"><a href="privileged-access-controls.html">Privileged Access Controls</a></li>
+        <li data-title="role change workflows"><a href="role-change-workflows.html">Role Change Workflows</a></li>
+        <li data-title="role-based access control (rbac)"><a href="role-based-access-control.html">Role-Based Access Control (RBAC)</a></li>
+        <li data-title="role‑based visibility rules (deep dive)"><a href="role-based-visibility-rules-deep-dive.html">Role‑Based Visibility Rules (Deep Dive)</a></li>
+        <li data-title="secrets management"><a href="secrets-management.html">Secrets Management</a></li>
+        <li data-title="secure coding standards"><a href="secure-coding-standards.html">Secure Coding Standards</a></li>
+        <li data-title="security alerting framework"><a href="security-alerting-framework.html">Security Alerting Framework</a></li>
+        <li data-title="security event logging and monitoring"><a href="security-event-logging-and-monitoring.html">Security Event Logging and Monitoring</a></li>
+        <li data-title="security incident taxonomy (deep dive)"><a href="security-incident-taxonomy-deep-dive.html">Security Incident Taxonomy (Deep Dive)</a></li>
+        <li data-title="security module deep dive"><a href="security-module-deep-dive.html">Security Module Deep Dive</a></li>
+        <li data-title="security, privacy, and protected classes"><a href="security-privacy-protected-classes.html">Security, Privacy, and Protected Classes</a></li>
+        <li data-title="session management & authentication flow"><a href="session-management-and-authentication-flow.html">Session Management & Authentication Flow</a></li>
+        <li data-title="session management & timeout rules"><a href="session-management-and-timeout-rules.html">Session Management & Timeout Rules</a></li>
+        <li data-title="session management architecture"><a href="session-management-architecture.html">Session Management Architecture</a></li>
+        <li data-title="sso & identity provider integration"><a href="sso-and-identity-provider-integration.html">SSO & Identity Provider Integration</a></li>
+        <li data-title="sso configuration rules"><a href="sso-configuration-rules.html">SSO Configuration Rules</a></li>
+        <li data-title="vulnerability scanning"><a href="vulnerability-scanning.html">Vulnerability Scanning</a></li>
+    </ul>
+</section>
+
+<section class="category" id="tenant-management" data-category="Tenant Management">
+    <h2>&#127960; Tenant Management <span class="count" style="font-weight:normal;font-size:0.9rem;">(27)</span></h2>
+    <p class="cat-desc">Provisioning, branding, multi-tenant isolation, and deployment options.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="billing & consumption metrics"><a href="billing-and-consumption-metrics.html">Billing & Consumption Metrics</a></li>
+        <li data-title="how relancy isolates tenant data"><a href="how-relancy-isolates-tenant-data.html">How Relancy Isolates Tenant Data</a></li>
+        <li data-title="hr & security shared responsibility model"><a href="shared-responsibility-model.html">HR & Security Shared Responsibility Model</a></li>
+        <li data-title="html panel injection points"><a href="html-panel-injection-points.html">HTML Panel Injection Points</a></li>
+        <li data-title="html panel safety rules"><a href="html-panel-safety-rules.html">HTML Panel Safety Rules</a></li>
+        <li data-title="multi-tenant architecture overview"><a href="multi-tenant-architecture-overview.html">Multi-tenant Architecture Overview</a></li>
+        <li data-title="multi‑tenant isolation (deep dive)"><a href="multi-tenant-isolation-deep-dive.html">Multi‑Tenant Isolation (Deep Dive)</a></li>
+        <li data-title="multi‑tenant storage model"><a href="multi-tenant-storage-model.html">Multi‑Tenant Storage Model</a></li>
+        <li data-title="private deployment infrastructure requirements"><a href="private-deployment-infrastructure-requirements.html">Private Deployment Infrastructure Requirements</a></li>
+        <li data-title="saas vs private deployment"><a href="saas-vs-private-deployment.html">SaaS vs Private Deployment</a></li>
+        <li data-title="saas vs private deployment (deep dive)"><a href="saas-vs-private-deployment-deep-dive.html">SaaS vs Private Deployment (Deep Dive)</a></li>
+        <li data-title="subscription & licensing model"><a href="subscription-and-licensing-model.html">Subscription & Licensing Model</a></li>
+        <li data-title="tenant branding & decoration (deep dive)"><a href="tenant-branding-and-decoration-deep-dive.html">Tenant Branding & Decoration (Deep Dive)</a></li>
+        <li data-title="tenant branding & theme engine"><a href="tenant-branding-and-theme-engine.html">Tenant Branding & Theme Engine</a></li>
+        <li data-title="tenant branding options"><a href="tenant-branding-options.html">Tenant Branding Options</a></li>
+        <li data-title="tenant configuration audit log"><a href="tenant-configuration-audit-log.html">Tenant Configuration Audit Log</a></li>
+        <li data-title="tenant customization boundaries"><a href="tenant-customization-boundaries.html">Tenant Customization Boundaries</a></li>
+        <li data-title="tenant data backup and restore"><a href="tenant-data-backup-and-restore.html">Tenant Data Backup and Restore</a></li>
+        <li data-title="tenant decoration framework"><a href="tenant-decoration-framework.html">Tenant Decoration Framework</a></li>
+        <li data-title="tenant deprovisioning workflow"><a href="tenant-deprovisioning-workflow.html">Tenant Deprovisioning Workflow</a></li>
+        <li data-title="tenant extension points"><a href="tenant-extension-points.html">Tenant Extension Points</a></li>
+        <li data-title="tenant health score"><a href="tenant-health-score.html">Tenant Health Score</a></li>
+        <li data-title="tenant migration and data portability"><a href="tenant-migration-and-data-portability.html">Tenant Migration and Data Portability</a></li>
+        <li data-title="tenant onboarding and provisioning"><a href="tenant-onboarding-and-provisioning.html">Tenant Onboarding and Provisioning</a></li>
+        <li data-title="tenant provisioning workflow"><a href="tenant-provisioning-workflow.html">Tenant Provisioning Workflow</a></li>
+        <li data-title="when to choose private deployment"><a href="when-to-choose-private-deployment.html">When to Choose Private Deployment</a></li>
+        <li data-title="why saas tenants cannot write into the platform"><a href="why-saas-tenants-cannot-write.html">Why SaaS Tenants Cannot Write Into the Platform</a></li>
+    </ul>
+</section>
+
+<section class="category" id="api---integration" data-category="API & Integration">
+    <h2>&#128268; API & Integration <span class="count" style="font-weight:normal;font-size:0.9rem;">(23)</span></h2>
+    <p class="cat-desc">REST APIs, webhooks, HRIS sync, connectors, and integration patterns.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="api authentication (deep dive)"><a href="api-authentication-deep-dive.html">API Authentication (Deep Dive)</a></li>
+        <li data-title="api authentication models"><a href="api-authentication-models.html">API Authentication Models</a></li>
+        <li data-title="api pagination & filtering"><a href="api-pagination-and-filtering.html">API Pagination & Filtering</a></li>
+        <li data-title="api rate limiting & throttling"><a href="api-rate-limiting-and-throttling.html">API Rate Limiting & Throttling</a></li>
+        <li data-title="api rate limiting rules"><a href="api-rate-limiting-rules.html">API Rate Limiting Rules</a></li>
+        <li data-title="api rate limits and fair‑use policy"><a href="api-rate-limits-and-fair-use-policy.html">API Rate Limits and Fair‑Use Policy</a></li>
+        <li data-title="api sandbox environment"><a href="api-sandbox-environment.html">API Sandbox Environment</a></li>
+        <li data-title="api security best practices"><a href="api-security-best-practices.html">API Security Best Practices</a></li>
+        <li data-title="external lms integration guide"><a href="external-lms-integration-guide.html">External LMS Integration Guide</a></li>
+        <li data-title="hris integration architecture"><a href="hris-integration-architecture.html">HRIS Integration Architecture</a></li>
+        <li data-title="hris sync engine"><a href="hris-sync-engine.html">HRIS Sync Engine</a></li>
+        <li data-title="hris synchronization patterns"><a href="hris-synchronization-patterns.html">HRIS Synchronization Patterns</a></li>
+        <li data-title="integration api overview"><a href="integration-api-overview.html">Integration API Overview</a></li>
+        <li data-title="integration best practices"><a href="integration-best-practices.html">Integration Best Practices</a></li>
+        <li data-title="integration error handling"><a href="integration-error-handling.html">Integration Error Handling</a></li>
+        <li data-title="integration health dashboard"><a href="integration-health-dashboard.html">Integration Health Dashboard</a></li>
+        <li data-title="integration retry logic"><a href="integration-retry-logic.html">Integration Retry Logic</a></li>
+        <li data-title="third‑party app marketplace"><a href="third-party-app-marketplace.html">Third‑Party App Marketplace</a></li>
+        <li data-title="understanding the integration api"><a href="understanding-the-integration-api.html">Understanding the Integration API</a></li>
+        <li data-title="webhook delivery engine"><a href="webhook-delivery-engine.html">Webhook Delivery Engine</a></li>
+        <li data-title="webhook event catalog"><a href="webhook-event-catalog.html">Webhook Event Catalog</a></li>
+        <li data-title="webhook retry and delivery guarantees"><a href="webhook-retry-and-delivery-guarantees.html">Webhook Retry and Delivery Guarantees</a></li>
+        <li data-title="webhooks: event catalog and usage guide"><a href="webhooks-event-catalog.html">Webhooks: Event Catalog and Usage Guide</a></li>
+    </ul>
+</section>
+
+<section class="category" id="data-management" data-category="Data Management">
+    <h2>&#128450; Data Management <span class="count" style="font-weight:normal;font-size:0.9rem;">(31)</span></h2>
+    <p class="cat-desc">Retention, validation, caching, import/export, and data lineage.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="cross‑module data consistency engine"><a href="cross-module-data-consistency-engine.html">Cross‑Module Data Consistency Engine</a></li>
+        <li data-title="cross‑module data relationships"><a href="cross-module-data-relationships.html">Cross‑Module Data Relationships</a></li>
+        <li data-title="cross‑module risk correlation"><a href="cross-module-risk-correlation.html">Cross‑Module Risk Correlation</a></li>
+        <li data-title="cross‑tenant isolation architecture"><a href="cross-tenant-isolation-architecture.html">Cross‑Tenant Isolation Architecture</a></li>
+        <li data-title="data caching & performance optimization"><a href="data-caching-and-performance-optimization.html">Data Caching & Performance Optimization</a></li>
+        <li data-title="data classification framework"><a href="data-classification-framework.html">Data Classification Framework</a></li>
+        <li data-title="data encryption and key management"><a href="data-encryption-and-key-management.html">Data Encryption and Key Management</a></li>
+        <li data-title="data export & reporting governance (deep dive)"><a href="data-export-and-reporting-governance-deep-dive.html">Data Export & Reporting Governance (Deep Dive)</a></li>
+        <li data-title="data export governance"><a href="data-export-governance.html">Data Export Governance</a></li>
+        <li data-title="data import and synchronization"><a href="data-import-and-synchronization.html">Data Import and Synchronization</a></li>
+        <li data-title="data import framework"><a href="data-import-framework.html">Data Import Framework</a></li>
+        <li data-title="data lineage & provenance"><a href="data-lineage-and-provenance.html">Data Lineage & Provenance</a></li>
+        <li data-title="data purge & archival rules"><a href="data-purge-and-archival-rules.html">Data Purge & Archival Rules</a></li>
+        <li data-title="data quality and validation rules"><a href="data-quality-and-validation-rules.html">Data Quality and Validation Rules</a></li>
+        <li data-title="data residency and sovereignty"><a href="data-residency-and-sovereignty.html">Data Residency and Sovereignty</a></li>
+        <li data-title="data retention & legal hold"><a href="data-retention-and-legal-hold.html">Data Retention & Legal Hold</a></li>
+        <li data-title="data retention & purge policies"><a href="data-retention-and-purge-policies.html">Data Retention & Purge Policies</a></li>
+        <li data-title="data retention and deletion policies"><a href="data-retention-and-deletion-policies.html">Data Retention and Deletion Policies</a></li>
+        <li data-title="data retention policies"><a href="data-retention-policies.html">Data Retention Policies</a></li>
+        <li data-title="data validation framework"><a href="data-validation-framework.html">Data Validation Framework</a></li>
+        <li data-title="data warehouse export framework"><a href="data-warehouse-export-framework.html">Data Warehouse Export Framework</a></li>
+        <li data-title="data warehouse schema (deep dive)"><a href="data-warehouse-schema-deep-dive.html">Data Warehouse Schema (Deep Dive)</a></li>
+        <li data-title="date/time handling rules"><a href="date-time-handling-rules.html">Date/Time Handling Rules</a></li>
+        <li data-title="duplicate detection & resolution"><a href="duplicate-detection-and-resolution.html">Duplicate Detection & Resolution</a></li>
+        <li data-title="duplicate detection engine"><a href="duplicate-detection-engine.html">Duplicate Detection Engine</a></li>
+        <li data-title="metadata propagation rules"><a href="metadata-propagation-rules.html">Metadata Propagation Rules</a></li>
+        <li data-title="sync conflict resolution"><a href="sync-conflict-resolution.html">Sync Conflict Resolution</a></li>
+        <li data-title="tagging & classification engine"><a href="tagging-and-classification-engine.html">Tagging & Classification Engine</a></li>
+        <li data-title="tagging & metadata standards"><a href="tagging-and-metadata-standards.html">Tagging & Metadata Standards</a></li>
+        <li data-title="time zone handling"><a href="time-zone-handling.html">Time Zone Handling</a></li>
+        <li data-title="time zone normalization"><a href="time-zone-normalization.html">Time Zone Normalization</a></li>
+    </ul>
+</section>
+
+<section class="category" id="platform---architecture" data-category="Platform & Architecture">
+    <h2>&#9881; Platform & Architecture <span class="count" style="font-weight:normal;font-size:0.9rem;">(20)</span></h2>
+    <p class="cat-desc">Navigation, offline mode, localization, scheduling, and app infrastructure.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="accessibility features in relancy"><a href="accessibility-features-in-relancy.html">Accessibility Features in Relancy</a></li>
+        <li data-title="accessibility standards (wcag)"><a href="accessibility-standards-wcag.html">Accessibility Standards (WCAG)</a></li>
+        <li data-title="app navigation model"><a href="app-navigation-model.html">App Navigation Model</a></li>
+        <li data-title="app update and versioning behavior"><a href="app-update-and-versioning-behavior.html">App Update and Versioning Behavior</a></li>
+        <li data-title="background job architecture"><a href="background-job-architecture.html">Background Job Architecture</a></li>
+        <li data-title="background job processing"><a href="background-job-processing.html">Background Job Processing</a></li>
+        <li data-title="browser session isolation"><a href="browser-session-isolation.html">Browser Session Isolation</a></li>
+        <li data-title="error handling and retry logic"><a href="error-handling-and-retry-logic.html">Error Handling and Retry Logic</a></li>
+        <li data-title="kiosk mode behavior (cad‑specific)"><a href="browser-compatibility-matrix.html">Kiosk Mode Behavior (CAD‑Specific)</a></li>
+        <li data-title="localization & internationalization"><a href="localization-and-internationalization.html">Localization & Internationalization</a></li>
+        <li data-title="localization and language support"><a href="localization-and-language-support.html">Localization and Language Support</a></li>
+        <li data-title="mobile app permissions model"><a href="mobile-app-permissions-model.html">Mobile App Permissions Model</a></li>
+        <li data-title="multi‑currency support"><a href="multi-currency-support.html">Multi‑Currency Support</a></li>
+        <li data-title="multi‑language content delivery"><a href="multi-language-content-delivery.html">Multi‑Language Content Delivery</a></li>
+        <li data-title="multi‑language support"><a href="multi-language-support.html">Multi‑Language Support</a></li>
+        <li data-title="offline mode and sync behavior"><a href="offline-mode-and-sync-behavior.html">Offline Mode and Sync Behavior</a></li>
+        <li data-title="offline mode behavior"><a href="offline-mode-behavior.html">Offline Mode Behavior</a></li>
+        <li data-title="scheduled task engine"><a href="scheduled-task-engine.html">Scheduled Task Engine</a></li>
+        <li data-title="search and filtering across entities"><a href="search-and-filtering-across-entities.html">Search and Filtering Across Entities</a></li>
+        <li data-title="user preferences and personalization"><a href="user-preferences-and-personalization.html">User Preferences and Personalization</a></li>
+    </ul>
+</section>
+
+<section class="category" id="infrastructure---operations" data-category="Infrastructure & Operations">
+    <h2>&#9729; Infrastructure & Operations <span class="count" style="font-weight:normal;font-size:0.9rem;">(9)</span></h2>
+    <p class="cat-desc">High availability, disaster recovery, load balancing, and monitoring.</p>
+    <div class="back-top"><a href="#toc">&uarr; Back to categories</a></div>
+    <ul>
+        <li data-title="backup & restore procedures"><a href="backup-and-restore-procedures.html">Backup & Restore Procedures</a></li>
+        <li data-title="capacity planning & scaling"><a href="capacity-planning-and-scaling.html">Capacity Planning & Scaling</a></li>
+        <li data-title="disaster recovery plan"><a href="disaster-recovery-plan.html">Disaster Recovery Plan</a></li>
+        <li data-title="high availability architecture"><a href="high-availability-architecture.html">High Availability Architecture</a></li>
+        <li data-title="load balancing architecture"><a href="load-balancing-architecture.html">Load Balancing Architecture</a></li>
+        <li data-title="maintenance windows & release cadence"><a href="maintenance-windows-and-release-cadence.html">Maintenance Windows & Release Cadence</a></li>
+        <li data-title="platform status & uptime guarantees"><a href="platform-status-and-uptime-guarantees.html">Platform Status & Uptime Guarantees</a></li>
+        <li data-title="platform telemetry & metrics"><a href="platform-telemetry-and-metrics.html">Platform Telemetry & Metrics</a></li>
+        <li data-title="system health dashboard"><a href="system-health-dashboard.html">System Health Dashboard</a></li>
+    </ul>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+
+<script>
+(function() {
+    var box = document.getElementById("search-box");
+    var sections = document.querySelectorAll(".category");
+    var toc = document.getElementById("toc");
+    box.addEventListener("input", function() {
+        var q = box.value.trim().toLowerCase();
+        if (!q) {
+            toc.classList.remove("hidden");
+            sections.forEach(function(s) {
+                s.classList.remove("hidden");
+                s.querySelectorAll("li").forEach(function(li) { li.classList.remove("hidden"); });
+            });
+            return;
+        }
+        toc.classList.add("hidden");
+        sections.forEach(function(s) {
+            var items = s.querySelectorAll("li");
+            var visible = 0;
+            items.forEach(function(li) {
+                var t = li.getAttribute("data-title") || "";
+                if (t.indexOf(q) >= 0) { li.classList.remove("hidden"); visible++; }
+                else { li.classList.add("hidden"); }
+            });
+            if (visible === 0) { s.classList.add("hidden"); }
+            else { s.classList.remove("hidden"); }
+        });
+    });
+})();
+</script>
+
+</body>
+</html>

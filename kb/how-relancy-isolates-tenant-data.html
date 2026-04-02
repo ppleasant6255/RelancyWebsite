@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>How Relancy Isolates Tenant Data – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>How Relancy Isolates Tenant Data</h1>
+    <p>Shared API, isolated databases, and strict boundaries.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+    <section>
+        <h2>Overview</h2>
+        <p>
+            Relancy uses a classic, proven multi-tenant pattern: a shared API layer with isolated tenant data. This
+            architecture allows the platform to enforce a consistent operational worldview while keeping each tenant’s
+            data, audit history, and storage fully separated.
+        </p>
+    </section>
+
+    <section>
+        <h2>Shared API: shared worldview</h2>
+        <p>
+            The API layer represents Relancy’s operational contract—how entities behave, how lifecycle events are
+            enforced, and how audit is recorded. All tenants use the same API surface so that:
+        </p>
+        <ul>
+            <li>Lifecycle behavior is consistent</li>
+            <li>Security and privacy rules are uniformly applied</li>
+            <li>New features and fixes are delivered to everyone</li>
+            <li>The platform remains predictable and supportable</li>
+        </ul>
+        <p>
+            In short, the API is shared because the rules are shared.
+        </p>
+    </section>
+
+    <section>
+        <h2>Isolated databases: isolated risk</h2>
+        <p>
+            Behind the shared API, each tenant’s data is stored in an isolated database or schema boundary. This means:
+        </p>
+        <ul>
+            <li>No cross-tenant reads or writes</li>
+            <li>Separate audit logs per tenant</li>
+            <li>Independent backup and retention policies</li>
+            <li>Clear legal and operational separation</li>
+        </ul>
+        <p>
+            Your data is never co-mingled with other tenants’ data at the database level.
+        </p>
+    </section>
+
+    <section>
+        <h2>How routing works</h2>
+        <p>
+            Every request to the Relancy API carries tenant context (for example, a tenant identifier and authenticated
+            user identity). The platform uses this context to:
+        </p>
+        <ul>
+            <li>Select the correct tenant database or schema</li>
+            <li>Apply tenant-specific isolation rules</li>
+            <li>Scope audit entries to the correct tenant</li>
+            <li>Enforce authorization and access control</li>
+        </ul>
+        <p>
+            The routing is invisible to end users but central to how Relancy maintains strict separation.
+        </p>
+    </section>
+
+    <section>
+        <h2>Why this matters</h2>
+        <p>This architecture provides several important benefits:</p>
+        <ul>
+            <li><strong>Security:</strong> One tenant cannot access another tenant’s data.</li>
+            <li><strong>Compliance:</strong> Data boundaries are clear and enforceable.</li>
+            <li><strong>Reliability:</strong> Issues in one tenant’s data do not corrupt others.</li>
+            <li><strong>Scalability:</strong> Tenant databases can be scaled and managed independently.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Dedicated infrastructure in Private Deployment</h2>
+        <p>
+            In the Private Deployment tier, this isolation is taken even further: tenants receive dedicated databases,
+            dedicated API clusters, and dedicated storage. The same principles apply, but the infrastructure is
+            physically and logically separated from the shared SaaS environment.
+        </p>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

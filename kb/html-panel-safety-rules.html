@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML Panel Safety Rules – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>HTML Panel Safety Rules</h1>
+    <p>How Relancy safely renders tenant‑provided HTML panels without exposing cross‑tenant or security risks.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Safety Overview</h2>
+    <p>
+        HTML panels allow tenants to display custom content within Relancy. Safety rules ensure that HTML is sanitized,
+        isolated, and free from scripts or unsafe elements.
+    </p>
+</section>
+
+<section>
+    <h2>Allowed content</h2>
+    <ul>
+        <li>Formatted text</li>
+        <li>Images (tenant‑scoped)</li>
+        <li>Links (open in new tab)</li>
+        <li>Tables and lists</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Blocked content</h2>
+    <ul>
+        <li>JavaScript</li>
+        <li>Inline event handlers</li>
+        <li>External scripts or iframes</li>
+        <li>Cross‑tenant references</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Operational safeguards</h2>
+    <p>
+        HTML is sanitized server‑side and rendered in a sandboxed container to prevent cross‑site scripting or data
+        leakage.
+    </p>
+</section>
+
+<section>
+    <h2>Audit integrity</h2>
+    <p>
+        HTML panel updates are logged with timestamp, actor, and sanitized output for compliance review.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

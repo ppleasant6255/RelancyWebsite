@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Integration Best Practices – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Integration Best Practices</h1>
+    <p>Recommended patterns for integrating external systems with Relancy using APIs, webhooks, and secure workflows.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Integration Overview</h2>
+    <p>
+        Relancy supports integrations with HRIS, LMS, BI tools, and workflow automation platforms. Best practices ensure
+        secure, reliable, and scalable integrations.
+    </p>
+</section>
+
+<section>
+    <h2>Recommended practices</h2>
+    <ul>
+        <li>Use token‑based authentication with short‑lived tokens</li>
+        <li>Implement retry logic for webhook consumption</li>
+        <li>Use cursor‑based pagination for large data pulls</li>
+        <li>Respect RBAC and tenant scoping</li>
+        <li>Validate payload signatures for webhook security</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Common integration scenarios</h2>
+    <ul>
+        <li>HRIS synchronization</li>
+        <li>LMS training completion imports</li>
+        <li>BI dashboard data pulls</li>
+        <li>Compliance reporting automation</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Operational safeguards</h2>
+    <p>
+        Integrations must avoid storing sensitive data unnecessarily and follow tenant privacy rules.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</body>
+</html>

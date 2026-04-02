@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error Handling and Retry Logic – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Error Handling and Retry Logic</h1>
+    <p>How Relancy manages transient failures, user‑visible errors, and automatic retries.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Error Handling Overview</h2>
+    <p>
+        Relancy uses structured error handling to ensure reliability and clarity. Transient failures trigger automatic
+        retries, while user‑visible errors provide actionable guidance.
+    </p>
+</section>
+
+<section>
+    <h2>Retry logic</h2>
+    <ul>
+        <li>Automatic retries for network failures</li>
+        <li>Exponential backoff for repeated failures</li>
+        <li>Graceful fallback for offline mode</li>
+    </ul>
+</section>
+
+<section>
+    <h2>User‑visible errors</h2>
+    <p>
+        Errors are displayed with clear messaging, avoiding technical jargon and providing next steps when applicable.
+    </p>
+</section>
+
+<section>
+    <h2>Audit and logging</h2>
+    <p>
+        System‑level errors are logged for operational monitoring and platform diagnostics.
+    </p>
+</section>
+
+<section>
+    <h2>Developer considerations</h2>
+    <p>
+        API consumers should implement retry logic and handle rate‑limit responses gracefully.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>

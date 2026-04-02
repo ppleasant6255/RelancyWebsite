@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Warehouse Schema (Deep Dive) – Relancy KB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<header>
+    <h1>Data Warehouse Schema (Deep Dive)</h1>
+    <p>How Relancy structures exported datasets for analytics, BI tools, and enterprise data warehouses.</p>
+    <p><a href="index.html">Back to Knowledge Base</a></p>
+</header>
+
+<main>
+
+<section>
+    <h2>Schema Overview</h2>
+    <p>
+        The Data Warehouse Schema provides a normalized, analytics‑ready structure for exported Relancy datasets.
+        Schemas are designed for BI tools, data lakes, and enterprise data warehouses.
+    </p>
+</section>
+
+<section>
+    <h2>Core fact tables</h2>
+    <ul>
+        <li><strong>FactIncidents</strong> – incident events, severity, timestamps</li>
+        <li><strong>FactCases</strong> – case lifecycle, findings, outcomes</li>
+        <li><strong>FactTraining</strong> – assignments, completions, expirations</li>
+        <li><strong>FactReadiness</strong> – score changes, weighting factors</li>
+        <li><strong>FactCorrectiveActions</strong> – tasks, deadlines, verifications</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Dimension tables</h2>
+    <ul>
+        <li><strong>DimEmployee</strong> – role, department, location</li>
+        <li><strong>DimLocation</strong> – region, risk profile</li>
+        <li><strong>DimDepartment</strong> – hierarchy, functional area</li>
+        <li><strong>DimCategory</strong> – incident and case taxonomy</li>
+        <li><strong>DimTime</strong> – date/time normalization</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Privacy safeguards</h2>
+    <p>
+        Sensitive fields may be redacted or anonymized depending on tenant policy. Protected‑class indicators are
+        excluded unless explicitly enabled.
+    </p>
+</section>
+
+<section>
+    <h2>Audit integrity</h2>
+    <p>
+        Schema versions and export mappings are logged for compliance and historical traceability.
+    </p>
+</section>
+
+</main>
+
+<footer>
+    <p>&copy; Relancy. All rights reserved.</p>
+</footer>
+</body>
+</html>
