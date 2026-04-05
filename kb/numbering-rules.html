@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Numbering Algorithm Configuration</title>
+</head>
+
+<header>
+    <h1>Numbering Algorithm Configuration</h1>
+    <p>Relancy Platform Knowledge Base</p>
+</header>
+
+<main>
+
+    <section>
+        <h2>1. Purpose</h2>
+        <p>
+            This article defines how Tenant Admins configure numbering algorithms for cases, 
+            incidents, and evidence within each Business Unit. Numbering algorithms ensure 
+            consistent, traceable, and business‑aligned identifiers across the platform.
+        </p>
+    </section>
+
+    <section>
+        <h2>2. Role Authority</h2>
+        <p>
+            Only Tenant Admins may view or modify numbering algorithm settings. 
+            Directors, Supervisors, Investigators, and all other roles are restricted 
+            from accessing these configuration controls.
+        </p>
+        <p>
+            All changes are logged with timestamp, actor, Business Unit, and full 
+            before/after configuration details.
+        </p>
+    </section>
+
+    <section>
+        <h2>3. Scope of Configuration</h2>
+        <p>
+            Tenant Admins may configure numbering algorithms for the following record types:
+        </p>
+        <ul>
+            <li>Case Numbers</li>
+            <li>Incident Numbers</li>
+            <li>Evidence Numbers</li>
+        </ul>
+        <p>
+            Each Business Unit may define its own independent numbering scheme. 
+            Changes apply only to future records and do not modify existing identifiers.
+        </p>
+    </section>
+
+    <section>
+        <h2>4. Algorithm Structure</h2>
+        <p>
+            A numbering algorithm is composed of ordered <strong>segments</strong>. 
+            Segments define how the final identifier is constructed. Tenant Admins may 
+            add, remove, reorder, and configure segments as needed.
+        </p>
+
+        <h3>Supported Segment Types</h3>
+        <ul>
+            <li><strong>Static Text:</strong> Fixed text such as “HR”, “OPS”, or “SEC”.</li>
+            <li><strong>Business Unit Code:</strong> The code assigned to the Business Unit.</li>
+            <li><strong>Date Components:</strong> YYYY, YY, MM, DD, or combinations such as YYYYMM.</li>
+            <li><strong>Sequence Number:</strong> Auto‑incrementing numeric value with configurable padding.</li>
+            <li><strong>Tenant Code:</strong> The tenant’s unique identifier.</li>
+            <li><strong>Region or Location Code:</strong> Optional geographic or organizational segment.</li>
+            <li><strong>Custom Segment:</strong> Admin‑defined text or token.</li>
+        </ul>
+
+        <h3>Segment Operations</h3>
+        <ul>
+            <li>Add new segments</li>
+            <li>Remove existing segments</li>
+            <li>Reorder segments</li>
+            <li>Configure segment properties such as padding, separators, and casing</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>5. Validation Rules</h2>
+        <ul>
+            <li>Algorithms must contain at least one dynamic segment (date or sequence).</li>
+            <li>Algorithms must not produce duplicate identifiers.</li>
+            <li>Sequence segments must define starting value, padding length, and reset behavior.</li>
+            <li>Static text segments must be between 1 and 20 characters.</li>
+            <li>Custom segments must be explicitly named and documented.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>6. Preview and Testing</h2>
+        <p>
+            Before saving changes, Tenant Admins must generate a preview of the next five 
+            identifiers. This ensures the algorithm behaves as expected and aligns with 
+            business requirements.
+        </p>
+        <p>
+            Admins must acknowledge that changes may affect downstream workflows and 
+            reporting structures.
+        </p>
+    </section>
+
+    <section>
+        <h2>7. Audit Requirements</h2>
+        <p>
+            All changes to numbering algorithms require a justification of at least 
+            10 characters. The audit log records:
+        </p>
+        <ul>
+            <li>Admin identity</li>
+            <li>Timestamp</li>
+            <li>Business Unit affected</li>
+            <li>Full before/after configuration</li>
+            <li>Justification text</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>8. Enforcement Model</h2>
+        <ul>
+            <li>All numbering is generated server‑side.</li>
+            <li>Client‑side overrides are rejected.</li>
+            <li>Algorithms cannot retroactively modify existing identifiers.</li>
+            <li>Changes apply only to new records created after the update.</li>
+        </ul>
+    </section>
+
+</main>
+
+<footer>
+    <p>Relancy Platform – Numbering Algorithm Configuration</p>
+</footer>
+
+</html>
