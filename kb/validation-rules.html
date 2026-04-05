@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validation Rules – Titles, Descriptions, and Deletion Reasons</title>
+</head>
+
+<header>
+    <h1>Validation Rules: Titles, Descriptions, and Deletion Reasons</h1>
+    <p>Relancy Platform Knowledge Base</p>
+</header>
+
+<main>
+
+    <section>
+        <h2>1. Purpose</h2>
+        <p>
+            This article defines the minimum validation requirements for record titles, descriptions, 
+            and deletion reasons across all CaseBunker modules. These rules ensure consistency, 
+            clarity, and audit integrity throughout the platform.
+        </p>
+    </section>
+
+    <section>
+        <h2>2. Validation Overview</h2>
+        <p>
+            All user‑submitted text fields must meet minimum length requirements and cannot be empty. 
+            Validation is enforced at both the client and server layers to maintain data quality and 
+            prevent incomplete or ambiguous records.
+        </p>
+    </section>
+
+    <section>
+        <h2>3. Record Title Requirements</h2>
+        <ul>
+            <li><strong>Minimum Length:</strong> 3 characters</li>
+            <li><strong>Required:</strong> Yes</li>
+        </ul>
+
+        <h3>Validation Error Messages</h3>
+        <ul>
+            <li><strong>Missing:</strong> “Title is required.”</li>
+            <li><strong>Too Short:</strong> “Title must be at least 3 characters.”</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>4. Record Description Requirements</h2>
+        <ul>
+            <li><strong>Minimum Length:</strong> 10 characters</li>
+            <li><strong>Required:</strong> Yes</li>
+        </ul>
+
+        <h3>Validation Error Messages</h3>
+        <ul>
+            <li><strong>Missing:</strong> “Description is required.”</li>
+            <li><strong>Too Short:</strong> “Description must be at least 10 characters.”</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>5. Deletion Reason Requirements</h2>
+        <p>
+            Deletion is a tenant‑governance action. Only Tenant Admins may delete records, and every 
+            deletion must include a justification. This requirement supports auditability and prevents 
+            untraceable data removal.
+        </p>
+
+        <ul>
+            <li><strong>Minimum Length:</strong> Recommended 5–10 characters</li>
+            <li><strong>Required:</strong> Always</li>
+        </ul>
+
+        <h3>Validation Error Messages</h3>
+        <ul>
+            <li><strong>Missing:</strong> “A reason is required to delete this record.”</li>
+            <li><strong>Too Short:</strong> “Deletion reason must be more detailed.”</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>6. Enforcement Model</h2>
+        <ul>
+            <li>Validation is enforced on all create, update, and delete operations.</li>
+            <li>Client‑side validation prevents accidental submission.</li>
+            <li>Server‑side validation ensures integrity regardless of client behavior.</li>
+            <li>All validation failures return structured error messages for UI display.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>7. Audit Considerations</h2>
+        <p>
+            All validation failures are non‑destructive and do not modify the record. Deletion reasons 
+            are stored in the audit log alongside the actor, timestamp, and record metadata. 
+            Soft‑delete is applied by default; hard‑delete is reserved for Relancy Global Admins 
+            under legal or compliance directives.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    <p>Relancy Platform – Validation Standards</p>
+</footer>
+
+</html>
