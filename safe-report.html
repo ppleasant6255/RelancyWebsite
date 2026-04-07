@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Relancy – Anonymous Report Intake</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #020617;
+      --bg-elevated: #020617;
+      --border: #1e293b;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --text: #e5e7eb;
+      --text-soft: #9ca3af;
+      --radius: 8px;
+      --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font);
+      background: radial-gradient(circle at top, #020617 0, #000 60%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    main.shell {
+      max-width: 1120px;
+      width: 100%;
+      margin: 32px 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      main.shell {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .panel {
+      background: linear-gradient(145deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.99));
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.7),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
+      padding: 24px 24px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(15, 118, 110, 0.18), transparent 55%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .panel-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background:
+        conic-gradient(from 210deg, #38bdf8, #22c55e, #0ea5e9, #38bdf8);
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.9);
+    }
+
+    .brand-mark-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: radial-gradient(circle at 30% 0, #020617, #020617);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-name {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+    }
+
+    .badge {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7));
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+    }
+
+    h1 {
+      margin: 0 0 4px;
+      font-size: 22px;
+      letter-spacing: 0.02em;
+    }
+
+    .subtitle {
+      margin: 0 0 16px;
+      font-size: 13px;
+      color: var(--text-soft);
+      max-width: 560px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      color: var(--text-soft);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-label-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    label {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #cbd5f5;
+    }
+
+    .label-hint {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    select {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: var(--radius);
+      border: 1px solid rgba(51, 65, 85, 0.9);
+      padding: 9px 10px;
+      color: var(--text);
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #6b7280;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.5);
+      background: rgba(15, 23, 42, 0.98);
+    }
+
+    .helper {
+      font-size: 11px;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .helper-strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .inline-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .inline-row .field {
+      flex: 1 1 140px;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .checkbox-row input[type="checkbox"] {
+      margin-top: 2px;
+      width: 14px;
+      height: 14px;
+      accent-color: var(--accent);
+    }
+
+    .checkbox-label {
+      font-size: 11px;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .checkbox-label strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    .primary-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      color: #0b1120;
+      background: linear-gradient(135deg, #38bdf8, #22c55e);
+      box-shadow:
+        0 0 0 1px rgba(15, 23, 42, 0.9),
+        0 14px 30px rgba(56, 189, 248, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .primary-btn span.icon {
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #38bdf8;
+    }
+
+    .primary-btn:active {
+      transform: translateY(1px);
+      box-shadow:
+        0 0 0 1px rgba(15, 23, 42, 0.9),
+        0 8px 18px rgba(15, 23, 42, 0.9);
+    }
+
+    .footnote {
+      font-size: 10px;
+      color: var(--text-soft);
+      max-width: 360px;
+      line-height: 1.5;
+    }
+
+    .footnote strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+
+    /* Right-hand panel */
+
+    .side-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #cbd5f5;
+      margin-bottom: 10px;
+    }
+
+    .side-block {
+      border-radius: 12px;
+      border: 1px solid rgba(51, 65, 85, 0.9);
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+      padding: 12px 12px 10px;
+      margin-bottom: 10px;
+    }
+
+    .side-block-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .side-block-title {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #e5e7eb;
+    }
+
+    .side-block-tag {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      color: var(--text-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .side-text {
+      font-size: 11px;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    .side-list {
+      margin: 6px 0 0;
+      padding-left: 16px;
+      font-size: 11px;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .side-list li + li {
+      margin-top: 2px;
+    }
+
+    .side-callout {
+      margin-top: 8px;
+      padding: 8px 9px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      font-size: 11px;
+      color: #e0f2fe;
+      line-height: 1.5;
+    }
+
+    .side-callout strong {
+      font-weight: 600;
+    }
+
+    .side-meta {
+      margin-top: 10px;
+      font-size: 10px;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .side-meta span {
+      display: block;
+    }
+
+    .side-meta strong {
+      color: #e5e7eb;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <!-- Left: Anonymous report form -->
+    <section class="panel" aria-labelledby="relancy-anon-title">
+      <div class="panel-inner">
+        <header class="header">
+          <div class="brand">
+            <div class="brand-mark" aria-hidden="true">
+              <div class="brand-mark-inner">R</div>
+            </div>
+            <div class="brand-text">
+              <div class="brand-name">Relancy</div>
+              <div class="brand-subtitle">Operational risk intake</div>
+            </div>
+          </div>
+          <div class="badge">
+            <span class="badge-dot"></span>
+            Anonymous channel active
+          </div>
+        </header>
+
+        <h1 id="relancy-anon-title">Submit an anonymous report</h1>
+        <p class="subtitle">
+          This Relancy channel lets you surface concerns without identifying yourself. Share only the details you are
+          comfortable including in an anonymous report.
+        </p>
+
+        <div class="pill-row" aria-hidden="true">
+          <div class="pill">Workplace conduct</div>
+          <div class="pill">Safety &amp; security</div>
+          <div class="pill">Harassment &amp; discrimination</div>
+          <div class="pill">Fraud &amp; ethics</div>
+        </div>
+
+        <form method="post" action="/api/relancy/anonymous-report">
+          <!-- Intended recipient (Option B) -->
+          <div class="field">
+            <div class="field-label-row">
+              <label for="recipient">Who should this report be directed to?</label>
+              <span class="label-hint">Company, agency, or organization name</span>
+            </div>
+            <input
+              type="text"
+              id="recipient"
+              name="recipient"
+              placeholder="Example: Acme Corporation Ethics Office, City of Madison HR, State Licensing Board"
+              autocomplete="off"
+              required
+            />
+            <p class="helper">
+              Relancy will evaluate your submission and <span class="helper-strong">forward it when appropriate</span> to the
+              organization or authority you identify, or to a more suitable recipient if needed.
+            </p>
+          </div>
+
+          <!-- Context: type of concern -->
+          <div class="field">
+            <div class="field-label-row">
+              <label for="category">Type of concern</label>
+              <span class="label-hint">Optional, but helps routing</span>
+            </div>
+            <select id="category" name="category">
+              <option value="">Select a category (optional)</option>
+              <option value="workplace-conduct">Workplace conduct</option>
+              <option value="harassment-discrimination">Harassment or discrimination</option>
+              <option value="safety-security">Safety or security</option>
+              <option value="fraud-ethics">Fraud, ethics, or compliance</option>
+              <option value="retaliation">Retaliation</option>
+              <option value="other">Other / not listed</option>
+            </select>
+          </div>
+
+          <!-- Incident details -->
+          <div class="field">
+            <div class="field-label-row">
+              <label for="description">What happened?</label>
+              <span class="label-hint">Avoid including names if that feels unsafe</span>
+            </div>
+            <textarea
+              id="description"
+              name="description"
+              placeholder="Describe what happened, when it occurred, and any patterns or context that matter. Include only the details you are comfortable sharing in an anonymous report."
+              required
+            ></textarea>
+            <p class="helper">
+              Focus on <span class="helper-strong">facts, timelines, and observable behavior</span>. If you are unsure about
+              dates or details, say so in your own words.
+            </p>
+          </div>
+
+          <!-- When and where -->
+          <div class="inline-row">
+            <div class="field">
+              <div class="field-label-row">
+                <label for="timeframe">Approximate timeframe</label>
+                <span class="label-hint">Optional</span>
+              </div>
+              <input
+                type="text"
+                id="timeframe"
+                name="timeframe"
+                placeholder="Example: Last week, March 2026, ongoing for 6 months"
+              />
+            </div>
+            <div class="field">
+              <div class="field-label-row">
+                <label for="location">Location</label>
+                <span class="label-hint">Optional</span>
+              </div>
+              <input
+                type="text"
+                id="location"
+                name="location"
+                placeholder="Example: Madison office, remote, job site, online"
+              />
+            </div>
+          </div>
+
+          <!-- Optional contact -->
+          <div class="field">
+            <div class="field-label-row">
+              <label for="contact">Optional contact channel</label>
+              <span class="label-hint">Only if you want a reply</span>
+            </div>
+            <input
+              type="email"
+              id="contact"
+              name="contact"
+              placeholder="Email address (optional) – leave blank to remain fully anonymous"
+              autocomplete="off"
+            />
+            <p class="helper">
+              You can leave this blank to remain anonymous. If you provide contact information, it may be used solely to
+              <span class="helper-strong">follow up on this report</span>.
+            </p>
+          </div>
+
+          <!-- Acknowledgement -->
+          <div class="field">
+            <div class="checkbox-row">
+              <input type="checkbox" id="truthful" name="truthful" required />
+              <label for="truthful" class="checkbox-label">
+                I confirm that this report is submitted in good faith and reflects my honest understanding of the situation.
+                I understand that Relancy may decide <strong>whether, when, and how</strong> to forward this report.
+              </label>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="primary-btn">
+              <span class="icon">➤</span>
+              <span>Submit anonymous report</span>
+            </button>
+            <p class="footnote">
+              <strong>Do not use this form for emergencies.</strong>
+              If someone is in immediate danger, contact local emergency services before submitting an anonymous report.
+            </p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Right: Relancy doctrine / routing explanation -->
+    <aside class="panel" aria-label="How Relancy handles your report">
+      <div class="panel-inner">
+        <div class="side-title">Relancy routing doctrine</div>
+
+        <div class="side-block">
+          <div class="side-block-header">
+            <div class="side-block-title">Intent vs. execution</div>
+            <div class="side-block-tag">Forwarding</div>
+          </div>
+          <p class="side-text">
+            When you specify who this report should be directed to, you are setting the <strong>intended destination</strong>.
+            Relancy treats that as signal, not an automatic command.
+          </p>
+          <ul class="side-list">
+            <li>We may forward your report to the organization or authority you identify.</li>
+            <li>We may route it to a more appropriate recipient if your choice is clearly misaligned.</li>
+            <li>We may decline to forward reports that are abusive, clearly malicious, or unsafe to transmit.</li>
+          </ul>
+          <div class="side-callout">
+            <strong>Discipline:</strong> You own the story and the intent; Relancy owns the routing discipline needed to keep
+            the channel credible and defensible.
+          </div>
+        </div>
+
+        <div class="side-block">
+          <div class="side-block-header">
+            <div class="side-block-title">Anonymity and inference</div>
+            <div class="side-block-tag">Privacy</div>
+          </div>
+          <p class="side-text">
+            You are not required to identify yourself. However, details in your narrative may still allow others to infer who
+            you are, especially in small teams or unique roles.
+          </p>
+          <ul class="side-list">
+            <li>Leave the contact field blank to keep this channel one-way and anonymous.</li>
+            <li>Include only names and identifiers that are necessary to understand the risk.</li>
+            <li>If a detail feels identifying and non-essential, consider omitting or generalizing it.</li>
+          </ul>
+        </div>
+
+        <div class="side-block">
+          <div class="side-block-header">
+            <div class="side-block-title">Good-faith risk surfacing</div>
+            <div class="side-block-tag">Integrity</div>
+          </div>
+          <p class="side-text">
+            This channel exists to surface operational, ethical, and safety risk—not to settle personal scores. Relancy treats
+            good-faith reports as signal for investigation, not as verdicts.
+          </p>
+          <ul class="side-list">
+            <li>Describe what you observed or reasonably know, and flag what is second-hand.</li>
+            <li>Call out uncertainty explicitly (“I am not sure,” “I did not see this directly”).</li>
+            <li>Use this channel when internal paths feel unsafe, blocked, or conflicted.</li>
+          </ul>
+        </div>
+
+        <div class="side-meta">
+          <span><strong>Operator:</strong> Relancy – incident intake, routing, and audit trail.</span>
+          <span><strong>Purpose:</strong> Provide a disciplined, neutral path to get the right facts in front of the right people.</span>
+          <span><strong>Limitations:</strong> Not an emergency service, legal advisor, or replacement for required internal reporting where law or policy demands it.</span>
+        </div>
+      </div>
+    </aside>
+  </main>
+</body>
+</html>
