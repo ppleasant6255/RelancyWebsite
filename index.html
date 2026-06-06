@@ -1,952 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Relancy – The Operational Risk OS for Companies That Actually Operate</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <style>
-    :root {
-      --bg: #05060a;
-      --bg-alt: #0b0d14;
-      --card: #11141f;
-      --card-soft: #151827;
-      --accent: #3b82f6;
-      --accent-soft: #1d4ed8;
-      --accent-hr: #2563eb; /* SHRM-ish blue */
-      --text: #f9fafb;
-      --muted: #9ca3af;
-      --border: #1f2933;
-      --danger: #ef4444;
-      --radius-lg: 14px;
-      --radius-md: 10px;
-      --radius-sm: 6px;
-      --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.55);
-      --shadow-card: 0 14px 35px rgba(0, 0, 0, 0.45);
-      --max-width: 1120px;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #111827 0, #020617 55%, #000 100%);
-      color: var(--text);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .shell {
-      width: 100%;
-      max-width: var(--max-width);
-      margin: 0 auto;
-      padding: 24px 16px 64px;
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 16px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-img { height: 40px; width: auto; display: block; }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    nav a {
-      padding: 4px 0;
-      border-bottom: 1px solid transparent;
-    }
-
-    nav a:hover {
-      color: #e5e7eb;
-      border-bottom-color: rgba(148, 163, 184, 0.4);
-    }
-
-    .nav-cta {
-      padding: 7px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: #e5e7eb;
-    }
-
-    .nav-cta:hover {
-      border-color: #e5e7eb;
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    /* Hero */
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
-      gap: 32px;
-      align-items: center;
-      padding: 32px 0 40px;
-    }
-
-    .hero-left {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    .hero-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.18), transparent 55%);
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-    }
-
-    .hero-tag-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
-    }
-
-    .hero-title {
-      font-size: clamp(2.1rem, 3vw, 2.7rem);
-      font-weight: 650;
-      letter-spacing: 0.02em;
-    }
-
-    .hero-title span {
-      color: #a5b4fc;
-    }
-
-    .hero-sub {
-      font-size: 0.98rem;
-      color: var(--muted);
-      max-width: 520px;
-    }
-
-    .hero-ctas {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 6px;
-    }
-
-    .btn-primary {
-      padding: 10px 20px;
-      border-radius: 999px;
-      border: none;
-      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
-      color: #f9fafb;
-      font-size: 0.95rem;
-      font-weight: 500;
-      cursor: pointer;
-      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.45);
-    }
-
-    .btn-primary:hover {
-      filter: brightness(1.05);
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      padding: 9px 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      background: rgba(15, 23, 42, 0.8);
-      color: #e5e7eb;
-      font-size: 0.92rem;
-      cursor: pointer;
-    }
-
-    .btn-secondary:hover {
-      border-color: #e5e7eb;
-      background: rgba(15, 23, 42, 0.95);
-    }
-
-    .hero-note {
-      margin-top: 10px;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .hero-right {
-      border-radius: 22px;
-      background: radial-gradient(circle at 0 0, rgba(59, 130, 246, 0.35), transparent 55%),
-                  radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.3), transparent 55%),
-                  linear-gradient(145deg, #020617, #020617);
-      padding: 18px;
-      box-shadow: var(--shadow-soft);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-panel {
-      border-radius: 18px;
-      background: radial-gradient(circle at 0 0, rgba(148, 163, 184, 0.12), transparent 60%),
-                  #020617;
-      border: 1px solid rgba(31, 41, 55, 0.9);
-      padding: 18px 18px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .hero-panel-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    .hero-panel-title {
-      font-weight: 500;
-      color: #e5e7eb;
-    }
-
-    .hero-panel-badge {
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .hero-panel-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-      font-size: 0.78rem;
-    }
-
-    .hero-chip {
-      border-radius: 999px;
-      padding: 6px 9px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(31, 41, 55, 0.9);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: #e5e7eb;
-    }
-
-    .hero-chip span {
-      font-size: 0.7rem;
-      color: var(--muted);
-    }
-
-    .hero-panel-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.75rem;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    .hero-panel-pill {
-      padding: 4px 9px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(31, 41, 55, 0.9);
-    }
-
-    /* Pathways */
-
-    .section {
-      margin-top: 32px;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 12px;
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-size: 1.05rem;
-      font-weight: 550;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: #9ca3af;
-    }
-
-    .section-subtitle {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .pathways-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .card {
-      border-radius: var(--radius-lg);
-      background: linear-gradient(145deg, #020617, #020617);
-      border: 1px solid rgba(31, 41, 55, 0.9);
-      padding: 16px 16px 14px;
-      box-shadow: var(--shadow-card);
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .card h3 {
-      font-size: 0.98rem;
-      font-weight: 550;
-    }
-
-    .card p {
-      font-size: 0.86rem;
-      color: var(--muted);
-    }
-
-    .card ul {
-      list-style: none;
-      margin-top: 6px;
-      margin-bottom: 6px;
-      padding-left: 0;
-      font-size: 0.8rem;
-      color: #d1d5db;
-    }
-
-    .card ul li::before {
-      content: "• ";
-      color: #6b7280;
-    }
-
-    .card-footer {
-      margin-top: 6px;
-    }
-
-    .card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8rem;
-      color: #93c5fd;
-    }
-
-    .card-link span {
-      font-size: 0.9em;
-    }
-
-    /* HR card */
-
-    .hr-wrapper {
-      margin-top: 18px;
-      display: grid;
-      grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
-      gap: 16px;
-      align-items: stretch;
-    }
-
-    .hr-card {
-      border-radius: var(--radius-lg);
-      background: linear-gradient(145deg, #020617, #020617);
-      border: 1px solid rgba(37, 99, 235, 0.7);
-      padding: 16px 16px 14px;
-      box-shadow: 0 16px 40px rgba(37, 99, 235, 0.45);
-    }
-
-    .hr-card h3 {
-      font-size: 0.96rem;
-      font-weight: 550;
-      color: #dbeafe;
-    }
-
-    .hr-card p {
-      font-size: 0.84rem;
-      color: #bfdbfe;
-      margin-top: 4px;
-    }
-
-    .hr-card ul {
-      list-style: none;
-      margin-top: 6px;
-      margin-bottom: 6px;
-      padding-left: 0;
-      font-size: 0.8rem;
-      color: #e5e7eb;
-    }
-
-    .hr-card ul li::before {
-      content: "• ";
-      color: #93c5fd;
-    }
-
-    .hr-card-footer {
-      margin-top: 6px;
-    }
-
-    .hr-card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.8rem;
-      color: #bfdbfe;
-    }
-
-    /* Why Relancy */
-
-    .why {
-      margin-top: 40px;
-      border-radius: var(--radius-lg);
-      background: linear-gradient(145deg, #020617, #020617);
-      border: 1px solid rgba(31, 41, 55, 0.9);
-      padding: 18px 18px 16px;
-      box-shadow: var(--shadow-card);
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.4fr);
-      gap: 18px;
-    }
-
-    .why h2 {
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #9ca3af;
-    }
-
-    .why p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-top: 6px;
-    }
-
-    .why-list {
-      list-style: none;
-      font-size: 0.82rem;
-      color: #e5e7eb;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 6px 14px;
-    }
-
-    .why-list li::before {
-      content: "▸ ";
-      color: #60a5fa;
-    }
-
-    /* How it works */
-
-    .how {
-      margin-top: 32px;
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .how-card {
-      border-radius: var(--radius-md);
-      background: #020617;
-      border: 1px solid rgba(31, 41, 55, 0.9);
-      padding: 12px 12px 10px;
-      font-size: 0.8rem;
-      color: #e5e7eb;
-    }
-
-    .how-card h3 {
-      font-size: 0.82rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #9ca3af;
-      margin-bottom: 4px;
-    }
-
-    .how-card p {
-      font-size: 0.8rem;
-      color: var(--muted);
-    }
-
-    /* Pricing preview */
-
-    .pricing {
-      margin-top: 36px;
-      border-radius: var(--radius-lg);
-      background: linear-gradient(145deg, #020617, #020617);
-      border: 1px solid rgba(31, 41, 55, 0.9);
-      padding: 18px 18px 16px;
-      box-shadow: var(--shadow-card);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: center;
-    }
-
-    .pricing-left h2 {
-      font-size: 0.98rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #9ca3af;
-    }
-
-    .pricing-left p {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    .pricing-list {
-      list-style: none;
-      margin-top: 6px;
-      font-size: 0.8rem;
-      color: #e5e7eb;
-    }
-
-    .pricing-list li::before {
-      content: "• ";
-      color: #6b7280;
-    }
-
-    .pricing-right .btn-primary {
-      box-shadow: 0 14px 30px rgba(37, 99, 235, 0.6);
-    }
-
-    /* Beta Banner */
-
-    .beta-banner {
-      display: flex;
-      justify-content: center;
-      padding: 20px 0 4px;
-    }
-
-    .beta-banner-inner {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 7px 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(59, 130, 246, 0.45);
-      background: rgba(59, 130, 246, 0.08);
-      font-size: 0.85rem;
-      color: #93c5fd;
-      transition: background 0.2s, border-color 0.2s;
-    }
-
-    .beta-banner-inner:hover {
-      background: rgba(59, 130, 246, 0.14);
-      border-color: rgba(59, 130, 246, 0.65);
-      color: #bfdbfe;
-    }
-
-    .beta-banner-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
-      flex-shrink: 0;
-    }
-
-    /* Footer */
-
-    footer {
-      margin-top: 40px;
-      padding-top: 18px;
-      border-top: 1px solid rgba(31, 41, 55, 0.9);
-      font-size: 0.78rem;
-      color: var(--muted);
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .footer-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .footer-links a {
-      color: var(--muted);
-    }
-
-    .footer-links a:hover {
-      color: #e5e7eb;
-    }
-
-    /* Responsive */
-
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hero-right {
-        order: -1;
-      }
-
-      .pathways-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .hr-wrapper {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .why {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .how {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 640px) {
-      header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      nav {
-        font-size: 0.82rem;
-        flex-wrap: wrap;
-      }
-
-      .hero {
-        padding-top: 20px;
-      }
-
-      .how {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .pricing {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relancy — Investigations, Elevated</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f7f7f7;
+            color: #222;
+            line-height: 1.6;
+        }
+        header {
+            background: #111;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            font-weight: 700;
+        }
+        header p {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        .section {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        .section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+        .section p {
+            font-size: 1.1rem;
+        }
+        .cta-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            margin-top: 30px;
+        }
+        form input, form button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            font-size: 1rem;
+        }
+        form input {
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        form button {
+            background: #111;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        form button:hover {
+            background: #333;
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
 </head>
 <body>
-  <div class="page">
-    <div class="shell">
-      <header>
-        <div class="logo">
-          <img src="assets/relancy-logo.png" alt="Relancy logo" class="logo-img">
-        </div>
-<nav>
-  <a href="#security">Security Operations</a>
-  <a href="#investigations">Investigations</a>
-  <a href="fraud-intake.html">Fraud Intake</a>
-  <a href="safe-report.html">SafeReport.net</a>
-  <a href="#training">Training &amp; Readiness</a>
-  <a href="#hr">HR &amp; ER</a>
-  <a href="#pricing" class="nav-cta">Pricing</a>
-</nav>
 
-      </header>
+<header>
+    <h1>Relancy</h1>
+    <p>The next evolution in workplace investigations, readiness, and response.</p>
+</header>
 
-      <div class="beta-banner">
-        <a href="beta.html" class="beta-banner-inner">
-          <span class="beta-banner-dot"></span>
-          <span>Beta Program now open &mdash; Join early access</span>
-          <span>&#8594;</span>
-        </a>
-      </div>
+<div class="section">
+    <h2>Built for HR, ER, Compliance, and Security Teams</h2>
+    <p>
+        Relancy is a modern investigation platform designed to help organizations handle 
+        sensitive issues with clarity, consistency, and confidence.  
+        From intake to resolution, Relancy brings structure, transparency, and defensibility 
+        to every step of the process.
+    </p>
 
-      <main>
-        <!-- Hero -->
-        <section class="hero">
-          <div class="hero-left">
-            <div class="hero-tag">
-              <span class="hero-tag-dot"></span>
-              <span>Operational Risk OS</span>
-            </div>
-            <h1 class="hero-title">
-              The Platform for Companies That Actually Operate.<br />
-              <span>Call Centers. Warehouses. Distribution. Investigations.</span>
-            </h1>
-            <p class="hero-sub">
-              Relancy is the Operational Risk OS for high‑volume eCommerce — unifying investigations, security, CX escalations, warehouse integrity, and HR boundaries into one governed system built for companies that ship millions and live with real consequences.
-            </p>
-            <div class="hero-ctas">
-              <a href="contact.html" class="btn btn-primary">
-                Get Started
-              </a>
-              <a href="contact.html" class="btn btn-secondary">
-                Request a Demo
-              </a>
-            </div>
-            <p class="hero-note">
-              Built for operators who know the floor, the dock, the call center, and the investigation room — not for people who live in dashboards.
-            </p>
-          </div>
+    <h2>Launching Soon — Join the Waitlist</h2>
+    <p>
+        Be the first to access Relancy when the platform opens.  
+        Early members receive priority onboarding, exclusive training content, and 
+        early‑access features.
+    </p>
 
-          <div class="hero-right" aria-hidden="true">
-            <div class="hero-panel">
-              <div class="hero-panel-header">
-                <div>
-                  <div class="hero-panel-title">Operational Risk Snapshot</div>
-                  <div style="font-size:0.75rem;color:#9ca3af;">eCommerce • Distribution • CX • Investigations</div>
-                </div>
-                <div class="hero-panel-badge">Enterprise‑Grade</div>
-              </div>
+    <div class="cta-box">
+        <form action="https://formspree.io/f/mwvranvv" method="POST">
+            <label for="email">Your Email</label>
+            <input type="email" name="email" id="email" required placeholder="you@company.com" />
 
-              <div class="hero-panel-grid">
-                <div class="hero-chip">
-                  <strong>Dock Integrity</strong>
-                  <span>Seal‑verified</span>
-                </div>
-                <div class="hero-chip">
-                  <strong>CX Escalation</strong>
-                  <span>Incident‑first</span>
-                </div>
-                <div class="hero-chip">
-                  <strong>Warehouse Event</strong>
-                  <span>Chain‑of‑custody</span>
-                </div>
-                <div class="hero-chip">
-                  <strong>Fraud Pattern</strong>
-                  <span>Flagged by AI</span>
-                </div>
-                <div class="hero-chip">
-                  <strong>Supervisor Review</strong>
-                  <span>Domain‑private</span>
-                </div>
-                <div class="hero-chip">
-                  <strong>Case Timeline</strong>
-                  <span>Immutable audit</span>
-                </div>
-              </div>
+            <label for="org">Organization (optional)</label>
+            <input type="text" name="organization" id="org" placeholder="Company Name" />
 
-            </div>
-          </div>
-        </section>
-
-        <!-- Primary Pathways -->
-        <section class="section" id="security">
-          <div class="section-header">
-            <div class="section-title">Primary Pathways</div>
-            <div class="section-subtitle">
-              Three operational entry points, one governed platform. HR is visible — never dominant.
-            </div>
-          </div>
-
-          <div class="pathways-grid">
-            <!-- Security Operations -->
-            <article class="card">
-              <h3>Security Operations</h3>
-              <p>
-                Incident reporting, dock integrity, and floor‑level risk capture for teams who keep the operation honest.
-              </p>
-              <ul>
-                <li>Guard‑friendly reporting that mirrors real workflows</li>
-                <li>Dock, seal, and chain‑of‑custody integrity</li>
-                <li>Supervisor escalation without HR bleed‑through</li>
-                <li>Domain‑private visibility by design</li>
-              </ul>
-              <div class="card-footer">
-                <a href="security.html" class="card-link">
-                  <span>Explore Security Operations</span>
-                  <span>→</span>
-                </a>
-              </div>
-            </article>
-
-            <!-- Investigations -->
-            <article class="card" id="investigations">
-              <h3>Investigations</h3>
-
-              <p>
-                <strong>Built for the companies that ship millions.</strong><br>
-                <span>Fraud, shrink, diversion, CX escalations, and warehouse events in one disciplined environment.</span>
-              </p>
-
-              <p>
-                A defensible investigative system with full audit trails, version history, and escalation controls for when the stakes are real.
-              </p>
-
-              <ul>
-                <li>Full version history and immutable audit</li>
-                <li>Cross‑domain evidence without cross‑domain exposure</li>
-                <li>Escalation to Directors only when consequences are real</li>
-              </ul>
-
-              <div class="card-footer">
-                <a href="investigations.html" class="card-link">
-                  <span>Explore Investigations</span>
-                  <span>→</span>
-                </a>
-              </div>
-            </article>
-
-            <!-- Training & Readiness -->
-            <article class="card" id="training">
-              <h3>Training &amp; Readiness</h3>
-              <p>
-                Scenario‑driven training built from real operational patterns — not classroom theory.
-              </p>
-              <ul>
-                <li>Marketplace of real‑world scenarios</li>
-                <li>Contributor incentives tied to operational impact</li>
-                <li>Cross‑tenant learning without data leakage</li>
-                <li>Built for guards, supervisors, investigators, and CX</li>
-              </ul>
-              <div class="card-footer">
-                <a href="training.html" class="card-link">
-                  <span>Explore Training &amp; Readiness</span>
-                  <span>→</span>
-                </a>
-              </div>
-            </article>
-          </div>
-
-          <!-- HR Card -->
-          <div class="hr-wrapper" id="hr">
-            <div></div>
-            <article class="hr-card">
-              <h3>HR &amp; Employee Relations</h3>
-              <p>
-                Confidential HR events with strict boundaries — visible only when HR chooses to escalate.
-              </p>
-              <ul>
-                <li>Conduct &amp; harassment documentation that stays in HR</li>
-                <li>Protected class integrity</li>
-                <li>Domain‑private until escalation</li>
-                <li>Controlled sharing with Security and Directors</li>
-              </ul>
-              <div class="hr-card-footer">
-                <a href="hr.html" class="hr-card-link">
-                  <span>HR &amp; ER Overview</span>
-                  <span>→</span>
-                </a>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <!-- Why Relancy -->
-        <section class="why">
-          <div>
-            <h2>Built for High‑Volume eCommerce Operators</h2>
-            <p>
-              Relancy is the system built for companies that run their own call centers, warehouses, and distribution — the operators who still live with shrink, fraud, mis‑picks, diversions, escalations, and real‑world consequences. This is the architecture designed for disciplined operational teams who need truth, lineage, and defensibility.
-            </p>
-          </div>
-          <ul class="why-list">
-            <li>Incidents originate from real operational events — never phantom files.</li>
-            <li>Security, CX, Warehouse, and HR maintain strict domain boundaries.</li>
-            <li>Evidence stays private until intentionally shared.</li>
-            <li>Directors see only what is escalated — no omniscience.</li>
-            <li>AI flags risk without exposing sensitive content.</li>
-            <li>Full version history and immutable audit for every action.</li>
-          </ul>
-        </section>
-
-        <!-- How Relancy Works -->
-        <section class="how">
-          <article class="how-card">
-            <h3>Incident Capture</h3>
-            <p>
-              Fast, structured reporting for guards, supervisors, CX, and warehouse teams — without changing how the floor works.
-            </p>
-          </article>
-          <article class="how-card">
-            <h3>Case Management</h3>
-            <p>
-              A unified narrative spine that forms only when a real incident exists. No case without an egg.
-            </p>
-          </article>
-          <article class="how-card">
-            <h3>Escalation</h3>
-            <p>
-              Explicit, intentional escalation to Directors when termination, prosecution, or financial exposure is on the table.
-            </p>
-          </article>
-          <article class="how-card">
-            <h3>Governance &amp; Training</h3>
-            <p>
-              Audit trails, version history, and scenario‑driven training built from real operational lineage.
-            </p>
-          </article>
-        </section>
-
-        <!-- Pricing Preview -->
-        <section class="pricing" id="pricing">
-          <div class="pricing-left">
-            <h2>Simple, Transparent Pricing</h2>
-            <p>
-              Every plan includes the governance backbone required for high‑volume operations — no upsell for integrity.
-            </p>
-            <ul class="pricing-list">
-              <li>Unlimited Security, CX, Warehouse, and HR incidents</li>
-              <li>Unlimited cases with full version history</li>
-              <li>AI redacted scanning and risk flags</li>
-              <li>Dock integrity &amp; chain‑of‑custody workflows</li>
-              <li>Director escalation and legal‑ready audit trails</li>
-            </ul>
-          </div>
-          <div class="pricing-right">
-            <a href="pricing.html" class="btn-primary">View Pricing</a>
-          </div>
-        </section>
-      </main>
-
-      <footer>
-        <div>© Relancy. The Operational Risk OS for companies that actually operate.</div>
-        <div class="footer-links">
-          <a href="#security">Security Operations</a>
-          <a href="#investigations">Investigations</a>
-          <a href="#training">Training &amp; Readiness</a>
-          <a href="#hr">HR &amp; ER</a>
-          <a href="#pricing">Pricing</a>
-          <a href="casestudies.html">Case Studies</a>
-          <a href="products.html">Products</a>
-          <a href="legal.html">Legal</a>
-          <a href="privacy.html">Privacy</a>
-          <a href="contact.html">Contact</a>
-          <a href="beta.html">Beta</a>
-        </div>
-      </footer>
+            <button type="submit">Join the Waitlist</button>
+        </form>
     </div>
-  </div>
+</div>
+
+<footer>
+    © 2026 Relancy — All Rights Reserved
+</footer>
+
 </body>
 </html>
